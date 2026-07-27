@@ -59,7 +59,7 @@ const policies = [
     title: "Privacy, minors & guardian contact",
     body: [
       "We collect only the information needed to evaluate a submission: contact information, age band, guardian contact for authors ages 14–17, school or organization if supplied, manuscript information, declarations, and the manuscript file. This information is used for editorial administration, not advertising, profiling, or sale.",
-      "Submission records and files are private to authorized editors and advisors who need them for the review process. We do not publish an author’s home address, phone number, or guardian contact. Authors under 18 must provide a guardian email and confirm they have permission to submit; before publication, we will contact the guardian to confirm publication consent.",
+      "Submission records and files are private to authorized editors and advisors who need them for the review process. A short new-submission notice may be sent to an authorized editor inbox; it does not include the manuscript file. We do not publish an author’s home address, phone number, or guardian contact. Authors under 18 must provide a guardian email and confirm they have permission to submit; before publication, we will contact the guardian to confirm publication consent.",
       "Open Margin does not accept submissions from children under 14. A parent, guardian, or author may ask to review, correct, or delete submission data by contacting the editors. We delete declined submissions and related files within 12 months, unless a longer period is needed to resolve an integrity concern or legal obligation. Accepted work remains in the public record after publication.",
     ],
   },

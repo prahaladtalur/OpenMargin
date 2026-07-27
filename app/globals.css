@@ -452,6 +452,52 @@ button, input, textarea { font: inherit; }
 .submission-success button { border: 0; cursor: pointer; margin-top: 1.5rem; }
 .honeypot { height: 0; overflow: hidden; position: absolute; width: 0; }
 
+.editor-page { background: #e8e5dc; min-height: 100vh; padding: clamp(1.25rem, 4vw, 4rem); }
+.editor-header { align-items: flex-start; border-bottom: 2px solid var(--ink); display: flex; gap: 2rem; justify-content: space-between; padding: 1rem 0 2rem; }
+.editor-header h1, .editor-denied h1 { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); font-weight: 500; letter-spacing: -.06em; line-height: .88; margin: 0 0 1rem; }
+.editor-header > div > p:last-child { color: var(--muted); margin: 0; }
+.editor-header-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+.editor-link { border-bottom: 1px solid var(--ink); font-size: .68rem; font-weight: 700; letter-spacing: .09em; padding-bottom: .2rem; text-transform: uppercase; }
+.editor-link:hover { color: var(--red); }
+.editor-notice { background: #f7dfae; border-left: 5px solid #9b6b08; margin: 2rem 0; padding: .9rem 1.1rem; }
+.editor-notice.configured { background: #d8e6da; border-left-color: var(--forest); }
+.editor-notice p { margin: 0; }
+.editor-summary { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); margin: 2rem 0; }
+.editor-summary div { background: var(--ink); color: white; padding: 1.2rem; }
+.editor-summary span { font-family: var(--serif); font-size: 2.5rem; line-height: 1; }
+.editor-summary p { color: #c9d0c8; font-size: .64rem; letter-spacing: .1em; margin: .4rem 0 0; text-transform: uppercase; }
+.editor-list-heading { align-items: end; display: flex; justify-content: space-between; margin: 3rem 0 1rem; }
+.editor-list-heading > p:last-child { color: var(--muted); font-size: .78rem; margin: 0; }
+.editor-card { background: var(--paper-light); border: 1px solid var(--line); margin-bottom: 1.5rem; padding: clamp(1.3rem, 3vw, 2.5rem); }
+.editor-card-heading { align-items: flex-start; border-bottom: 1px solid var(--ink); display: flex; gap: 2rem; justify-content: space-between; padding-bottom: 1.5rem; }
+.editor-reference { color: var(--red); font-size: .65rem; font-weight: 700; letter-spacing: .11em; margin: 0 0 .4rem; text-transform: uppercase; }
+.editor-card h2 { font-family: var(--serif); font-size: clamp(1.9rem, 3.6vw, 3.4rem); font-weight: 500; letter-spacing: -.045em; line-height: .95; margin: 0 0 .7rem; }
+.editor-meta { color: var(--muted); font-size: .74rem; margin: 0; }
+.editor-card-heading .button { flex: 0 0 auto; }
+.editor-data-grid { border-bottom: 1px solid var(--line); display: grid; gap: 1.5rem; grid-template-columns: repeat(4, 1fr); padding: 1.5rem 0; }
+.editor-card h3 { font-size: .62rem; letter-spacing: .12em; margin: 0 0 .55rem; text-transform: uppercase; }
+.editor-card h3 + p { font-size: .87rem; margin: 0; overflow-wrap: anywhere; }
+.editor-card a:not(.button) { border-bottom: 1px solid var(--red); color: var(--forest); }
+.editor-abstract { border-bottom: 1px solid var(--line); padding: 1.5rem 0; }
+.editor-abstract p { font-family: var(--serif); margin: 0 0 1.2rem; max-width: 900px; }
+.editor-actions { align-items: end; display: flex; gap: 1rem; padding-top: 1.5rem; }
+.editor-actions label { display: flex; flex-direction: column; font-size: .62rem; font-weight: 700; gap: .35rem; letter-spacing: .1em; text-transform: uppercase; }
+.editor-actions select { background: white; border: 1px solid var(--ink); min-height: 38px; padding: .3rem .6rem; text-transform: capitalize; }
+.editor-save { background: var(--forest); border: 0; color: white; cursor: pointer; font-size: .68rem; font-weight: 700; letter-spacing: .08em; min-height: 38px; padding: .5rem .85rem; text-transform: uppercase; }
+.editor-save:hover { background: var(--red); }
+.editor-save:disabled { cursor: wait; opacity: .65; }
+.editor-actions > p { color: var(--red); font-size: .78rem; margin: 0; }
+.editor-empty { background: var(--paper-light); border: 1px dashed var(--muted); padding: 4rem 2rem; text-align: center; }
+.editor-empty h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 500; margin: 0 0 .5rem; }
+.editor-denied { min-height: 70vh; padding: clamp(4rem, 10vw, 10rem) clamp(1.25rem, 12vw, 13rem); }
+.editor-denied > p:not(.eyebrow) { font-family: var(--serif); font-size: 1.25rem; max-width: 620px; }
+
+@media (max-width: 800px) {
+  .editor-header, .editor-card-heading, .editor-list-heading { align-items: flex-start; flex-direction: column; }
+  .editor-summary, .editor-data-grid { grid-template-columns: 1fr; }
+  .editor-actions { align-items: flex-start; flex-direction: column; }
+}
+
 .policy-layout { display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: 220px minmax(0, 1fr); margin: 0 auto; max-width: 1280px; padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem); }
 .policy-toc { align-self: start; border-top: 1px solid var(--ink); position: sticky; top: 1.5rem; }
 .policy-toc .eyebrow { margin-top: 1rem; }

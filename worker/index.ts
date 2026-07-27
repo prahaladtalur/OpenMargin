@@ -6,6 +6,10 @@ interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
   MANUSCRIPTS: R2Bucket;
+  EDITOR_EMAILS?: string;
+  NOTIFICATION_EMAIL?: string;
+  RESEND_API_KEY?: string;
+  RESEND_FROM?: string;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {

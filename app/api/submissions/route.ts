@@ -1,5 +1,6 @@
 import { ensureSubmissionTable, getDb, getManuscriptBucket } from "../../../db";
 import { submissions } from "../../../db/schema";
+import { notifyEditorOfSubmission } from "../../../lib/notifications";
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
 const supportedTypes = new Set([
@@ -84,6 +85,8 @@ export async function POST(request: Request) {
       await bucket.delete(key);
       throw error;
     }
+
+    await notifyEditorOfSubmission({ id, authorName, manuscriptTitle, discipline, ageBand });
 
     return Response.json({ reference: id }, { status: 201 });
   } catch (error) {

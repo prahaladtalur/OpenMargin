@@ -32,3 +32,14 @@ test("keeps submission data private and durable", async () => {
   assert.match(hosting, /"d1": "DB"/);
   assert.match(hosting, /"r2": "MANUSCRIPTS"/);
 });
+
+test("keeps editorial review surfaces private", async () => {
+  const [editorPage, editorAuth, statusRoute] = await Promise.all([
+    source("app/editor/page.tsx"),
+    source("lib/editor-auth.ts"),
+    source("app/api/editor/submissions/[id]/status/route.ts"),
+  ]);
+  assert.match(editorPage, /requireEditor/);
+  assert.match(editorAuth, /EDITOR_EMAILS/);
+  assert.match(statusRoute, /getEditorForApi/);
+});
