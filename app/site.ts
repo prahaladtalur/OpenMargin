@@ -23,7 +23,7 @@ export const reviewSteps = [
     number: "03",
     title: "A useful decision",
     timing: "By week 6",
-    body: "Authors receive a specific decision letter: revise, accept with changes, or decline—with comments they can act on.",
+    body: "Authors receive a specific decision letter: revise, accept with changes, or decline, with comments they can act on.",
   },
   {
     number: "04",

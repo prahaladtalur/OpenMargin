@@ -27,7 +27,7 @@ const policies = [
     body: [
       "We use double-blind review whenever practical: authors and reviewers do not receive one another’s names. Two trained student reviewers normally assess a manuscript with a published rubric. Editors make the final decision and may seek academic-advisor input for specialized or disputed work.",
       "Reviewers and editors must recuse themselves from work by classmates, close collaborators, relatives, mentors, or anyone whose relationship could reasonably affect judgment. Reviews and manuscripts are confidential and may not be shared outside the editorial process.",
-      "Authors may appeal a decision only for a material procedural error, undisclosed conflict, or serious factual misunderstanding—not simply disagreement with a scholarly judgment. Send a concise appeal within 30 days; an uninvolved editor or advisor will review it.",
+      "Authors may appeal a decision only for a material procedural error, undisclosed conflict, or serious factual misunderstanding, not simply disagreement with a scholarly judgment. Send a concise appeal within 30 days; an uninvolved editor or advisor will review it.",
     ],
   },
   {

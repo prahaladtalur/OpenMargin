@@ -17,8 +17,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: "Open Margin — A Journal of Emerging Scholarship",
-      template: "%s — Open Margin",
+      default: "Open Margin: A Journal of Emerging Scholarship",
+      template: "%s | Open Margin",
     },
     description:
       "A free, open-access journal offering rigorous, constructive review for secondary-school scholarship in the humanities and social sciences.",

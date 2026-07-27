@@ -18,7 +18,7 @@ export default function SubmitPage() {
     <main>
       <PageIntro
         eyebrow="Submission guide"
-        title="Send the work—not a sales pitch."
+        title="Send the work, not a sales pitch."
         description="Pilot submissions are now open. The form below collects only what editors need to screen, review, and responsibly publish a manuscript."
       />
 

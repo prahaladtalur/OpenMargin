@@ -19,7 +19,7 @@ export default function ReviewPage() {
       <PageIntro
         eyebrow="Review process"
         title="Useful feedback is the point."
-        description="Our review process is double-blind, rubric-based, and designed to make promising scholarship more precise—not to manufacture prestige."
+        description="Our review process is double-blind, rubric-based, and designed to make promising scholarship more precise, not to manufacture prestige."
       />
 
       <section className="process-section">

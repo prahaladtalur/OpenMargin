@@ -13,7 +13,7 @@ export default function Home() {
           </h1>
           <p className="hero-deck">
             A free, open-access journal where secondary-school researchers in
-            the humanities and social sciences receive rigorous review—and
+            the humanities and social sciences receive rigorous review and
             feedback worth keeping.
           </p>
           <div className="hero-actions">
@@ -32,7 +32,7 @@ export default function Home() {
             about the question you asked, the evidence you found, and whether
             our comments help you think more precisely.
           </p>
-          <p className="note-signoff">— Founding editorial team</p>
+          <p className="note-signoff">Founding editorial team</p>
         </aside>
         <div className="hero-folio" aria-hidden="true">
           VOL. 01
@@ -92,7 +92,7 @@ export default function Home() {
           <h2>A review process you can see.</h2>
           <p>
             Every author sees the same standards before submitting. Every
-            reviewer is trained on the same rubric. Editors—not reviewers—own
+            reviewer is trained on the same rubric. Editors, not reviewers, own
             the final decision.
           </p>
           <Link className="button button-paper" href="/review">Read the complete process</Link>
