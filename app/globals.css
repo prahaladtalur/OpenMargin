@@ -420,6 +420,54 @@ button, input, textarea { font: inherit; }
 .portal-callout h2 { font-size: clamp(2.8rem, 5vw, 5rem); line-height: .95; margin: 0 0 1rem; }
 .portal-callout > div > p:last-child { max-width: 620px; }
 
+.submission-portal { background: var(--paper-light); border-top: 1px solid var(--ink); padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem); }
+.portal-heading { margin: 0 auto 4rem; max-width: 760px; text-align: center; }
+.portal-heading h2 { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); font-weight: 500; letter-spacing: -.05em; line-height: .9; margin: 0 0 1.5rem; }
+.portal-heading > p:last-child { margin: 0 auto; max-width: 610px; }
+.submission-form { background: var(--paper); border: 1px solid var(--ink); margin: 0 auto; max-width: 960px; padding: clamp(1.5rem, 4vw, 4rem); }
+.submission-form fieldset { border: 0; border-top: 1px solid var(--line); margin: 0; padding: 2rem 0; }
+.submission-form fieldset:first-of-type { border-top: 1px solid var(--ink); }
+.submission-form legend { font-family: var(--serif); font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 500; padding: 0 0 1.5rem; }
+.submission-form legend span { color: var(--red); font-size: 1rem; margin-right: .7rem; vertical-align: middle; }
+.form-grid { display: grid; gap: 1.2rem; grid-template-columns: 1fr 1fr; }
+.submission-form label { color: var(--ink); display: flex; flex-direction: column; font-size: .7rem; font-weight: 700; gap: .45rem; letter-spacing: .06em; text-transform: uppercase; }
+.submission-form label small { color: var(--muted); font-size: .62rem; font-weight: 500; letter-spacing: .03em; text-transform: none; }
+.submission-form input:not([type="checkbox"]), .submission-form select, .submission-form textarea { background: var(--paper-light); border: 1px solid var(--line); border-radius: 0; color: var(--ink); font-size: 1rem; font-weight: 400; letter-spacing: normal; min-height: 46px; padding: .7rem .8rem; text-transform: none; width: 100%; }
+.submission-form textarea { line-height: 1.45; resize: vertical; }
+.submission-form input:focus, .submission-form select:focus, .submission-form textarea:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(23, 62, 50, .13); outline: 0; }
+.submission-form .wide { grid-column: 1 / -1; }
+.file-field { border: 1px dashed var(--muted); margin-bottom: 1.5rem; padding: 1.2rem; }
+.submission-form input[type="file"] { color: var(--muted); cursor: pointer; font-size: .78rem; padding: .6rem 0 0; }
+.declarations { border-top: 1px solid var(--line); display: grid; gap: 1rem; padding-top: 1.5rem; }
+.declarations label { align-items: flex-start; flex-direction: row; font-size: .78rem; font-weight: 500; letter-spacing: normal; line-height: 1.45; text-transform: none; }
+.declarations input { accent-color: var(--forest); flex: 0 0 auto; height: 18px; margin: .15rem .2rem 0 0; width: 18px; }
+.declarations a { border-bottom: 1px solid var(--red); color: var(--forest); }
+.form-submit { align-items: center; border-top: 1px solid var(--ink); display: flex; gap: 2rem; justify-content: space-between; padding-top: 2rem; }
+.form-submit p { color: var(--muted); font-size: .78rem; margin: 0; max-width: 450px; }
+.form-submit button[disabled] { cursor: wait; opacity: .65; }
+.form-error { background: #fde5df; border-left: 4px solid var(--red); color: #72271d; margin: 0 0 1.5rem; padding: .9rem 1rem; }
+.submission-success { background: var(--yellow); margin: 0 auto; max-width: 800px; padding: clamp(2rem, 5vw, 5rem); text-align: center; }
+.submission-success h2 { font-family: var(--serif); font-size: clamp(2.6rem, 5vw, 5rem); font-weight: 500; letter-spacing: -.045em; line-height: .95; margin: 0 0 1.5rem; }
+.submission-success > p:not(.handwritten) { margin: 0 auto 1rem; max-width: 560px; }
+.submission-success button { border: 0; cursor: pointer; margin-top: 1.5rem; }
+.honeypot { height: 0; overflow: hidden; position: absolute; width: 0; }
+
+.policy-layout { display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: 220px minmax(0, 1fr); margin: 0 auto; max-width: 1280px; padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem); }
+.policy-toc { align-self: start; border-top: 1px solid var(--ink); position: sticky; top: 1.5rem; }
+.policy-toc .eyebrow { margin-top: 1rem; }
+.policy-toc a { border-bottom: 1px solid var(--line); display: block; font-size: .75rem; padding: .75rem 0; }
+.policy-toc a:hover { color: var(--red); }
+.policy-content { min-width: 0; }
+.policy-lead { font-family: var(--serif); font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.35; margin: 0 0 4rem; max-width: 730px; }
+.policy-section { border-top: 1px solid var(--ink); display: grid; gap: 1.5rem; grid-template-columns: 45px minmax(0, 1fr); padding: 2.5rem 0; }
+.policy-number { color: var(--red); font-family: var(--serif); font-size: 1.25rem; margin: 0; }
+.policy-section h2 { font-family: var(--serif); font-size: clamp(2rem, 3.6vw, 3.6rem); font-weight: 500; letter-spacing: -.04em; line-height: .98; margin: 0 0 1.3rem; }
+.policy-section p { margin: 0 0 1rem; max-width: 760px; }
+.policy-sources { background: var(--forest); color: white; margin: 0 auto 7rem; max-width: 1080px; padding: clamp(2rem, 5vw, 5rem); }
+.policy-sources > p:not(.eyebrow) { color: #d9e0d5; font-family: var(--serif); font-size: 1.12rem; max-width: 760px; }
+.policy-sources a:not(.button) { border-bottom: 1px solid var(--yellow); color: white; }
+.policy-sources .button { margin-top: 1.2rem; }
+
 .issue-cover {
   background: var(--forest);
   color: white;
@@ -470,6 +518,8 @@ button, input, textarea { font: inherit; }
   .review-preview, .rubric-section, .decision-grid { grid-template-columns: 1fr; }
   .commitment-grid { grid-template-columns: 1fr 1fr; }
   .masthead, .standards-grid, .submission-specs { gap: 3rem; grid-template-columns: 1fr; }
+  .policy-layout { grid-template-columns: 1fr; }
+  .policy-toc { position: static; }
   .issue-contents { grid-template-columns: 1fr; }
 }
 
@@ -506,6 +556,10 @@ button, input, textarea { font: inherit; }
   .decision-cards article { gap: .5rem; grid-template-columns: 1fr; }
   .ethics-note { margin: 0 1rem 5rem; }
   .portal-callout { align-items: flex-start; flex-direction: column; gap: 2rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .submission-form .wide { grid-column: auto; }
+  .form-submit { align-items: flex-start; flex-direction: column; }
+  .policy-section { gap: .5rem; grid-template-columns: 1fr; }
   .issue-cover { min-height: 560px; }
   .footer-bottom, .site-footer { grid-template-columns: 1fr; }
   .footer-bottom { align-items: flex-start; flex-direction: column; gap: .2rem; }

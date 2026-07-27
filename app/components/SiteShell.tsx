@@ -4,6 +4,7 @@ import { site } from "../site";
 const nav = [
   { href: "/issue", label: "Read" },
   { href: "/review", label: "Review process" },
+  { href: "/policies", label: "Policies" },
   { href: "/about", label: "About" },
 ];
 
@@ -59,7 +60,7 @@ export function SiteFooter() {
       <div className="footer-column">
         <p className="eyebrow">Journal</p>
         <Link href="/about">About & masthead</Link>
-        <Link href="/about#policies">Editorial policies</Link>
+        <Link href="/policies">Editorial policies</Link>
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </div>
       <div className="footer-bottom">

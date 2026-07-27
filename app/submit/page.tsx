@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageIntro } from "../components/SiteShell";
-import { standards, site } from "../site";
+import { standards } from "../site";
+import { SubmissionForm } from "./SubmissionForm";
 
 export const metadata: Metadata = { title: "Submit work" };
 
@@ -18,7 +19,7 @@ export default function SubmitPage() {
       <PageIntro
         eyebrow="Submission guide"
         title="Send the work—not a sales pitch."
-        description="Submissions for the pilot issue open in September 2026. Reading the guide now will help you prepare a manuscript that can enter review quickly."
+        description="Pilot submissions are now open. The form below collects only what editors need to screen, review, and responsibly publish a manuscript."
       />
 
       <section className="eligibility-grid">
@@ -72,18 +73,13 @@ export default function SubmitPage() {
         </aside>
       </section>
 
-      <section className="portal-callout">
-        <div>
-          <p className="eyebrow">Pilot portal</p>
-          <h2>Submissions are not open yet.</h2>
-          <p>
-            The real submission form, privacy notice, and guardian-consent
-            workflow will replace this notice before the pilot window opens.
-          </p>
+      <section className="submission-portal" id="portal">
+        <div className="portal-heading">
+          <p className="eyebrow">Pilot submission portal</p>
+          <h2>Ready when your manuscript is.</h2>
+          <p>Save a copy of your manuscript before submitting. The file is stored privately and is visible only to the editors and advisors who need it for the review process.</p>
         </div>
-        <a className="button button-paper" href={`mailto:${site.email}`}>
-          Ask an editorial question
-        </a>
+        <SubmissionForm />
       </section>
     </main>
   );

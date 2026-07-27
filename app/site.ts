@@ -3,7 +3,7 @@ export const site = {
   descriptor: "A journal of emerging scholarship",
   email: "editors@openmargin.org",
   location: "Washington, United States",
-  submissionWindow: "Pilot submissions open September 2026",
+  submissionWindow: "Pilot submissions are now open",
 };
 
 export const reviewSteps = [

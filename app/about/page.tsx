@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
 
 export const metadata: Metadata = { title: "About" };
@@ -84,15 +85,14 @@ export default function AboutPage() {
         <div className="policy-list">
           {[
             "Authorship & originality",
-            "Conflicts of interest",
+            "Peer review, conflicts & appeals",
             "Research involving people",
             "Corrections & retractions",
-            "Appeals & complaints",
             "Copyright & licensing",
             "Privacy & guardian consent",
             "Use of generative AI",
           ].map((policy) => (
-            <div key={policy}><span>{policy}</span><small>Full policy before launch</small></div>
+            <Link href="/policies" key={policy}><span>{policy}</span><small>Read policy</small></Link>
           ))}
         </div>
       </section>
