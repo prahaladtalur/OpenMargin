@@ -8,6 +8,13 @@
       "when": 1785173561593,
       "tag": "0000_clever_praxagora",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1785207133758,
+      "tag": "0001_first_sway",
+      "breakpoints": true
     }
   ]
 }

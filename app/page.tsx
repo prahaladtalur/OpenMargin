@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { reviewSteps, samplePapers } from "./site";
+import { focusAreas, reviewSteps } from "./site";
 
 export default function Home() {
   return (
@@ -62,27 +62,27 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">Volume 01 · Pilot issue</p>
-            <h2>Questions worth following</h2>
+            <h2>Make the first table of contents real.</h2>
           </div>
-          <Link className="text-link" href="/issue">View the issue <span aria-hidden="true">→</span></Link>
+          <Link className="text-link" href="/submit">See what fits <span aria-hidden="true">→</span></Link>
         </div>
         <div className="paper-list">
-          {samplePapers.map((paper, index) => (
-            <article className="paper-row" key={paper.title}>
+          {focusAreas.map((area, index) => (
+            <article className="paper-row" key={area.field}>
               <p className="paper-number">{String(index + 1).padStart(2, "0")}</p>
               <div>
-                <p className="paper-field">{paper.field}</p>
-                <h3>{paper.title}</h3>
-                <p className="paper-author">{paper.author}</p>
+                <p className="paper-field">{area.field}</p>
+                <h3>Work that gives a careful reader somewhere to go.</h3>
+                <p className="paper-author">Pilot issue accepting submissions</p>
               </div>
-              <p className="paper-note">{paper.note}</p>
+              <p className="paper-note">{area.note}</p>
               <span className="paper-arrow" aria-hidden="true">↗</span>
             </article>
           ))}
         </div>
         <p className="sample-disclaimer">
-          Working titles shown to demonstrate the pilot issue format. No
-          publication or authorship is being claimed.
+          The pilot issue has no published articles yet. We will list accepted
+          work only after the full editorial process is complete.
         </p>
       </section>
 
@@ -121,7 +121,7 @@ export default function Home() {
         </p>
         <div className="closing-actions">
           <Link className="button button-accent" href="/submit">Read the submission guide</Link>
-          <Link className="text-link light" href="/about">Meet the journal</Link>
+          <Link className="text-link light" href="/partners">Partner with the journal</Link>
         </div>
       </section>
     </main>

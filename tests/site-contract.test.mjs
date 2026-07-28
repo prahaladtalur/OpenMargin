@@ -43,3 +43,34 @@ test("keeps editorial review surfaces private", async () => {
   assert.match(editorAuth, /EDITOR_EMAILS/);
   assert.match(statusRoute, /getEditorForApi/);
 });
+
+test("keeps contributor and partnership intake durable and editor-only", async () => {
+  const [reviewerRoute, partnerRoute, recruitmentPage, reviewerStatus, partnerStatus] = await Promise.all([
+    source("app/api/reviewer-applications/route.ts"),
+    source("app/api/partner-inquiries/route.ts"),
+    source("app/editor/recruitment/page.tsx"),
+    source("app/api/editor/reviewer-applications/[id]/status/route.ts"),
+    source("app/api/editor/partner-inquiries/[id]/status/route.ts"),
+  ]);
+  assert.match(reviewerRoute, /ensureOperationsTables/);
+  assert.match(reviewerRoute, /notifyEditorOfReviewerApplication/);
+  assert.match(partnerRoute, /ensureOperationsTables/);
+  assert.match(partnerRoute, /notifyEditorOfPartnerInquiry/);
+  assert.match(recruitmentPage, /requireEditor/);
+  assert.match(reviewerStatus, /getEditorForApi/);
+  assert.match(partnerStatus, /getEditorForApi/);
+});
+
+test("keeps author status lookup private and public journal copy free of em dashes", async () => {
+  const [statusRoute, statusPage, home, issue] = await Promise.all([
+    source("app/api/submission-status/route.ts"),
+    source("app/status/page.tsx"),
+    source("app/page.tsx"),
+    source("app/issue/page.tsx"),
+  ]);
+  assert.match(statusRoute, /submissions\.authorEmail/);
+  assert.match(statusRoute, /submissions\.id/);
+  assert.match(statusPage, /SubmissionStatusForm/);
+  assert.doesNotMatch(home, /—/);
+  assert.doesNotMatch(issue, /—/);
+});

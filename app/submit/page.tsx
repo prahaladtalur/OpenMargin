@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
 import { standards } from "../site";
 import { SubmissionForm } from "./SubmissionForm";
@@ -7,7 +8,7 @@ export const metadata: Metadata = { title: "Submit work" };
 
 const checklist = [
   "Manuscript with author names and identifying details removed",
-  "150–250 word abstract and 4–6 keywords",
+  "A concise abstract of 300–1,800 characters",
   "Works cited or references in a consistent style",
   "A brief note explaining the paper’s origin and your contribution",
   "Guardian permission to publish if you are under 18",
@@ -65,7 +66,7 @@ export default function SubmitPage() {
           <p className="eyebrow">At a glance</p>
           <dl>
             <div><dt>Length</dt><dd>2,500–8,000 words</dd></div>
-            <div><dt>Format</dt><dd>.docx or Google Doc</dd></div>
+            <div><dt>Format</dt><dd>PDF or DOCX</dd></div>
             <div><dt>Review</dt><dd>Double-blind</dd></div>
             <div><dt>Cost</dt><dd>Always $0</dd></div>
             <div><dt>License</dt><dd>Author retains copyright</dd></div>
@@ -81,6 +82,7 @@ export default function SubmitPage() {
         </div>
         <SubmissionForm />
       </section>
+      <section className="portal-callout"><div><p className="eyebrow">Already submitted?</p><h2>Check the stage privately.</h2><p>Use your reference code and original submission email to view a high-level editorial status without exposing your manuscript.</p></div><Link className="button button-paper" href="/status">Check submission status</Link></section>
     </main>
   );
 }

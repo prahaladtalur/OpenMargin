@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     if (ageBand !== "14-17" && ageBand !== "18-19") return invalid("Submissions are limited to authors ages 14–19.");
     if (ageBand === "14-17" && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Authors ages 14–17 need to provide a guardian email.");
     if (!manuscriptTitle || !discipline || abstract.length < 300 || !originNote || !aiDisclosure) return invalid("Complete every manuscript field before submitting.");
-    if (!Number.isInteger(wordCount) || wordCount < 500 || wordCount > 20000) return invalid("Enter a word count between 500 and 20,000.");
+    if (!Number.isInteger(wordCount) || wordCount < 2500 || wordCount > 8000) return invalid("Enter a word count between 2,500 and 8,000.");
     if (!(manuscript instanceof File) || !manuscript.size) return invalid("Attach a manuscript file.");
     if (manuscript.size > MAX_FILE_BYTES || (!supportedTypes.has(manuscript.type) && !supportedExtensions.test(manuscript.name))) return invalid("Use a PDF or DOCX manuscript no larger than 10 MB.");
     if (form.get("originalWorkConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the originality and privacy declarations.");

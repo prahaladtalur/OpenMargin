@@ -1,7 +1,6 @@
 export const site = {
   name: "Open Margin",
   descriptor: "A journal of emerging scholarship",
-  email: "editors@openmargin.org",
   location: "Washington, United States",
   submissionWindow: "Pilot submissions are now open",
 };
@@ -33,24 +32,18 @@ export const reviewSteps = [
   },
 ];
 
-export const samplePapers = [
+export const focusAreas = [
   {
     field: "History",
-    title: "Who Owned the River? Public Memory and the Remaking of the Duwamish",
-    author: "Pilot issue · Forthcoming",
-    note: "Environmental history",
+    note: "Evidence, memory, institutions, and change",
   },
   {
     field: "Political science",
-    title: "The Language of Belonging in Youth-Led Municipal Campaigns",
-    author: "Pilot issue · Forthcoming",
-    note: "Discourse analysis",
+    note: "Power, policy, participation, and public life",
   },
   {
-    field: "Literature",
-    title: "Footnotes at the Edge: Translation and Silence in Diasporic Poetry",
-    author: "Pilot issue · Forthcoming",
-    note: "Comparative literature",
+    field: "Literature & culture",
+    note: "Texts, language, interpretation, and lived experience",
   },
 ];
 

@@ -28,7 +28,7 @@ export function SubmissionForm() {
   }
 
   if (status === "success") {
-    return <section className="submission-success" aria-live="polite"><p className="handwritten">submission received</p><h2>Thank you for trusting us with your work.</h2><p>{message}</p><p>An editor will email you after the initial screen, normally within seven days.</p><button className="button button-dark" onClick={() => { setStatus("idle"); setMessage(""); }}>Start another submission</button></section>;
+    return <section className="submission-success" aria-live="polite"><p className="handwritten">submission received</p><h2>Thank you for trusting us with your work.</h2><p>{message}</p><p>An editor will email you after the initial screen, normally within seven days. You can also check the high-level stage using your reference code.</p><div className="success-actions"><Link className="button button-dark" href="/status">Check submission status</Link><button className="button button-paper" onClick={() => { setStatus("idle"); setMessage(""); }}>Start another submission</button></div></section>;
   }
 
   return (
@@ -51,8 +51,8 @@ export function SubmissionForm() {
         <div className="form-grid">
           <label className="wide">Manuscript title<input name="manuscriptTitle" required maxLength={240} /></label>
           <label>Primary discipline<select name="discipline" required defaultValue=""><option value="" disabled>Select one</option>{disciplines.map((discipline) => <option key={discipline}>{discipline}</option>)}</select></label>
-          <label>Approximate word count<input name="wordCount" type="number" min="500" max="20000" required /></label>
-          <label className="wide">Abstract <small>(150–250 words)</small><textarea name="abstract" required minLength={300} maxLength={1800} rows={7} /></label>
+          <label>Approximate word count<input name="wordCount" type="number" min="2500" max="8000" required /></label>
+          <label className="wide">Abstract <small>(300–1,800 characters)</small><textarea name="abstract" required minLength={300} maxLength={1800} rows={7} /></label>
           <label className="wide">Where did this project begin?<textarea name="originNote" required maxLength={1000} rows={4} placeholder="For example: AP Research project, independent study, History Day paper, or mentored research." /></label>
           <label className="wide">AI-use disclosure<input name="aiDisclosure" required maxLength={1000} placeholder="State ‘No material AI use’ or briefly describe the tools and how you used them." /></label>
         </div>

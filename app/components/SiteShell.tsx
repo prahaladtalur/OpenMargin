@@ -4,7 +4,8 @@ import { site } from "../site";
 const nav = [
   { href: "/issue", label: "Read" },
   { href: "/review", label: "Review process" },
-  { href: "/policies", label: "Policies" },
+  { href: "/resources", label: "Toolkit" },
+  { href: "/reviewers", label: "Review with us" },
   { href: "/about", label: "About" },
 ];
 
@@ -55,13 +56,15 @@ export function SiteFooter() {
         <p className="eyebrow">Explore</p>
         <Link href="/issue">Pilot issue</Link>
         <Link href="/review">Review process</Link>
+        <Link href="/resources">Author toolkit</Link>
         <Link href="/submit">Submission guide</Link>
       </div>
       <div className="footer-column">
         <p className="eyebrow">Journal</p>
         <Link href="/about">About & masthead</Link>
         <Link href="/policies">Editorial policies</Link>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <Link href="/reviewers">Review with us</Link>
+        <Link href="/partners">Partner & contact</Link>
       </div>
       <div className="footer-bottom">
         <p>© 2026 {site.name}. A student-led, unincorporated project in Washington.</p>

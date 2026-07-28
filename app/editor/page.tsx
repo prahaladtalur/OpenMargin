@@ -25,7 +25,7 @@ export default async function EditorPage() {
     <main className="editor-page">
       <header className="editor-header">
         <div><p className="eyebrow">Private editorial workspace</p><h1>Submission desk</h1><p>Signed in as {user.email}</p></div>
-        <div className="editor-header-actions"><Link href="/" className="editor-link">View public site</Link><Link href={chatGPTSignOutPath("/")} className="editor-link">Sign out</Link></div>
+        <div className="editor-header-actions"><Link href="/editor/recruitment" className="editor-link">Recruitment desk</Link><Link href="/" className="editor-link">View public site</Link><Link href={chatGPTSignOutPath("/")} className="editor-link">Sign out</Link></div>
       </header>
       <section className={`editor-notice ${emailConfigured ? "configured" : ""}`}>
         <p><strong>Email alerts:</strong> {emailConfigured ? "New submissions are sent to the configured editorial inbox." : "Not active yet. The dashboard stores submissions securely; connect an email sender to receive alerts."}</p>
