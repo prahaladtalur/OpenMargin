@@ -9,7 +9,8 @@ const policies = [
     id: "scope",
     title: "Scope & eligibility",
     body: [
-      "Open Margin considers original research articles and substantial scholarly essays by students ages 14–19. Our initial scope is humanities and social sciences: history, literature, philosophy, economics, politics, sociology, anthropology, and related fields.",
+      "Open Margin considers original research articles and substantial scholarly essays by students ages 14–19. Our scope includes the humanities, social sciences, and STEM: history, literature, philosophy, economics, politics, sociology, anthropology, biology, chemistry, physics, environmental science, mathematics, computer science, engineering, and related fields.",
+      "We review specialized STEM work only when editors can assign suitable subject expertise. STEM authors must make their methods, data sources, limitations, safety practices, and any relevant approvals clear enough for responsible review.",
       "We welcome independent work and work developed in class, through a capstone, or with a mentor. Authors must disclose the paper’s origin and each contributor’s role. Work submitted simultaneously to another journal may be considered only if the author tells us first.",
     ],
   },
@@ -32,10 +33,11 @@ const policies = [
   },
   {
     id: "research-ethics",
-    title: "Research involving people",
+    title: "Research ethics, safety & people",
     body: [
       "Authors are responsible for following the rules of their school, research program, and any institution that oversaw the work. For work involving interviews, surveys, observations, sensitive personal information, or vulnerable participants, tell us how consent, anonymity, and data security were handled.",
       "We will not publish research that exposes a participant’s identity or private information without clear, documented permission. When a study needed institutional, school, or mentor review, authors must disclose that review or explain why it did not apply. Editors may decline work when participant protections are unclear.",
+      "For STEM work, authors must accurately describe methods, data handling, safety practices, and relevant approvals or supervision. We may decline work where safety, research ethics, reproducibility, or specialist review needs cannot be evaluated responsibly.",
     ],
   },
   {
@@ -77,7 +79,7 @@ export default function PoliciesPage() {
   return (
     <main>
       <PageIntro
-        eyebrow="Editorial policies · Updated July 27, 2026"
+        eyebrow="Editorial policies · Updated July 29, 2026"
         title="Clear standards. No hidden rules."
         description="These policies describe how Open Margin receives, reviews, publishes, corrects, and protects student work. They are written for authors, guardians, reviewers, and readers."
       />

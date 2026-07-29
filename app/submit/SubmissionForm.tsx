@@ -3,7 +3,24 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
-const disciplines = ["History", "Literature", "Philosophy", "Economics", "Political science", "Sociology", "Anthropology", "Other humanities or social science"];
+const disciplines = [
+  "History",
+  "Literature",
+  "Philosophy",
+  "Economics",
+  "Political science",
+  "Sociology",
+  "Anthropology",
+  "Biology & life sciences",
+  "Chemistry",
+  "Physics & astronomy",
+  "Earth & environmental science",
+  "Mathematics & statistics",
+  "Computer science",
+  "Engineering & design",
+  "Other humanities or social science",
+  "Other STEM field",
+];
 
 export function SubmissionForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -53,7 +70,7 @@ export function SubmissionForm() {
           <label>Primary discipline<select name="discipline" required defaultValue=""><option value="" disabled>Select one</option>{disciplines.map((discipline) => <option key={discipline}>{discipline}</option>)}</select></label>
           <label>Approximate word count<input name="wordCount" type="number" min="2500" max="8000" required /></label>
           <label className="wide">Abstract <small>(300–1,800 characters)</small><textarea name="abstract" required minLength={300} maxLength={1800} rows={7} /></label>
-          <label className="wide">Where did this project begin?<textarea name="originNote" required maxLength={1000} rows={4} placeholder="For example: AP Research project, independent study, History Day paper, or mentored research." /></label>
+          <label className="wide">Where did this project begin?<textarea name="originNote" required maxLength={1000} rows={4} placeholder="For example: AP Research project, science-fair study, lab or design project, independent study, or mentored research." /></label>
           <label className="wide">AI-use disclosure<input name="aiDisclosure" required maxLength={1000} placeholder="State ‘No material AI use’ or briefly describe the tools and how you used them." /></label>
         </div>
       </fieldset>

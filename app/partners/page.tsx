@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Partner with Open Margin" };
 
 const additions = [
   ["Research programs", "A voluntary research-communication pathway for eligible student work after a project, paper, or capstone."],
-  ["Schools & teachers", "A clear manuscript-readiness checklist, public rubric, and a free place to send strong humanities and social-science work."],
+  ["Schools & teachers", "A clear manuscript-readiness checklist, public rubric, and a free place to send strong humanities, social-science, and STEM work."],
   ["Youth organizations", "A way to connect serious student writing with feedback, revision habits, and an open-access audience."],
 ];
 
@@ -22,7 +22,7 @@ export default function PartnersPage() {
 
       <section className="partner-model">
         <div><p className="eyebrow">The partnership model</p><h2>Your program builds the work. We help students carry it further.</h2></div>
-        <div className="partner-model-copy"><p>We are designed to be an optional layer, not a replacement for teaching, mentoring, research supervision, or a final showcase. Students submit directly, editorial decisions stay independent, and publication is never promised.</p><p>Our current scope is humanities and social sciences. The strongest fit is research that asks careful questions about history, literature, economics, politics, society, technology, education, ethics, or culture.</p></div>
+        <div className="partner-model-copy"><p>We are designed to be an optional layer, not a replacement for teaching, mentoring, research supervision, or a final showcase. Students submit directly, editorial decisions stay independent, and publication is never promised.</p><p>Our scope includes the humanities, social sciences, and STEM. The strongest fit is research that asks careful questions about history, literature, economics, politics, society, technology, education, ethics, culture, science, mathematics, computing, or engineering. Specialized STEM work is considered only when suitable review capacity is available.</p></div>
       </section>
 
       <section className="partner-additions">

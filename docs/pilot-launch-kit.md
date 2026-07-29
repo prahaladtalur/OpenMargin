@@ -28,7 +28,7 @@ Send the reviewer outreach below to teachers, graduate students, researchers, li
 
 ### Days 3 and 4: invite a small author cohort
 
-Send the student invitation to students with work that fits the journal's humanities and social-sciences scope. Share the public submission page, not a private form, so every author sees the same requirements.
+Send the student invitation to students with work that fits the journal's humanities, social-sciences, or STEM scope. Share the public submission page, not a private form, so every author sees the same requirements.
 
 ### Days 5 through 10: acknowledge and screen submissions
 
@@ -44,9 +44,9 @@ Give reviewers the public rubric and a sample review first. Assign only manuscri
 
 Hi [First name],
 
-I am inviting a small group of students to submit work to Open Margin, a free, student-led journal for original humanities and social-sciences research.
+I am inviting a small group of students to submit work to Open Margin, a free, student-led journal for original research across the humanities, social sciences, and STEM.
 
-If you have a strong research paper, substantial scholarly essay, or revised class project, you are welcome to submit it for the pilot issue. We welcome work in history, literature, philosophy, economics, politics, sociology, anthropology, and related fields.
+If you have a strong research paper, substantial scholarly essay, science-fair project, lab or design project, or revised class project, you are welcome to submit it for the pilot issue. We welcome work in the humanities, social sciences, science, mathematics, computing, engineering, and related fields.
 
 Submissions are free, reviewed through a double-blind process, and open to students ages 14 to 19. The journal accepts PDF or DOCX manuscripts of 2,500 to 8,000 words. If you are under 18, you will need guardian permission before publication.
 
@@ -68,7 +68,7 @@ Open Margin
 
 Hi [First name],
 
-I am helping launch Open Margin, a free, student-led journal for rigorous secondary-school scholarship in the humanities and social sciences. We are preparing a small pilot issue and are looking for a few thoughtful adult advisors and reviewers.
+I am helping launch Open Margin, a free, student-led journal for rigorous secondary-school scholarship across the humanities, social sciences, and STEM. We are preparing a small pilot issue and are looking for a few thoughtful adult advisors and reviewers.
 
 Contributors help us give students useful, ethical feedback. Depending on your expertise and availability, the role may involve a calibration exercise, occasional blinded manuscript review, subject-specific guidance, citation checks, or editorial consultation. We do not ask reviewers to take on work outside their field or capacity.
 

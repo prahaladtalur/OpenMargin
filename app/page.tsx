@@ -13,8 +13,8 @@ export default function Home() {
           </h1>
           <p className="hero-deck">
             A free, open-access journal where secondary-school researchers in
-            the humanities and social sciences receive rigorous review and
-            feedback worth keeping.
+            the humanities, social sciences, and STEM receive rigorous review
+            and feedback worth keeping.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/submit">
@@ -117,7 +117,7 @@ export default function Home() {
         <p>
           We welcome original work from students ages 14–19 in history,
           literature, philosophy, economics, politics, sociology, anthropology,
-          and related fields.
+          science, mathematics, computing, engineering, and related fields.
         </p>
         <div className="closing-actions">
           <Link className="button button-accent" href="/submit">Read the submission guide</Link>

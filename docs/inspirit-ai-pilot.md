@@ -4,7 +4,7 @@
 
 Open Margin should be presented as an optional, independent research-communication and publication pathway that can sit after appropriate Inspirit AI projects. It does not replace coursework, mentorship, research supervision, a final presentation, a science fair, or an existing publication route.
 
-The most credible initial fit is work within Open Margin's current humanities and social-sciences scope, including AI ethics, policy, education, labor, media, law, history, culture, and other social impacts of technology. A technical machine-learning research pathway should not be promised until Open Margin has the qualified reviewers and advisors to assess it responsibly.
+The most credible initial fit includes humanities, social-sciences, and STEM work connected to AI, including ethics, policy, education, labor, media, law, history, culture, data, computing, and other social or technical impacts of technology. A technical machine-learning research pathway should not be promised unless Open Margin has the qualified reviewers and advisors to assess it responsibly.
 
 ## Why the partnership can help
 
@@ -43,11 +43,11 @@ Hi Jared,
 
 I hope you are doing well. As someone who has worked with Inspirit AI, I have been thinking about a small way to extend the strong project and research work students already complete through the program.
 
-I recently built Open Margin, an independent, free, student-led journal for rigorous secondary-school scholarship in the humanities and social sciences. I think it could complement Inspirit AI's existing programs through an optional pilot for students whose AI work has a strong research-communication or AI-and-society component.
+I recently built Open Margin, an independent, free, student-led journal for rigorous secondary-school scholarship across the humanities, social sciences, and STEM. I think it could complement Inspirit AI's existing programs through an optional pilot for students whose AI work has a strong research-communication, AI-and-society, or STEM-research component.
 
 Your 1:1 research program already helps students develop a final research paper and explore journal or science-fair submission routes. Open Margin could offer a practical next step for appropriate projects: students would revise a paper for an external audience, receive structured editorial feedback, and, if accepted, publish an open-access piece they can include in a portfolio.
 
-A small pilot could focus on topics such as AI ethics, policy, education, labor, media, law, or other interdisciplinary questions connected to students' AI projects. The structure would be intentionally lightweight:
+A small pilot could focus on topics such as AI ethics, policy, education, labor, media, law, data, computing, or other interdisciplinary questions connected to students' AI projects. Specialized technical work would be considered only when qualified reviewers are available. The structure would be intentionally lightweight:
 
 - students opt in and submit directly;
 - there is no cost to students;

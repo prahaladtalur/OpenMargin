@@ -48,7 +48,7 @@ export function ReviewerApplicationForm() {
       <fieldset>
         <legend><span>02</span> Your perspective</legend>
         <div className="form-grid">
-          <label className="wide">Fields you can speak to<textarea name="disciplines" required minLength={10} maxLength={280} rows={3} placeholder="For example: history, economics, AI policy, literature, research methods, or copyediting." /></label>
+          <label className="wide">Fields you can speak to<textarea name="disciplines" required minLength={10} maxLength={280} rows={3} placeholder="For example: history, biology, mathematics, computer science, economics, research methods, or copyediting." /></label>
           <label className="wide">Relevant experience <small>(80 characters minimum)</small><textarea name="experience" required minLength={80} maxLength={1600} rows={5} placeholder="Share coursework, research, editing, mentoring, teaching, or lived experience that informs your application." /></label>
           <label className="wide">Availability<textarea name="availability" required minLength={10} maxLength={500} rows={3} placeholder="For example: one manuscript each month, weekdays after 4pm Pacific, or one workshop each term." /></label>
           <label className="wide">Why this role? <small>(80 characters minimum)</small><textarea name="statement" required minLength={80} maxLength={1600} rows={5} placeholder="Tell us how you would make another student’s work clearer, stronger, or more responsible." /></label>

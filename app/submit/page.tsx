@@ -20,24 +20,32 @@ export default function SubmitPage() {
       <PageIntro
         eyebrow="Submission guide"
         title="Send the work, not a sales pitch."
-        description="Pilot submissions are now open. The form below collects only what editors need to screen, review, and responsibly publish a manuscript."
+        description="Pilot submissions are now open across the humanities, social sciences, and STEM. The form below collects only what editors need to screen, review, and responsibly publish a manuscript."
       />
 
       <section className="eligibility-grid">
         <div>
           <p className="eyebrow">What we publish</p>
-          <h2>Original research and argument from students ages 14–19.</h2>
+          <h2>Original research and scholarship from students ages 14–19.</h2>
         </div>
         <div className="eligibility-copy">
           <p>
             We consider research articles and substantial scholarly essays in
             history, literature, philosophy, economics, politics, sociology,
-            anthropology, and closely related fields.
+            anthropology, biology, chemistry, physics, environmental science,
+            mathematics, computer science, engineering, and closely related
+            fields.
           </p>
           <p>
             Classroom, AP Research, IB Extended Essay, History Day, independent,
-            and mentored projects are welcome. Submitting previously graded
-            work is fine; submitting work written by someone else is not.
+            science-fair, lab, design, and mentored projects are welcome.
+            Submitting previously graded work is fine; submitting work written
+            by someone else is not.
+          </p>
+          <p>
+            STEM manuscripts should make methods, data sources, limitations,
+            safety practices, and any required approvals clear. We assign them
+            for full review only when suitable subject expertise is available.
           </p>
         </div>
       </section>

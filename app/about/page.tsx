@@ -17,7 +17,7 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="About the journal"
         title="A place to take young researchers seriously."
-        description="Open Margin is a student-led, open-access journal for secondary-school scholarship in the humanities and social sciences."
+        description="Open Margin is a student-led, open-access journal for secondary-school scholarship across the humanities, social sciences, and STEM."
       />
 
       <section className="story-grid">
@@ -36,10 +36,10 @@ export default function AboutPage() {
             want an editorial process that respects the work.
           </p>
           <p>
-            Our initial scope is deliberately narrow. We publish work in the
-            humanities and social sciences because a small journal should only
-            accept fields it can review responsibly. We will expand only when
-            the right editorial expertise exists.
+            Our scope spans the humanities, social sciences, and STEM. A small
+            journal should only accept work it can review responsibly, so each
+            specialized manuscript depends on the right editorial and advisor
+            expertise being available.
           </p>
         </div>
       </section>
@@ -70,7 +70,7 @@ export default function AboutPage() {
         <dl>
           <div><dt>Editor in chief</dt><dd>Founding appointment open</dd></div>
           <div><dt>Managing editor</dt><dd>Founding appointment open</dd></div>
-          <div><dt>Section editors</dt><dd>History · Social science · Literature</dd></div>
+          <div><dt>Section editors</dt><dd>Humanities · Social science · STEM</dd></div>
           <div><dt>Academic advisors</dt><dd>Recruitment in progress</dd></div>
         </dl>
       </section>

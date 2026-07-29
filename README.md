@@ -1,7 +1,7 @@
 # Open Margin
 
 A maintainable website repository for a free, student-led journal of emerging
-scholarship in the humanities and social sciences.
+scholarship across the humanities, social sciences, and STEM.
 
 > **Working title:** “Open Margin” is a placeholder brand until the founding
 > team confirms the journal name and domain.

@@ -45,6 +45,10 @@ export const focusAreas = [
     field: "Literature & culture",
     note: "Texts, language, interpretation, and lived experience",
   },
+  {
+    field: "Science, technology & engineering",
+    note: "Methods, data, systems, and questions worth testing",
+  },
 ];
 
 export const standards = [
