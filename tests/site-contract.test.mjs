@@ -52,7 +52,8 @@ test("keeps editorial review surfaces private", async () => {
     source("app/api/editor/submissions/[id]/status/route.ts"),
   ]);
   assert.match(editorPage, /requireEditor/);
-  assert.match(editorAuth, /EDITOR_EMAILS/);
+  assert.match(editorAuth, /EDITOR_PASSWORD/);
+  assert.match(editorAuth, /EDITOR_SESSION_SECRET/);
   assert.match(statusRoute, /getEditorForApi/);
 });
 

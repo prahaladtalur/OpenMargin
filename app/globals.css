@@ -556,6 +556,10 @@ button, input, textarea { font: inherit; }
 .editor-empty h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 500; margin: 0 0 .5rem; }
 .editor-denied { min-height: 70vh; padding: clamp(4rem, 10vw, 10rem) clamp(1.25rem, 12vw, 13rem); }
 .editor-denied > p:not(.eyebrow) { font-family: var(--serif); font-size: 1.25rem; max-width: 620px; }
+.editor-login-form { display: grid; gap: 1rem; margin: 2rem 0; max-width: 420px; }
+.editor-login-form label { display: grid; font-size: .7rem; font-weight: 700; gap: .45rem; letter-spacing: .06em; text-transform: uppercase; }
+.editor-login-form input { background: var(--paper-light); border: 1px solid var(--line); border-radius: 0; color: var(--ink); font-size: 1rem; min-height: 46px; padding: .7rem .8rem; }
+.editor-login-form input:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(23, 62, 50, .13); outline: 0; }
 
 @media (max-width: 800px) {
   .editor-header, .editor-card-heading, .editor-list-heading { align-items: flex-start; flex-direction: column; }
