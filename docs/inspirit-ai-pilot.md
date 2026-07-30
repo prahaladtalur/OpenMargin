@@ -43,7 +43,7 @@ Hi Jared,
 
 I hope you are doing well. As someone who has worked with Inspirit AI, I have been thinking about a small way to extend the strong project and research work students already complete through the program.
 
-I recently built Open Margin, an independent, free, student-led journal for rigorous secondary-school scholarship across the humanities, social sciences, and STEM. I think it could complement Inspirit AI's existing programs through an optional pilot for students whose AI work has a strong research-communication, AI-and-society, or STEM-research component.
+I recently built Open Margin, an independent, free, student-led journal for rigorous student scholarship of any age across the humanities, social sciences, and STEM. I think it could complement Inspirit AI's existing programs through an optional pilot for students whose AI work has a strong research-communication, AI-and-society, or STEM-research component.
 
 Your 1:1 research program already helps students develop a final research paper and explore journal or science-fair submission routes. Open Margin could offer a practical next step for appropriate projects: students would revise a paper for an external audience, receive structured editorial feedback, and, if accepted, publish an open-access piece they can include in a portfolio.
 

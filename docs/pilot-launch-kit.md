@@ -48,7 +48,7 @@ I am inviting a small group of students to submit work to Open Margin, a free, s
 
 If you have a strong research paper, substantial scholarly essay, science-fair project, lab or design project, or revised class project, you are welcome to submit it for the pilot issue. We welcome work in the humanities, social sciences, science, mathematics, computing, engineering, and related fields.
 
-Submissions are free, reviewed through a double-blind process, and open to students ages 14 to 19. The journal accepts PDF or DOCX manuscripts of 2,500 to 8,000 words. If you are under 18, you will need guardian permission before publication.
+Submissions are free, reviewed through a double-blind process, and open to students of any age. The journal accepts PDF or DOCX manuscripts of 2,500 to 8,000 words. If an author is under 18, a parent or guardian must approve the submission. If an author is under 13, a parent or guardian must complete the form using their own contact email.
 
 Before submitting, please read the author toolkit and prepare an anonymized manuscript. There is no guarantee of publication, but every eligible submission will receive a careful initial review.
 
@@ -68,7 +68,7 @@ Open Margin
 
 Hi [First name],
 
-I am helping launch Open Margin, a free, student-led journal for rigorous secondary-school scholarship across the humanities, social sciences, and STEM. We are preparing a small pilot issue and are looking for a few thoughtful adult advisors and reviewers.
+I am helping launch Open Margin, a free, student-led journal for rigorous student scholarship across the humanities, social sciences, and STEM. We are preparing a small pilot issue and are looking for a few thoughtful adult advisors and reviewers.
 
 Contributors help us give students useful, ethical feedback. Depending on your expertise and availability, the role may involve a calibration exercise, occasional blinded manuscript review, subject-specific guidance, citation checks, or editorial consultation. We do not ask reviewers to take on work outside their field or capacity.
 

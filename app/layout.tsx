@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Open Margin",
     },
     description:
-      "A free, open-access journal offering rigorous, constructive review for secondary-school scholarship across the humanities, social sciences, and STEM.",
+      "A free, open-access journal offering rigorous, constructive review for student scholarship of any age across the humanities, social sciences, and STEM.",
     openGraph: {
       title: "Open Margin",
       description:

@@ -56,5 +56,5 @@ export const standards = [
   "Engagement with credible primary or secondary sources",
   "Evidence that supports the paper’s conclusions",
   "Clear disclosure of methods and limitations",
-  "Original work written by a secondary-school student",
+  "Original work written by a student researcher",
 ];

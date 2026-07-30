@@ -29,8 +29,8 @@ export async function POST(request: Request) {
 
     const authorName = value(form, "authorName", 120);
     const authorEmail = value(form, "authorEmail", 254).toLowerCase();
-    const ageBand = value(form, "ageBand", 10);
     const guardianEmail = value(form, "guardianEmail", 254).toLowerCase();
+    const guardianConfirmed = form.get("guardianConfirmed") === "on";
     const manuscriptTitle = value(form, "manuscriptTitle", 240);
     const discipline = value(form, "discipline", 100);
     const abstract = value(form, "abstract", 1800);
@@ -40,14 +40,12 @@ export async function POST(request: Request) {
     const manuscript = form.get("manuscript");
 
     if (!authorName || !/^\S+@\S+\.\S+$/.test(authorEmail)) return invalid("Enter a valid name and email address.");
-    if (ageBand !== "14-17" && ageBand !== "18-19") return invalid("Submissions are limited to authors ages 14–19.");
-    if (ageBand === "14-17" && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Authors ages 14–17 need to provide a guardian email.");
+    if (guardianConfirmed && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Add a valid parent or guardian email.");
     if (!manuscriptTitle || !discipline || abstract.length < 300 || !originNote || !aiDisclosure) return invalid("Complete every manuscript field before submitting.");
     if (!Number.isInteger(wordCount) || wordCount < 2500 || wordCount > 8000) return invalid("Enter a word count between 2,500 and 8,000.");
     if (!(manuscript instanceof File) || !manuscript.size) return invalid("Attach a manuscript file.");
     if (manuscript.size > MAX_FILE_BYTES || (!supportedTypes.has(manuscript.type) && !supportedExtensions.test(manuscript.name))) return invalid("Use a PDF or DOCX manuscript no larger than 10 MB.");
     if (form.get("originalWorkConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the originality and privacy declarations.");
-    if (ageBand === "14-17" && form.get("guardianConfirmed") !== "on") return invalid("Guardian permission is required for authors ages 14–17.");
 
     const id = `OM-${new Date().getUTCFullYear()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
     const filename = safeFilename(manuscript.name);
@@ -64,8 +62,8 @@ export async function POST(request: Request) {
         id,
         authorName,
         authorEmail,
-        ageBand,
-        guardianEmail: ageBand === "14-17" ? guardianEmail : null,
+        ageBand: "not-collected",
+        guardianEmail: guardianConfirmed ? guardianEmail : null,
         schoolOrOrganization: value(form, "schoolOrOrganization", 160) || null,
         countryOrRegion: value(form, "countryOrRegion", 100) || null,
         manuscriptTitle,
@@ -79,14 +77,14 @@ export async function POST(request: Request) {
         manuscriptContentType: manuscript.type || "application/octet-stream",
         originalWorkConfirmed: true,
         privacyConfirmed: true,
-        guardianConfirmed: ageBand === "14-17",
+        guardianConfirmed,
       });
     } catch (error) {
       await bucket.delete(key);
       throw error;
     }
 
-    await notifyEditorOfSubmission({ id, authorName, manuscriptTitle, discipline, ageBand });
+    await notifyEditorOfSubmission({ id, authorName, manuscriptTitle, discipline, guardianConfirmed });
 
     return Response.json({ reference: id }, { status: 201 });
   } catch (error) {

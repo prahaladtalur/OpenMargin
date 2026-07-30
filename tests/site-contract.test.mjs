@@ -33,6 +33,18 @@ test("keeps submission data private and durable", async () => {
   assert.match(hosting, /"r2": "MANUSCRIPTS"/);
 });
 
+test("keeps author submissions open to every age", async () => {
+  const [form, submitPage, route] = await Promise.all([
+    source("app/submit/SubmissionForm.tsx"),
+    source("app/submit/page.tsx"),
+    source("app/api/submissions/route.ts"),
+  ]);
+  assert.doesNotMatch(form, /Age band/);
+  assert.match(submitPage, /students of any age/);
+  assert.doesNotMatch(route, /limited to authors ages/);
+  assert.match(route, /ageBand: "not-collected"/);
+});
+
 test("keeps editorial review surfaces private", async () => {
   const [editorPage, editorAuth, statusRoute] = await Promise.all([
     source("app/editor/page.tsx"),

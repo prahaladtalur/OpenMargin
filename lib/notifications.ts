@@ -5,7 +5,7 @@ type SubmissionNotification = {
   authorName: string;
   manuscriptTitle: string;
   discipline: string;
-  ageBand: string;
+  guardianConfirmed: boolean;
 };
 
 type ReviewerApplicationNotification = {
@@ -58,7 +58,7 @@ export async function notifyEditorOfSubmission(submission: SubmissionNotificatio
     `Title: ${submission.manuscriptTitle}`,
     `Author: ${submission.authorName}`,
     `Discipline: ${submission.discipline}`,
-    `Author age band: ${submission.ageBand}`,
+    `Parent or guardian confirmation: ${submission.guardianConfirmed ? "provided" : "not indicated"}`,
     "",
     "Open the private editor to review the submission and download the blinded manuscript.",
   ]);

@@ -17,7 +17,7 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="About the journal"
         title="A place to take young researchers seriously."
-        description="Open Margin is a student-led, open-access journal for secondary-school scholarship across the humanities, social sciences, and STEM."
+        description="Open Margin is a student-led, open-access journal for student scholarship of any age across the humanities, social sciences, and STEM."
       />
 
       <section className="story-grid">

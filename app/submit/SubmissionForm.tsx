@@ -25,7 +25,7 @@ const disciplines = [
 export function SubmissionForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-  const [isMinor, setIsMinor] = useState(false);
+  const [requiresGuardian, setRequiresGuardian] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,7 +41,7 @@ export function SubmissionForm() {
     setStatus("success");
     setMessage(`Received. Your reference code is ${payload.reference}. Save it for any editorial correspondence.`);
     event.currentTarget.reset();
-    setIsMinor(false);
+    setRequiresGuardian(false);
   }
 
   if (status === "success") {
@@ -55,11 +55,11 @@ export function SubmissionForm() {
         <legend><span>01</span> About you</legend>
         <div className="form-grid">
           <label>Full name<input name="authorName" required autoComplete="name" maxLength={120} /></label>
-          <label>Email<input name="authorEmail" type="email" required autoComplete="email" maxLength={254} /></label>
-          <label>Age band<select name="ageBand" required defaultValue="" onChange={(event) => setIsMinor(event.target.value === "14-17")}><option value="" disabled>Select one</option><option value="14-17">14–17</option><option value="18-19">18–19</option></select></label>
+          <label>Contact email<input name="authorEmail" type="email" required autoComplete="email" maxLength={254} /></label>
           <label>School or organization <small>(optional)</small><input name="schoolOrOrganization" maxLength={160} /></label>
           <label>Country or region <small>(optional)</small><input name="countryOrRegion" maxLength={100} /></label>
-          {isMinor && <label>Guardian email<input name="guardianEmail" type="email" required autoComplete="email" maxLength={254} /></label>}
+          <label className="wide"><input name="guardianConfirmed" type="checkbox" onChange={(event) => setRequiresGuardian(event.target.checked)} /> The author is under 18 and has a parent or guardian&apos;s approval to submit. If the author is under 13, a parent or guardian must complete this form using their own contact email.</label>
+          {requiresGuardian && <label className="wide">Parent or guardian email<input name="guardianEmail" type="email" required autoComplete="email" maxLength={254} /></label>}
         </div>
       </fieldset>
 
@@ -81,7 +81,6 @@ export function SubmissionForm() {
         <div className="declarations">
           <label><input type="checkbox" name="originalWorkConfirmed" required /> I confirm that this is original work, that all sources are cited, and that every listed author approves this submission.</label>
           <label><input type="checkbox" name="privacyConfirmed" required /> I have read the <Link href="/policies#privacy">privacy and guardian-contact policy</Link> and consent to editorial use of the information and manuscript submitted here.</label>
-          {isMinor && <label><input type="checkbox" name="guardianConfirmed" required /> I have my guardian’s permission to submit this work and to provide their email. Open Margin will request publication confirmation before any accepted article goes live.</label>}
         </div>
       </fieldset>
       {status === "error" && <p className="form-error" role="alert">{message}</p>}

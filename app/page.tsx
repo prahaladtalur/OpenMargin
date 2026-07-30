@@ -12,9 +12,9 @@ export default function Home() {
             <span>serious attention.</span>
           </h1>
           <p className="hero-deck">
-            A free, open-access journal where secondary-school researchers in
-            the humanities, social sciences, and STEM receive rigorous review
-            and feedback worth keeping.
+            A free, open-access journal where student researchers of any age
+            in the humanities, social sciences, and STEM receive rigorous
+            review and feedback worth keeping.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/submit">
@@ -115,7 +115,7 @@ export default function Home() {
         <p className="eyebrow">For the first issue</p>
         <h2>Bring us the paper you kept thinking about.</h2>
         <p>
-          We welcome original work from students ages 14–19 in history,
+          We welcome original work from students of any age in history,
           literature, philosophy, economics, politics, sociology, anthropology,
           science, mathematics, computing, engineering, and related fields.
         </p>

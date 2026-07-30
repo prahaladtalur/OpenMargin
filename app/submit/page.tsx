@@ -11,7 +11,7 @@ const checklist = [
   "A concise abstract of 300–1,800 characters",
   "Works cited or references in a consistent style",
   "A brief note explaining the paper’s origin and your contribution",
-  "Guardian permission to publish if you are under 18",
+  "Parent or guardian approval if the author is under 18",
 ];
 
 export default function SubmitPage() {
@@ -26,7 +26,7 @@ export default function SubmitPage() {
       <section className="eligibility-grid">
         <div>
           <p className="eyebrow">What we publish</p>
-          <h2>Original research and scholarship from students ages 14–19.</h2>
+          <h2>Original research and scholarship from students of any age.</h2>
         </div>
         <div className="eligibility-copy">
           <p>
@@ -46,6 +46,12 @@ export default function SubmitPage() {
             STEM manuscripts should make methods, data sources, limitations,
             safety practices, and any required approvals clear. We assign them
             for full review only when suitable subject expertise is available.
+          </p>
+          <p>
+            Authors of any age are welcome. For an author under 18, a parent or
+            guardian must approve the submission. For an author under 13, a
+            parent or guardian must complete the form using their own contact
+            email.
           </p>
         </div>
       </section>
