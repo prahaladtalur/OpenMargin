@@ -7,11 +7,11 @@ import { SubmissionForm } from "./SubmissionForm";
 export const metadata: Metadata = { title: "Submit work" };
 
 const checklist = [
-  "Manuscript with author names and identifying details removed",
-  "A concise abstract of 300–1,800 characters",
-  "Works cited or references in a consistent style",
-  "A brief note explaining the paper’s origin and your contribution",
-  "Parent or guardian approval if the author is under 18",
+  "A blinded paper or project report",
+  "A 300–1,800 character abstract",
+  "A clear list of sources or references",
+  "A short note on where the work came from",
+  "Parent or guardian approval for authors under 18",
 ];
 
 export default function SubmitPage() {
@@ -19,47 +19,37 @@ export default function SubmitPage() {
     <main>
       <PageIntro
         eyebrow="Submission guide"
-        title="Send the work, not a sales pitch."
-        description="Pilot submissions are now open across the humanities, social sciences, and STEM. The form below collects only what editors need to screen, review, and responsibly publish a manuscript."
+        title="Send us your work."
+        description="We read student research, essays, and projects across the humanities, social sciences, and STEM. It is free to submit."
       />
 
       <section className="eligibility-grid">
         <div>
           <p className="eyebrow">What we publish</p>
-          <h2>Original research and scholarship from students of any age.</h2>
+          <h2>Research worth reading.</h2>
         </div>
         <div className="eligibility-copy">
           <p>
-            We consider research articles and substantial scholarly essays in
-            history, literature, philosophy, economics, politics, sociology,
-            anthropology, biology, chemistry, physics, environmental science,
-            mathematics, computer science, engineering, and closely related
-            fields.
+            We accept papers, essays, science-fair research, lab reports, and
+            design projects. History, literature, economics, biology, physics,
+            math, computer science, engineering, and more all fit here.
           </p>
           <p>
-            Classroom, AP Research, IB Extended Essay, History Day, independent,
-            science-fair, lab, design, and mentored projects are welcome.
-            Submitting previously graded work is fine; submitting work written
-            by someone else is not.
+            Class work, independent projects, mentored research, and previously
+            graded work are all welcome. The work must be your own.
           </p>
           <p>
-            STEM manuscripts should make methods, data sources, limitations,
-            safety practices, and any required approvals clear. We assign them
-            for full review only when suitable subject expertise is available.
-          </p>
-          <p>
-            Authors of any age are welcome. For an author under 18, a parent or
-            guardian must approve the submission. For an author under 13, a
-            parent or guardian must complete the form using their own contact
-            email.
+            Anyone can submit. If an author is under 18, a parent or guardian
+            must approve the submission. For specialized STEM work, we review
+            only when we have the right subject expertise.
           </p>
         </div>
       </section>
 
       <section className="standards-section">
-        <p className="eyebrow">Before you submit</p>
+        <p className="eyebrow">What we look for</p>
         <div className="standards-grid">
-          <h2>We are looking for:</h2>
+          <h2>A clear question, good evidence, honest limits.</h2>
           <ul>
             {standards.map((standard) => <li key={standard}>{standard}</li>)}
           </ul>
@@ -69,7 +59,7 @@ export default function SubmitPage() {
       <section className="submission-specs" id="checklist">
         <div className="specs-main">
           <p className="eyebrow">Manuscript checklist</p>
-          <h2>Prepare these five things.</h2>
+          <h2>Have these ready.</h2>
           <ol>
             {checklist.map((item, index) => (
               <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>
@@ -91,8 +81,8 @@ export default function SubmitPage() {
       <section className="submission-portal" id="portal">
         <div className="portal-heading">
           <p className="eyebrow">Pilot submission portal</p>
-          <h2>Ready when your manuscript is.</h2>
-          <p>Save a copy of your manuscript before submitting. The file is stored privately and is visible only to the editors and advisors who need it for the review process.</p>
+          <h2>Upload your work.</h2>
+          <p>Keep a copy for yourself. Your file is private and only shared with the editors and advisors reviewing it.</p>
         </div>
         <SubmissionForm />
       </section>

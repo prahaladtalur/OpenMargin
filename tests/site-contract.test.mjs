@@ -40,7 +40,7 @@ test("keeps author submissions open to every age", async () => {
     source("app/api/submissions/route.ts"),
   ]);
   assert.doesNotMatch(form, /Age band/);
-  assert.match(submitPage, /students of any age/);
+  assert.match(submitPage, /Anyone can submit/);
   assert.doesNotMatch(route, /limited to authors ages/);
   assert.match(route, /ageBand: "not-collected"/);
 });
