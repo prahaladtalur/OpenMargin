@@ -7,7 +7,7 @@ import { editorSignOutPath, requireEditor } from "../../../lib/editor-auth";
 import { RecruitmentActions } from "./RecruitmentActions";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Recruitment desk" };
+export const metadata: Metadata = { title: "Recruitment desk", robots: { index: false, follow: false } };
 
 function formatDate(value: string) {
   const date = new Date(`${value.replace(" ", "T")}Z`);

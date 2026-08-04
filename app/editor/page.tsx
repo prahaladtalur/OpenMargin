@@ -7,7 +7,7 @@ import { submissions } from "../../db/schema";
 import { editorSignOutPath, emailNotificationsConfigured, requireEditor } from "../../lib/editor-auth";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Private editor" };
+export const metadata: Metadata = { title: "Private editor", robots: { index: false, follow: false } };
 
 function formatDate(value: string) {
   const date = new Date(`${value.replace(" ", "T")}Z`);

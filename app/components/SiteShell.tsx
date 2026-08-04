@@ -67,7 +67,7 @@ export function SiteFooter() {
         <Link href="/partners">Partner & contact</Link>
       </div>
       <div className="footer-bottom">
-        <p>© 2026 {site.name}. A student-led, unincorporated project in Washington.</p>
+        <p>© {new Date().getFullYear()} {site.name}. A student-led, unincorporated project in Washington.</p>
         <p>Authors retain copyright.</p>
       </div>
     </footer>
