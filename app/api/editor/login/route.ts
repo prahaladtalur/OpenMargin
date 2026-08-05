@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
   const session = await createEditorSession();
   if (!session) {
-    return Response.json({ error: "Password access is not configured yet. Please try again shortly." }, { status: 503 });
+    return Response.json({ error: "Password access is not configured yet. Try again shortly." }, { status: 503 });
   }
 
   const returnTo = safeReturnPath(typeof body.returnTo === "string" ? body.returnTo : undefined);

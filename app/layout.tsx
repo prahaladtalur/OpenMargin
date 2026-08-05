@@ -17,11 +17,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: "Open Margin: A Student Research Journal",
+      default: "Open Margin: A student research journal",
       template: "%s | Open Margin",
     },
     description:
-      "A free journal for student research in the humanities, social sciences, and STEM. Authors receive detailed review and keep their copyright.",
+      "A free journal for student research in the humanities, social sciences, and STEM. Authors keep their copyright and receive a written editorial decision.",
     openGraph: {
       title: "Open Margin",
       description:

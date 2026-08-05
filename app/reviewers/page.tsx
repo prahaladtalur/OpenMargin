@@ -6,10 +6,10 @@ import { ReviewerApplicationForm } from "./ReviewerApplicationForm";
 export const metadata: Metadata = { title: "Review with us" };
 
 const roles = [
-  ["Student reviewers", "Read blinded manuscripts with a shared rubric and write comments an author can use."],
-  ["Section editors", "Screen for fit, coordinate reviews, and make decisions with the editorial team."],
-  ["Academic advisors", "Help with calibration, specialized questions, and difficult decisions without taking over student leadership."],
-  ["Research-communication volunteers", "Support copyediting, citation checks, accessibility, and author resources."],
+  ["Student reviewers", "Read blinded manuscripts with a shared rubric and write comments the author can use."],
+  ["Section editors", "Check fit, coordinate reviews, and make decisions with the editorial team."],
+  ["Academic advisors", "Help with calibration, specialist questions, and difficult decisions without taking over student leadership."],
+  ["Research communication volunteers", "Help with copyediting, citations, accessibility, and author resources."],
 ];
 
 export default function ReviewersPage() {
@@ -18,11 +18,11 @@ export default function ReviewersPage() {
       <PageIntro
         eyebrow="Contribute to the journal"
         title="Help us read the work well."
-        description="Open Margin needs reviewers, editors, and advisors who can give student authors clear, honest comments."
+        description="Open Margin needs reviewers, editors, and advisors who can give student authors clear comments they can use."
       />
 
       <section className="contributor-roles">
-        <div><p className="eyebrow">Ways to contribute</p><h2>Different roles. One standard.</h2><p>We recruit for relevant experience and careful reading. Every contributor agrees to confidentiality, conflict disclosure, and fair comments.</p></div>
+        <div><p className="eyebrow">Ways to contribute</p><h2>Different roles, one standard.</h2><p>We look for relevant experience and careful readers. Every contributor agrees to confidentiality, conflict disclosure, and fair feedback.</p></div>
         <div className="role-list">{roles.map(([title, body], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>
       </section>
 
@@ -32,7 +32,7 @@ export default function ReviewersPage() {
       </section>
 
       <section className="submission-portal" id="apply">
-        <div className="portal-heading"><p className="eyebrow">Reviewer and advisor application</p><h2>Tell us how you read.</h2><p>Applications stay private. We contact candidates whose experience fits the current need. Applicants under 18 need a guardian email.</p></div>
+        <div className="portal-heading"><p className="eyebrow">Reviewer and advisor application</p><h2>Tell us how you read.</h2><p>Applications stay private. We contact candidates when their experience fits a current need. Applicants under 18 need a guardian email.</p></div>
         <ReviewerApplicationForm />
       </section>
     </main>

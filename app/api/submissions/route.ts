@@ -41,11 +41,11 @@ export async function POST(request: Request) {
 
     if (!authorName || !/^\S+@\S+\.\S+$/.test(authorEmail)) return invalid("Enter a valid name and email address.");
     if (guardianConfirmed && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Add a valid parent or guardian email.");
-    if (!manuscriptTitle || !discipline || abstract.length < 300 || !originNote || !aiDisclosure) return invalid("Complete every manuscript field before submitting.");
+    if (!manuscriptTitle || !discipline || abstract.length < 300 || !originNote || !aiDisclosure) return invalid("Complete every manuscript field before you submit.");
     if (!Number.isInteger(wordCount) || wordCount < 2500 || wordCount > 8000) return invalid("Enter a word count between 2,500 and 8,000.");
     if (!(manuscript instanceof File) || !manuscript.size) return invalid("Attach a manuscript file.");
-    if (manuscript.size > MAX_FILE_BYTES || (!supportedTypes.has(manuscript.type) && !supportedExtensions.test(manuscript.name))) return invalid("Use a PDF or DOCX manuscript no larger than 10 MB.");
-    if (form.get("originalWorkConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the originality and privacy declarations.");
+    if (manuscript.size > MAX_FILE_BYTES || (!supportedTypes.has(manuscript.type) && !supportedExtensions.test(manuscript.name))) return invalid("Use a PDF or DOCX file no larger than 10 MB.");
+    if (form.get("originalWorkConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the originality and privacy checkboxes.");
 
     const id = `OM-${new Date().getUTCFullYear()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
     const filename = safeFilename(manuscript.name);
@@ -89,6 +89,6 @@ export async function POST(request: Request) {
     return Response.json({ reference: id }, { status: 201 });
   } catch (error) {
     console.error("Submission intake failed", error);
-    return Response.json({ error: "We could not receive your submission. Please try again shortly." }, { status: 500 });
+    return Response.json({ error: "We could not receive your submission. Try again shortly." }, { status: 500 });
   }
 }

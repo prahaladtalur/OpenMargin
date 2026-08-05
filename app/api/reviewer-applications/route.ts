@@ -18,7 +18,8 @@ export async function POST(request: Request) {
 
     const fullName = value(form, "fullName", 120);
     const email = value(form, "email", 254).toLowerCase();
-    const ageBand = value(form, "ageBand", 10);
+    const isMinor = form.get("minorConfirmed") === "on";
+    const ageBand = isMinor ? "minor" : "adult";
     const guardianEmail = value(form, "guardianEmail", 254).toLowerCase();
     const role = value(form, "role", 80);
     const disciplines = value(form, "disciplines", 280);
@@ -27,11 +28,10 @@ export async function POST(request: Request) {
     const statement = value(form, "statement", 1600);
 
     if (!fullName || !/^\S+@\S+\.\S+$/.test(email)) return invalid("Enter a valid name and email address.");
-    if (!["14-17", "18-19", "adult"].includes(ageBand)) return invalid("Select an age band.");
-    if (ageBand === "14-17" && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Applicants ages 14–17 need to provide a guardian email.");
+    if (isMinor && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Applicants under 18 need a guardian email.");
     if (!role || !disciplines || experience.length < 80 || !availability || statement.length < 80) return invalid("Tell us about your interests, experience, availability, and motivation.");
     if (form.get("ethicsConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the ethics and privacy declarations.");
-    if (ageBand === "14-17" && form.get("guardianConfirmed") !== "on") return invalid("Guardian permission is required for applicants ages 14–17.");
+    if (isMinor && form.get("guardianConfirmed") !== "on") return invalid("Guardian permission is required for applicants under 18.");
 
     const id = `RV-${new Date().getUTCFullYear()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
     await ensureOperationsTables();
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       fullName,
       email,
       ageBand,
-      guardianEmail: ageBand === "14-17" ? guardianEmail : null,
+      guardianEmail: isMinor ? guardianEmail : null,
       role,
       disciplines,
       experience,
@@ -55,6 +55,6 @@ export async function POST(request: Request) {
     return Response.json({ reference: id }, { status: 201 });
   } catch (error) {
     console.error("Reviewer application intake failed", error);
-    return Response.json({ error: "We could not receive your application. Please try again shortly." }, { status: 500 });
+    return Response.json({ error: "We could not receive your application. Try again shortly." }, { status: 500 });
   }
 }

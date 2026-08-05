@@ -7,16 +7,16 @@ export const metadata: Metadata = { title: "Editorial policies" };
 const policies = [
   {
     id: "scope",
-    title: "Scope & eligibility",
+    title: "Scope and eligibility",
     body: [
       "Open Margin considers original research articles and substantial scholarly essays by students of any age. Our scope includes the humanities, social sciences, and STEM: history, literature, philosophy, economics, politics, sociology, anthropology, biology, chemistry, physics, environmental science, mathematics, computer science, engineering, and related fields.",
       "We review specialized STEM work only when editors can assign suitable subject expertise. STEM authors must make their methods, data sources, limitations, safety practices, and any relevant approvals clear enough for responsible review.",
-      "We welcome independent work and work developed in class, through a capstone, or with a mentor. Authors must disclose the paper’s origin and each contributor’s role. Work submitted simultaneously to another journal may be considered only if the author tells us first.",
+      "We welcome independent work and work developed in class, through a capstone, or with a mentor. Authors must disclose the paper's origin and each contributor's role. Open Margin is nonexclusive. Work under consideration elsewhere may also be considered here if the author tells us before submitting.",
     ],
   },
   {
     id: "authorship",
-    title: "Authorship, originality & sources",
+    title: "Authorship, originality and sources",
     body: [
       "Every listed author must have made a meaningful intellectual contribution and must approve the submission. Submitting authors confirm that the work is their own, that quotations and ideas from others are cited, and that they have permission to reproduce any copyrighted material.",
       "Plagiarism, fabricated sources or data, undisclosed substantial copying, and purchased or ghostwritten work are grounds for rejection or retraction. Editors may use reasonable screening tools and may ask authors for notes, source files, or clarifications.",
@@ -24,19 +24,19 @@ const policies = [
   },
   {
     id: "review",
-    title: "Peer review, conflicts & appeals",
+    title: "Peer review, conflicts and appeals",
     body: [
-      "We use double-blind review whenever practical: authors and reviewers do not receive one another’s names. Two trained student reviewers normally assess a manuscript with a published rubric. Editors make the final decision and may seek academic-advisor input for specialized or disputed work.",
+      "We use double-blind review whenever practical: authors and reviewers do not receive one another's names. Two trained student reviewers normally assess a manuscript with a published rubric. Editors make the final decision and may ask an academic advisor for help with specialized or disputed work.",
       "Reviewers and editors must recuse themselves from work by classmates, close collaborators, relatives, mentors, or anyone whose relationship could reasonably affect judgment. Reviews and manuscripts are confidential and may not be shared outside the editorial process.",
       "Authors may appeal a decision only for a material procedural error, undisclosed conflict, or serious factual misunderstanding, not simply disagreement with a scholarly judgment. Send a concise appeal within 30 days; an uninvolved editor or advisor will review it.",
     ],
   },
   {
     id: "research-ethics",
-    title: "Research ethics, safety & people",
+    title: "Research ethics, safety and people",
     body: [
       "Authors are responsible for following the rules of their school, research program, and any institution that oversaw the work. For work involving interviews, surveys, observations, sensitive personal information, or vulnerable participants, tell us how consent, anonymity, and data security were handled.",
-      "We will not publish research that exposes a participant’s identity or private information without clear, documented permission. When a study needed institutional, school, or mentor review, authors must disclose that review or explain why it did not apply. Editors may decline work when participant protections are unclear.",
+      "We will not publish research that exposes a participant's identity or private information without clear, documented permission. When a study needed institutional, school, or mentor review, authors must disclose that review or explain why it did not apply. Editors may decline work when participant protections are unclear.",
       "For STEM work, authors must accurately describe methods, data handling, safety practices, and relevant approvals or supervision. We may decline work where safety, research ethics, reproducibility, or specialist review needs cannot be evaluated responsibly.",
     ],
   },
@@ -50,26 +50,26 @@ const policies = [
   },
   {
     id: "copyright",
-    title: "Copyright & open access",
+    title: "Copyright and open access",
     body: [
       "Authors retain copyright. If an article is accepted, authors grant Open Margin a nonexclusive right to publish, preserve, and display the final version online. We plan to publish accepted articles under the Creative Commons Attribution 4.0 International license (CC BY 4.0), unless an editor agrees in writing to a different arrangement before publication.",
-      "Authors must tell us about third-party material that may need permission. Open access does not eliminate an author’s responsibility to respect copyright, privacy, confidentiality, or research-participant commitments.",
+      "Authors must tell us about third-party material that may need permission. Open access does not remove an author's responsibility to respect copyright, privacy, confidentiality, or research participant commitments.",
     ],
   },
   {
     id: "privacy",
-    title: "Privacy, minors & guardian contact",
+    title: "Privacy, minors and guardian contact",
     body: [
       "We collect only the information needed to evaluate a submission: author and contact information, a parent or guardian contact when supplied for a younger author, school or organization if supplied, manuscript information, declarations, and the manuscript file. Reviewer applications and partner inquiries collect only contact and fit information needed to consider a voluntary role or conversation. This information is used for editorial administration, not advertising, profiling, or sale.",
-      "Submission records and files are private to authorized editors and advisors who need them for the review process. Reviewer and partner records are private to authorized editors who need them for recruitment or operations. A short intake notice may be sent to an authorized editor inbox; it does not include manuscript files. We do not publish an author’s home address, phone number, or guardian contact. For authors under 18, a parent or guardian must approve the submission and provide a contact email. For authors under 13, a parent or guardian must complete the form using their own contact email; before publication, we will contact the guardian to confirm publication consent.",
+      "Submission records and files are private to authorized editors and advisors who need them for review. Reviewer and partner records are private to authorized editors who need them for recruitment or operations. A short intake notice may be sent to an authorized editor inbox; it does not include manuscript files. We do not publish an author's home address, phone number, or guardian contact. Authors under 18 need parent or guardian approval and a contact email. For authors under 13, a parent or guardian must complete the form with their own contact email. Before publication, we will contact the guardian to confirm publication consent.",
       "A parent, guardian, author, reviewer applicant, or partner contact may ask to review, correct, or delete their data through the partner and contact inquiry form. We delete declined submissions and related files within 12 months, unless a longer period is needed to resolve an integrity concern or legal obligation. Accepted work remains in the public record after publication.",
     ],
   },
   {
     id: "corrections",
-    title: "Corrections, retractions & publication record",
+    title: "Corrections, retractions and the publication record",
     body: [
-      "If a published article contains an important error, authors and readers should notify the editors. We may publish a correction, editor’s note, or retraction after reviewing the evidence. A retracted article will remain identified as retracted rather than quietly disappearing, except where removal is required to protect a person’s safety or privacy.",
+      "If a published article contains an important error, authors and readers should notify the editors. We may publish a correction, editor's note, or retraction after reviewing the evidence. A retracted article will remain identified as retracted instead of quietly disappearing, except when removal is required to protect a person's safety or privacy.",
       "We welcome good-faith post-publication discussion. Concerns about an article, reviewer conduct, authorship, or editorial process will be evaluated fairly and confidentially where possible.",
     ],
   },
@@ -102,7 +102,7 @@ export default function PoliciesPage() {
 
       <section className="policy-sources">
         <p className="eyebrow">Standards we follow</p>
-        <p>These editorial policies are informed by <a href="https://publicationethics.org/core-practices" target="_blank" rel="noreferrer">COPE’s Core Practices</a>, the <a href="https://publicationethics.org/files/Ethical_Guidelines_For_Peer_Reviewers.pdf" target="_blank" rel="noreferrer">COPE reviewer guidelines</a>, the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0 license</a>, and the <a href="https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions" target="_blank" rel="noreferrer">FTC’s COPPA guidance</a>. They are operational policies, not legal advice.</p>
+        <p>These editorial policies draw on <a href="https://publicationethics.org/core-practices" target="_blank" rel="noreferrer">COPE&apos;s Core Practices</a>, the <a href="https://publicationethics.org/files/Ethical_Guidelines_For_Peer_Reviewers.pdf" target="_blank" rel="noreferrer">COPE reviewer guidelines</a>, the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0 license</a>, and the <a href="https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions" target="_blank" rel="noreferrer">FTC&apos;s COPPA guidance</a>. They are operational policies, not legal advice.</p>
         <Link className="button button-dark" href="/submit">Read the submission guide</Link>
       </section>
     </main>

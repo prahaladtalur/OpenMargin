@@ -14,7 +14,7 @@ export function SiteHeader() {
     <>
       <div className="notice">
         <p>{site.submissionWindow}</p>
-        <Link href="/submit">View submission guide <span aria-hidden="true">↗</span></Link>
+        <Link href="/submit">Submission guide <span aria-hidden="true">↗</span></Link>
       </div>
       <header className="site-header">
         <Link className="wordmark" href="/" aria-label={`${site.name} home`}>
@@ -54,17 +54,17 @@ export function SiteFooter() {
       </div>
       <div className="footer-column">
         <p className="eyebrow">Explore</p>
-        <Link href="/issue">Pilot issue</Link>
+        <Link href="/issue">Read an issue</Link>
         <Link href="/review">Review process</Link>
         <Link href="/resources">Author toolkit</Link>
-        <Link href="/submit">Submission guide</Link>
+        <Link href="/submit">How to submit</Link>
       </div>
       <div className="footer-column">
         <p className="eyebrow">Journal</p>
-        <Link href="/about">About & masthead</Link>
+        <Link href="/about">About and masthead</Link>
         <Link href="/policies">Editorial policies</Link>
         <Link href="/reviewers">Review with us</Link>
-        <Link href="/partners">Partner & contact</Link>
+        <Link href="/partners">Partner with us</Link>
       </div>
       <div className="footer-bottom">
         <p>© 2026 {site.name}. A student-led, unincorporated project in Washington.</p>

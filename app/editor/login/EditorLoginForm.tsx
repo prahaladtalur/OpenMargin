@@ -21,7 +21,7 @@ export function EditorLoginForm({ returnTo }: { returnTo: string }) {
 
     if (!response.ok) {
       setStatus("error");
-      setMessage(payload.error ?? "We could not sign you in. Please try again.");
+      setMessage(payload.error ?? "We could not sign you in. Try again.");
       return;
     }
 
@@ -43,7 +43,7 @@ export function EditorLoginForm({ returnTo }: { returnTo: string }) {
       </label>
       {status === "error" && <p className="form-error" role="alert">{message}</p>}
       <button className="button button-dark" disabled={status === "sending"}>
-        {status === "sending" ? "Opening desk…" : "Open submission desk"}
+        {status === "sending" ? "Opening desk" : "Open submission desk"}
       </button>
     </form>
   );

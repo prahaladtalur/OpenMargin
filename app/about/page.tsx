@@ -6,9 +6,9 @@ export const metadata: Metadata = { title: "About" };
 
 const commitments = [
   ["No fees", "There are no submission, publication, membership, or expedited-review fees."],
-  ["Comments should travel", "A decision matters, but the notes behind it should still help when the author starts the next draft."],
-  ["Students run it", "Student editors shape the journal. Academic advisors help with calibration, difficult decisions, and work outside the team’s expertise."],
-  ["Rules in the open", "Our rubric, policies, timelines, and annual editorial statistics belong on the site."],
+  ["Comments should help", "A decision matters, but the notes should still help when the author starts the next draft."],
+  ["Students run it", "Student editors shape the journal. Academic advisors help with difficult decisions, calibration, and work outside the team's expertise."],
+  ["Rules in the open", "Our rubric, policies, timelines, and annual editorial statistics stay on the site."],
 ];
 
 export default function AboutPage() {
@@ -17,14 +17,13 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="About the journal"
         title="A student journal built around revision."
-        description="Open Margin is a student-led, open-access journal for research of any age across the humanities, social sciences, and STEM."
+        description="Open Margin is a student-led, open-access journal for research by authors of any age in the humanities, social sciences, and STEM."
       />
 
       <section className="story-grid">
         <div className="story-lead">
           <p className="drop-cap">
-            The question is not only, “Will this get accepted?” It is also,
-            “What would make the argument harder to dismiss?”
+            {"Ask, \"Will this get accepted?\" Then ask, \"What would make the argument harder to dismiss?\""}
           </p>
         </div>
         <div className="story-body">
@@ -34,9 +33,9 @@ export default function AboutPage() {
             study, capstone, or mentorship and receive a serious editorial read.
           </p>
           <p>
-            We cover the humanities, social sciences, and STEM. We only take work
-            we can evaluate responsibly, so specialized STEM papers depend on
-            the right editor or advisor being available.
+            We publish work in the humanities, social sciences, and STEM. We
+            accept specialized STEM papers only when a suitable editor or
+            advisor is available.
           </p>
         </div>
       </section>
@@ -59,9 +58,9 @@ export default function AboutPage() {
           <p className="eyebrow">Pilot masthead</p>
           <h2>A journal needs more than one person.</h2>
           <p>
-            We will publish names after the founding team and advisory roles are
-            confirmed. Affiliations identify expertise only; they do not imply
-            institutional endorsement.
+            We will publish names once the founding team and advisory roles are
+            confirmed. Affiliations describe expertise, not institutional
+            endorsement.
           </p>
         </div>
         <dl>
@@ -81,12 +80,12 @@ export default function AboutPage() {
         </div>
         <div className="policy-list">
           {[
-            "Authorship & originality",
-            "Peer review, conflicts & appeals",
+            "Authorship and originality",
+            "Peer review, conflicts and appeals",
             "Research involving people",
-            "Corrections & retractions",
-            "Copyright & licensing",
-            "Privacy & guardian consent",
+            "Corrections and retractions",
+            "Copyright and licensing",
+            "Privacy and guardian consent",
             "Use of generative AI",
           ].map((policy) => (
             <Link href="/policies" key={policy}><span>{policy}</span><small>Read policy</small></Link>

@@ -27,8 +27,8 @@ export async function POST(request: Request) {
     const requestedPath = value(form, "requestedPath", 100);
 
     if (!organizationName || !contactName || !/^\S+@\S+\.\S+$/.test(contactEmail)) return invalid("Enter an organization, contact name, and valid email address.");
-    if (!organizationType || !focus || goals.length < 80 || !requestedPath) return invalid("Tell us about your program and what you would like to explore.");
-    if (form.get("privacyConfirmed") !== "on") return invalid("Confirm the privacy declaration.");
+    if (!organizationType || !focus || goals.length < 80 || !requestedPath) return invalid("Tell us about your program and what you want to explore.");
+    if (form.get("privacyConfirmed") !== "on") return invalid("Confirm the privacy checkbox.");
 
     const id = `PT-${new Date().getUTCFullYear()}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
     await ensureOperationsTables();
@@ -51,6 +51,6 @@ export async function POST(request: Request) {
     return Response.json({ reference: id }, { status: 201 });
   } catch (error) {
     console.error("Partner inquiry intake failed", error);
-    return Response.json({ error: "We could not receive your inquiry. Please try again shortly." }, { status: 500 });
+    return Response.json({ error: "We could not receive your inquiry. Try again shortly." }, { status: 500 });
   }
 }

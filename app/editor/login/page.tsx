@@ -19,7 +19,7 @@ export default async function EditorLoginPage({
     <main className="editor-denied">
       <p className="eyebrow">Private editorial workspace</p>
       <h1>Open the submission desk.</h1>
-      <p>Enter the editor password to view submissions, reviewer applications, and partner inquiries.</p>
+      <p>Use the editor password to view submissions, reviewer applications, and partner inquiries.</p>
       <EditorLoginForm returnTo={returnTo} />
       <Link className="text-link" href="/">Return to the journal</Link>
     </main>

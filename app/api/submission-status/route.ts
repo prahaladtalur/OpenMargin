@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     const payload = await request.json().catch(() => null) as { reference?: unknown; email?: unknown } | null;
     const reference = clean(payload?.reference, 50).toUpperCase();
     const email = clean(payload?.email, 254).toLowerCase();
-    if (!reference || !/^\S+@\S+\.\S+$/.test(email)) return Response.json({ error: "Enter your reference code and the email used for submission." }, { status: 400 });
+    if (!reference || !/^\S+@\S+\.\S+$/.test(email)) return Response.json({ error: "Enter your reference code and the email you used to submit." }, { status: 400 });
 
     await ensureSubmissionTable();
     const [submission] = await getDb()
@@ -29,11 +29,11 @@ export async function POST(request: Request) {
       .where(and(eq(submissions.id, reference), eq(submissions.authorEmail, email)))
       .limit(1);
 
-    if (!submission) return Response.json({ error: "We could not find a submission matching that reference code and email." }, { status: 404 });
+    if (!submission) return Response.json({ error: "We could not find a submission with that reference code and email." }, { status: 404 });
     const state = statusLabels[submission.status] ?? { label: "In progress", detail: "Your manuscript is in the editorial process." };
     return Response.json({ ...state, createdAt: submission.createdAt });
   } catch (error) {
     console.error("Submission status lookup failed", error);
-    return Response.json({ error: "We could not retrieve your submission status. Please try again shortly." }, { status: 500 });
+    return Response.json({ error: "We could not retrieve your submission status. Try again shortly." }, { status: 500 });
   }
 }

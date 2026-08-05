@@ -16,7 +16,7 @@ test("keeps the public journal routes and policy content in source", async () =>
   ]);
   assert.match(home, /Student research,/);
   assert.match(policies, /How we handle submissions\./);
-  assert.match(policies, /Privacy, minors & guardian contact/);
+  assert.match(policies, /Privacy, minors and guardian contact/);
   assert.match(submit, /SubmissionForm/);
 });
 

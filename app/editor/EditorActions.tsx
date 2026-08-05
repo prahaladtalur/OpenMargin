@@ -30,7 +30,7 @@ export function EditorActions({ id, status }: { id: string; status: string }) {
           {statuses.map((option) => <option key={option} value={option}>{option.replace("-", " ")}</option>)}
         </select>
       </label>
-      <button type="button" className="editor-save" onClick={save} disabled={state === "saving"}>{state === "saving" ? "Saving…" : "Save"}</button>
+      <button type="button" className="editor-save" onClick={save} disabled={state === "saving"}>{state === "saving" ? "Saving" : "Save"}</button>
       {state === "error" && <p role="alert">Could not update this status.</p>}
     </div>
   );

@@ -12,9 +12,10 @@ export default function Home() {
             <span>read closely.</span>
           </h1>
           <p className="hero-deck">
-            Open Margin is a free journal for research, essays, and projects by
-            students of any age in the humanities, social sciences, and STEM.
-            Authors get a careful editorial read before anything is published.
+            Open Margin is a free journal for research papers, essays, and
+            projects by students of any age. We publish work in the humanities,
+            social sciences, and STEM. An editor reads each submission before
+            anything is published.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/submit">
@@ -28,9 +29,9 @@ export default function Home() {
         <aside className="editor-note" aria-label="From the editors">
           <p className="handwritten">from the editors</p>
           <p>
-            A publication should not be a line a student can buy. We look at
-            the question, the evidence, and the changes that would make the
-            paper stronger.
+            A publication should not be a line a student can buy. We read the
+            question, the evidence, and the changes that could make the paper
+            clearer.
           </p>
           <p className="note-signoff">Founding editorial team</p>
         </aside>
@@ -46,8 +47,9 @@ export default function Home() {
             A paper gets stronger in the margins.
           </h2>
           <p>
-            A grade or a résumé line is not the whole point. Good comments show
-            where an argument holds, where it needs work, and what to try next.
+            A grade or a line on a résumé is not the whole point. Good comments
+            show where an argument works, where it needs work, and what to try
+            next.
           </p>
         </div>
         <dl className="manifesto-facts">
@@ -88,9 +90,9 @@ export default function Home() {
       <section className="review-preview">
         <div className="review-intro">
           <p className="eyebrow">After you submit</p>
-          <h2>You can see how decisions are made.</h2>
+          <h2>You can see how we make decisions.</h2>
           <p>
-            The standards are public. Reviewers use one rubric. Editors make
+            Our standards are public. Reviewers use one rubric. Editors make
             the final decision and explain it in writing.
           </p>
           <Link className="button button-paper" href="/review">Read the complete process</Link>
@@ -111,7 +113,7 @@ export default function Home() {
 
       <section className="closing-callout">
         <p className="eyebrow">For the first issue</p>
-        <h2>Send the draft you want a second set of eyes on.</h2>
+        <h2>Send us the draft you want another reader to challenge.</h2>
         <p>
           We read original work from students of any age in history, literature,
           philosophy, economics, politics, sociology, anthropology, science,

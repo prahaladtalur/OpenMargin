@@ -6,9 +6,9 @@ export const metadata: Metadata = { title: "Review process" };
 
 const rubric = [
   ["Question or thesis", "Is it clear, focused, and genuinely arguable or answerable?"],
-  ["Context & contribution", "Does the paper understand existing work and explain what it adds?"],
+  ["Context and contribution", "Does the paper understand existing work and explain what it adds?"],
   ["Method or argument", "Is the approach appropriate, transparent, and logically sound?"],
-  ["Evidence & analysis", "Do the sources or data support the conclusions being made?"],
+  ["Evidence and analysis", "Do the sources or data support the conclusions being made?"],
   ["Clarity", "Can a careful reader follow the structure, terms, and reasoning?"],
   ["Integrity", "Are limitations, conflicts, consent, and source use handled honestly?"],
 ];
@@ -19,11 +19,11 @@ export default function ReviewPage() {
       <PageIntro
         eyebrow="Review process"
         title="What happens after you submit."
-        description="The process is double-blind when practical, uses one public rubric, and ends with an editor’s decision. The aim is a better paper, not a prestige signal."
+        description="The process is double-blind when practical, uses one public rubric, and ends with an editor's decision. The goal is a stronger paper, not a prestige signal."
       />
 
       <section className="process-section">
-        <p className="vertical-label">From draft to issue</p>
+        <p className="vertical-label">From draft to decision</p>
         <ol className="process-list">
           {reviewSteps.map((step) => (
             <li key={step.number}>
@@ -40,8 +40,9 @@ export default function ReviewPage() {
           <p className="eyebrow">The shared rubric</p>
           <h2>The questions reviewers answer.</h2>
           <p>
-            Reviewers score each area from 1–5 and explain each score. A field-
-            specific guide can add detail, but these six questions stay the same.
+            Reviewers score each area from 1 to 5 and explain the score. A
+            field-specific guide can add detail, but these six questions stay the
+            same.
           </p>
         </div>
         <div className="rubric-list">
@@ -60,8 +61,8 @@ export default function ReviewPage() {
           <h2>Reviewers advise. Editors decide.</h2>
         </div>
         <div className="decision-cards">
-          <article><h3>Revise & resubmit</h3><p>The idea is promising, but important changes are needed before acceptance.</p></article>
-          <article><h3>Accept with changes</h3><p>The paper is sound; focused revisions and copyediting remain.</p></article>
+          <article><h3>Revise and resubmit</h3><p>The paper needs important changes before we can accept it.</p></article>
+          <article><h3>Accept with changes</h3><p>The paper is sound, but focused revisions and copyediting remain.</p></article>
           <article><h3>Decline</h3><p>The work is out of scope or has issues that cannot be resolved in a normal review cycle.</p></article>
         </div>
       </section>
@@ -73,7 +74,7 @@ export default function ReviewPage() {
           Editors and reviewers recuse themselves from papers by classmates,
           collaborators, relatives, or anyone they have mentored. A specialist
           or academic advisor is asked to help when a paper exceeds the
-          editorial team’s expertise.
+          editorial team&apos;s expertise.
         </p>
       </aside>
     </main>
