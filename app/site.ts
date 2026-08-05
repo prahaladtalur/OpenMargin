@@ -1,8 +1,8 @@
 export const site = {
   name: "Open Margin",
-  descriptor: "A journal of emerging scholarship",
+  descriptor: "A student research journal",
   location: "Washington, United States",
-  submissionWindow: "Pilot submissions are now open",
+  submissionWindow: "Submissions are open for Volume 01",
 };
 
 export const reviewSteps = [
@@ -10,44 +10,44 @@ export const reviewSteps = [
     number: "01",
     title: "Editorial screen",
     timing: "Within 7 days",
-    body: "An editor checks fit, originality, consent, and whether the manuscript is ready for substantive review.",
+    body: "An editor checks fit, originality, consent, and whether the paper is ready for a detailed read.",
   },
   {
     number: "02",
     title: "Double-blind review",
     timing: "3–4 weeks",
-    body: "Two trained student reviewers assess the argument, evidence, context, and clarity using a published rubric.",
+    body: "Two trained student reviewers read the argument, evidence, context, and clarity against our public rubric.",
   },
   {
     number: "03",
-    title: "A useful decision",
+    title: "Decision letter",
     timing: "By week 6",
-    body: "Authors receive a specific decision letter: revise, accept with changes, or decline, with comments they can act on.",
+    body: "Authors receive a decision with comments, questions, and concrete next steps.",
   },
   {
     number: "04",
     title: "Revision & publication",
     timing: "1–2 rounds",
-    body: "Accepted authors respond point by point. Editors copyedit the final work and publish it open access.",
+    body: "Accepted authors respond to the comments. Editors copyedit the final work and publish it open access.",
   },
 ];
 
 export const focusAreas = [
   {
     field: "History",
-    note: "Evidence, memory, institutions, and change",
+    note: "Evidence, memory, institutions, change",
   },
   {
     field: "Political science",
-    note: "Power, policy, participation, and public life",
+    note: "Power, policy, participation, public life",
   },
   {
     field: "Literature & culture",
-    note: "Texts, language, interpretation, and lived experience",
+    note: "Texts, language, interpretation, lived experience",
   },
   {
     field: "Science, technology & engineering",
-    note: "Methods, data, systems, and questions worth testing",
+    note: "Methods, data, systems, questions worth testing",
   },
 ];
 

@@ -5,10 +5,10 @@ import { PageIntro } from "../components/SiteShell";
 export const metadata: Metadata = { title: "About" };
 
 const commitments = [
-  ["Free means free", "There are no submission, publication, membership, or expedited-review fees."],
-  ["Review is developmental", "A decision matters, but the comments behind it should help an author long after the review ends."],
-  ["Students lead", "Student editors shape the journal. Academic advisors support calibration, difficult decisions, and work outside the team’s expertise."],
-  ["Standards are public", "Our rubrics, policies, timelines, and annual editorial statistics belong in the open."],
+  ["No fees", "There are no submission, publication, membership, or expedited-review fees."],
+  ["Comments should travel", "A decision matters, but the notes behind it should still help when the author starts the next draft."],
+  ["Students run it", "Student editors shape the journal. Academic advisors help with calibration, difficult decisions, and work outside the team’s expertise."],
+  ["Rules in the open", "Our rubric, policies, timelines, and annual editorial statistics belong on the site."],
 ];
 
 export default function AboutPage() {
@@ -16,30 +16,27 @@ export default function AboutPage() {
     <main>
       <PageIntro
         eyebrow="About the journal"
-        title="A place to take young researchers seriously."
-        description="Open Margin is a student-led, open-access journal for student scholarship of any age across the humanities, social sciences, and STEM."
+        title="A student journal built around revision."
+        description="Open Margin is a student-led, open-access journal for research of any age across the humanities, social sciences, and STEM."
       />
 
       <section className="story-grid">
         <div className="story-lead">
           <p className="drop-cap">
-            Too many student publications begin with the question, “How do we
-            get this accepted?” We begin somewhere else: “What would make this
-            argument stronger?”
+            The question is not only, “Will this get accepted?” It is also,
+            “What would make the argument harder to dismiss?”
           </p>
         </div>
         <div className="story-body">
           <p>
-            Open Margin was founded in Washington as an unincorporated,
-            volunteer-led project. It exists for students who have completed
-            serious independent, classroom, capstone, or mentored research and
-            want an editorial process that respects the work.
+            Open Margin is a volunteer-run project founded in Washington. It
+            gives students a place to send research from a class, independent
+            study, capstone, or mentorship and receive a serious editorial read.
           </p>
           <p>
-            Our scope spans the humanities, social sciences, and STEM. A small
-            journal should only accept work it can review responsibly, so each
-            specialized manuscript depends on the right editorial and advisor
-            expertise being available.
+            We cover the humanities, social sciences, and STEM. We only take work
+            we can evaluate responsibly, so specialized STEM papers depend on
+            the right editor or advisor being available.
           </p>
         </div>
       </section>
@@ -60,11 +57,11 @@ export default function AboutPage() {
       <section className="masthead" id="masthead">
         <div>
           <p className="eyebrow">Pilot masthead</p>
-          <h2>Built to outlast one founder.</h2>
+          <h2>A journal needs more than one person.</h2>
           <p>
-            Names will be published here after the founding team and advisory
-            roles are confirmed. Affiliations identify expertise only; they do
-            not imply institutional endorsement.
+            We will publish names after the founding team and advisory roles are
+            confirmed. Affiliations identify expertise only; they do not imply
+            institutional endorsement.
           </p>
         </div>
         <dl>
@@ -78,7 +75,7 @@ export default function AboutPage() {
       <section className="policy-index" id="policies">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Public by default</p>
+            <p className="eyebrow">The rules are public</p>
             <h2>Editorial policies</h2>
           </div>
         </div>

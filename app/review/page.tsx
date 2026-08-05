@@ -18,8 +18,8 @@ export default function ReviewPage() {
     <main>
       <PageIntro
         eyebrow="Review process"
-        title="Useful feedback is the point."
-        description="Our review process is double-blind, rubric-based, and designed to make promising scholarship more precise, not to manufacture prestige."
+        title="What happens after you submit."
+        description="The process is double-blind when practical, uses one public rubric, and ends with an editor’s decision. The aim is a better paper, not a prestige signal."
       />
 
       <section className="process-section">
@@ -38,10 +38,10 @@ export default function ReviewPage() {
       <section className="rubric-section">
         <div className="rubric-intro">
           <p className="eyebrow">The shared rubric</p>
-          <h2>Six questions behind every review.</h2>
+          <h2>The questions reviewers answer.</h2>
           <p>
-            Reviewers score each area from 1–5 and must explain every score.
-            Discipline-specific guidance supplements this shared core.
+            Reviewers score each area from 1–5 and explain each score. A field-
+            specific guide can add detail, but these six questions stay the same.
           </p>
         </div>
         <div className="rubric-list">
@@ -57,7 +57,7 @@ export default function ReviewPage() {
       <section className="decision-grid">
         <div>
           <p className="eyebrow">Possible decisions</p>
-          <h2>Reviewers recommend. Editors decide.</h2>
+          <h2>Reviewers advise. Editors decide.</h2>
         </div>
         <div className="decision-cards">
           <article><h3>Revise & resubmit</h3><p>The idea is promising, but important changes are needed before acceptance.</p></article>
@@ -67,8 +67,8 @@ export default function ReviewPage() {
       </section>
 
       <aside className="ethics-note">
-        <p className="handwritten">a necessary boundary</p>
-        <h2>We do not review work we cannot assess responsibly.</h2>
+        <p className="handwritten">when we have to say no</p>
+        <h2>We do not accept work we cannot assess fairly.</h2>
         <p>
           Editors and reviewers recuse themselves from papers by classmates,
           collaborators, relatives, or anyone they have mentored. A specialist

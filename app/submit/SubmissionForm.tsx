@@ -71,7 +71,7 @@ export function SubmissionForm() {
           <label>Approximate word count<input name="wordCount" type="number" min="2500" max="8000" required /></label>
           <label className="wide">Abstract <small>(300–1,800 characters)</small><textarea name="abstract" required minLength={300} maxLength={1800} rows={7} /></label>
           <label className="wide">Where did this start?<textarea name="originNote" required maxLength={1000} rows={4} placeholder="For example: class, science fair, lab or design project, independent study, or mentored research." /></label>
-          <label className="wide">AI use<input name="aiDisclosure" required maxLength={1000} placeholder="Write “No material AI use” or say what tools you used." /></label>
+          <label className="wide">AI assistance<input name="aiDisclosure" required maxLength={1000} placeholder="Write “No material AI use” or list the tools and what they did." /></label>
         </div>
       </fieldset>
 

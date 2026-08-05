@@ -17,15 +17,15 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: "Open Margin: A Journal of Emerging Scholarship",
+      default: "Open Margin: A Student Research Journal",
       template: "%s | Open Margin",
     },
     description:
-      "A free, open-access journal offering rigorous, constructive review for student scholarship of any age across the humanities, social sciences, and STEM.",
+      "A free journal for student research in the humanities, social sciences, and STEM. Authors receive detailed review and keep their copyright.",
     openGraph: {
       title: "Open Margin",
       description:
-        "Serious work deserves serious attention. A free journal of emerging scholarship.",
+        "A free journal for student research in the humanities, social sciences, and STEM.",
       type: "website",
       images: [{ url: `${origin}/og.png`, width: 1200, height: 630 }],
     },
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Open Margin",
       description:
-        "Serious work deserves serious attention. A free journal of emerging scholarship.",
+        "A free journal for student research in the humanities, social sciences, and STEM.",
       images: [`${origin}/og.png`],
     },
   };

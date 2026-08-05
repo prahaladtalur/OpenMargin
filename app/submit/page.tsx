@@ -19,24 +19,24 @@ export default function SubmitPage() {
     <main>
       <PageIntro
         eyebrow="Submission guide"
-        title="Send us your work."
-        description="We read student research, essays, and projects across the humanities, social sciences, and STEM. It is free to submit."
+        title="Send your paper or project."
+        description="We read student research, essays, and projects in the humanities, social sciences, and STEM. Submission is free."
       />
 
       <section className="eligibility-grid">
         <div>
           <p className="eyebrow">What we publish</p>
-          <h2>Research worth reading.</h2>
+          <h2>What fits here.</h2>
         </div>
         <div className="eligibility-copy">
           <p>
-            We accept papers, essays, science-fair research, lab reports, and
+            We accept papers, essays, science-fair studies, lab reports, and
             design projects. History, literature, economics, biology, physics,
-            math, computer science, engineering, and more all fit here.
+            mathematics, computer science, engineering, and related fields fit.
           </p>
           <p>
-            Class work, independent projects, mentored research, and previously
-            graded work are all welcome. The work must be your own.
+            Class work, independent projects, mentored research, and graded work
+            are all eligible. The work must be your own.
           </p>
           <p>
             Anyone can submit. If an author is under 18, a parent or guardian
@@ -49,7 +49,7 @@ export default function SubmitPage() {
       <section className="standards-section">
         <p className="eyebrow">What we look for</p>
         <div className="standards-grid">
-          <h2>A clear question, good evidence, honest limits.</h2>
+          <h2>Start with a question. Show the evidence. Name the limits.</h2>
           <ul>
             {standards.map((standard) => <li key={standard}>{standard}</li>)}
           </ul>
@@ -59,7 +59,7 @@ export default function SubmitPage() {
       <section className="submission-specs" id="checklist">
         <div className="specs-main">
           <p className="eyebrow">Manuscript checklist</p>
-          <h2>Have these ready.</h2>
+          <h2>Before you upload.</h2>
           <ol>
             {checklist.map((item, index) => (
               <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>
@@ -81,12 +81,12 @@ export default function SubmitPage() {
       <section className="submission-portal" id="portal">
         <div className="portal-heading">
           <p className="eyebrow">Pilot submission portal</p>
-          <h2>Upload your work.</h2>
-          <p>Keep a copy for yourself. Your file is private and only shared with the editors and advisors reviewing it.</p>
+          <h2>Send the file.</h2>
+          <p>Keep a copy for yourself. Only the editors and advisors assigned to the review can see it.</p>
         </div>
         <SubmissionForm />
       </section>
-      <section className="portal-callout"><div><p className="eyebrow">Already submitted?</p><h2>Check the stage privately.</h2><p>Use your reference code and original submission email to view a high-level editorial status without exposing your manuscript.</p></div><Link className="button button-paper" href="/status">Check submission status</Link></section>
+      <section className="portal-callout"><div><p className="eyebrow">Already sent something?</p><h2>Check your status.</h2><p>Use your reference code and original submission email to see the current editorial stage. Your manuscript stays private.</p></div><Link className="button button-paper" href="/status">Check submission status</Link></section>
     </main>
   );
 }

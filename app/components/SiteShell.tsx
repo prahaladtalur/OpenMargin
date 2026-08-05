@@ -48,8 +48,8 @@ export function SiteFooter() {
       <div className="footer-mark">
         <span className="footer-monogram">OM</span>
         <p>
-          Open access.<br />
-          Constructive by design.
+          Free to submit.<br />
+          Clear about the process.
         </p>
       </div>
       <div className="footer-column">

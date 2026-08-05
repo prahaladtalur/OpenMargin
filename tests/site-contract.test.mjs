@@ -14,8 +14,8 @@ test("keeps the public journal routes and policy content in source", async () =>
     source("app/policies/page.tsx"),
     source("app/submit/page.tsx"),
   ]);
-  assert.match(home, /Serious work deserves/);
-  assert.match(policies, /Clear standards\. No hidden rules\./);
+  assert.match(home, /Student research,/);
+  assert.match(policies, /How we handle submissions\./);
   assert.match(policies, /Privacy, minors & guardian contact/);
   assert.match(submit, /SubmissionForm/);
 });

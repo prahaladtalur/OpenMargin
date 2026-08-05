@@ -80,8 +80,8 @@ export default function PoliciesPage() {
     <main>
       <PageIntro
         eyebrow="Editorial policies · Updated July 29, 2026"
-        title="Clear standards. No hidden rules."
-        description="These policies describe how Open Margin receives, reviews, publishes, corrects, and protects student work. They are written for authors, guardians, reviewers, and readers."
+        title="How we handle submissions."
+        description="These policies explain how Open Margin receives, reviews, publishes, corrects, and protects student work."
       />
 
       <section className="policy-layout">
@@ -90,7 +90,7 @@ export default function PoliciesPage() {
           {policies.map((policy, index) => <a href={`#${policy.id}`} key={policy.id}>{String(index + 1).padStart(2, "0")} {policy.title}</a>)}
         </aside>
         <div className="policy-content">
-          <p className="policy-lead">Policies will be applied consistently, and we will announce material changes on this page. Questions about a policy should be raised before submission whenever possible.</p>
+          <p className="policy-lead">We apply these policies to every submission and will post material changes here. If a rule is unclear, ask before submitting.</p>
           {policies.map((policy, index) => (
             <section id={policy.id} key={policy.id} className="policy-section">
               <p className="policy-number">{String(index + 1).padStart(2, "0")}</p>
