@@ -456,6 +456,45 @@ button, input, textarea { font: inherit; }
 .privacy-copy a { border-bottom: 1px solid var(--red); color: var(--forest); }
 .honeypot { height: 0; overflow: hidden; position: absolute; width: 0; }
 
+.review-summary {
+  background: var(--paper-light);
+  border-bottom: 1px solid var(--ink);
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: clamp(3.5rem, 7vw, 7rem) clamp(1.25rem, 7vw, 8rem);
+}
+.review-summary article { border-left: 1px solid var(--line); padding: 0 clamp(1.25rem, 4vw, 4rem); }
+.review-summary article:last-child { border-right: 1px solid var(--line); }
+.review-summary h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; margin: 0 0 1rem; }
+.review-summary article > p:last-child { color: var(--muted); max-width: 520px; }
+.guide-intro, .guide-options, .guide-questions, .guide-steps {
+  padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem);
+}
+.guide-intro { display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: .7fr 1.3fr; }
+.guide-intro h2, .guide-questions h2, .guide-steps h2 { font-family: var(--serif); font-size: clamp(2.7rem, 5vw, 5rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; margin: 0; }
+.guide-intro-copy { border-left: 1px solid var(--line); padding-left: clamp(2rem, 4vw, 4rem); }
+.guide-intro-copy p { max-width: 680px; margin: 0 0 1.2rem; }
+.guide-options { background: var(--paper-light); border-bottom: 1px solid var(--ink); border-top: 1px solid var(--ink); }
+.guide-option-grid { border-top: 1px solid var(--ink); display: grid; grid-template-columns: repeat(2, 1fr); }
+.guide-option { border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); min-height: 260px; padding: 1.6rem; }
+.guide-option:nth-child(odd) { border-left: 0; }
+.guide-option h3 { font-family: var(--serif); font-size: clamp(1.7rem, 2.7vw, 2.5rem); font-weight: 500; line-height: 1; margin: 0 0 1rem; }
+.guide-option p { color: var(--muted); margin: 0 0 .75rem; max-width: 580px; }
+.guide-option p:last-child { color: var(--ink); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.guide-questions { display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: .7fr 1.3fr; }
+.guide-question-list, .guide-step-list { border-top: 1px solid var(--ink); list-style: none; margin: 0; padding: 0; }
+.guide-question-list li, .guide-step-list li { border-bottom: 1px solid var(--line); padding: 1.2rem 0; }
+.guide-question-list li { padding-left: 1.6rem; position: relative; }
+.guide-question-list li::before { color: var(--red); content: "?"; left: 0; position: absolute; }
+.guide-steps { background: var(--forest); color: white; display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: .7fr 1.3fr; }
+.guide-steps h2 { color: white; }
+.guide-step-list { border-top-color: rgba(255,255,255,.35); }
+.guide-step-list li { display: grid; gap: 1.2rem; grid-template-columns: 42px 1fr; }
+.guide-step-list li > span { color: var(--yellow); font-family: var(--serif); }
+.guide-step-list h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; margin: 0 0 .35rem; }
+.guide-step-list p { color: #c9d0c8; margin: 0; }
+
 .contributor-roles, .partner-model, .status-section, .toolkit-grid {
   display: grid;
   gap: clamp(3rem, 8vw, 8rem);
@@ -630,7 +669,7 @@ button, input, textarea { font: inherit; }
   .editor-note { margin: 4rem 0 0 auto; max-width: 420px; }
   .manifesto { grid-template-columns: 30px 1fr; }
   .manifesto-facts { display: grid; grid-column: 2; grid-template-columns: repeat(3, 1fr); }
-  .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails { grid-template-columns: 1fr; }
+  .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps { grid-template-columns: 1fr; }
   .commitment-grid { grid-template-columns: 1fr 1fr; }
   .masthead, .standards-grid, .submission-specs { gap: 3rem; grid-template-columns: 1fr; }
   .policy-layout { grid-template-columns: 1fr; }
@@ -640,6 +679,10 @@ button, input, textarea { font: inherit; }
   .partner-additions article, .partner-additions article:last-child, .resource-cards article, .resource-cards article:last-child { border-bottom: 1px solid var(--line); border-left: 0; border-right: 0; min-height: 0; }
   .partner-additions article > p:first-child { margin-bottom: 2rem; }
   .partner-model-copy { border-left: 0; border-top: 1px solid var(--line); padding: 2rem 0 0; }
+  .review-summary article { border-left: 0; border-top: 1px solid var(--line); padding: 2rem 0 0; }
+  .review-summary article:first-child { border-top: 0; padding-top: 0; }
+  .review-summary article:last-child { border-right: 0; }
+  .guide-intro-copy { border-left: 0; border-top: 1px solid var(--line); padding: 2rem 0 0; }
 }
 
 @media (max-width: 640px) {
@@ -681,6 +724,8 @@ button, input, textarea { font: inherit; }
   .submission-form .wide { grid-column: auto; }
   .form-submit { align-items: flex-start; flex-direction: column; }
   .policy-section { gap: .5rem; grid-template-columns: 1fr; }
+  .guide-option-grid { grid-template-columns: 1fr; }
+  .guide-option, .guide-option:nth-child(odd) { border-left: 0; }
   .issue-cover { min-height: 560px; }
   .footer-bottom, .site-footer { grid-template-columns: 1fr; }
   .footer-bottom { align-items: flex-start; flex-direction: column; gap: .2rem; }

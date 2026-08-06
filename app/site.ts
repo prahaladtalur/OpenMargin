@@ -8,27 +8,27 @@ export const site = {
 export const reviewSteps = [
   {
     number: "01",
-    title: "Editorial screen",
+    title: "Fit check",
     timing: "Within 7 days",
-    body: "An editor checks the subject, original work, consent, and readiness for review.",
+    body: "An editor checks that the paper fits our scope, is original work, and is ready for review.",
   },
   {
     number: "02",
-    title: "Double-blind review",
-    timing: "3 to 4 weeks",
-    body: "Two trained student reviewers read the claim, evidence, context, and clarity. They use the public rubric.",
+    title: "Two written reviews",
+    timing: "Weeks 2 to 5",
+    body: "Two reviewers read the question, evidence, method, and writing. Each reviewer sends written comments.",
   },
   {
     number: "03",
     title: "Decision letter",
-    timing: "By week 6",
-    body: "Authors receive a decision, comments, questions, and next steps.",
+    timing: "Target: weeks 6 to 8",
+    body: "An editor considers the reviews and sends a decision letter with comments and next steps. We aim to give useful feedback when we decline a paper.",
   },
   {
     number: "04",
     title: "Revision and publication",
-    timing: "1 to 2 rounds",
-    body: "Accepted authors answer the comments. Editors copyedit the final file and publish it open access.",
+    timing: "If accepted",
+    body: "Accepted authors answer the comments. We copyedit the final file and publish it only after the author approves the final version.",
   },
 ];
 

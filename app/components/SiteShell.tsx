@@ -4,7 +4,7 @@ import { site } from "../site";
 const nav = [
   { href: "/issue", label: "Read" },
   { href: "/review", label: "Review process" },
-  { href: "/resources", label: "Toolkit" },
+  { href: "/guide", label: "Publishing guide" },
   { href: "/reviewers", label: "Review with us" },
   { href: "/about", label: "About" },
 ];
@@ -56,6 +56,7 @@ export function SiteFooter() {
         <p className="eyebrow">Explore</p>
         <Link href="/issue">Read the issue</Link>
         <Link href="/review">Review process</Link>
+        <Link href="/guide">Where to publish</Link>
         <Link href="/resources">Author toolkit</Link>
         <Link href="/submit">How to submit</Link>
       </div>
