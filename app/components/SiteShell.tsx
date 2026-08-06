@@ -49,12 +49,12 @@ export function SiteFooter() {
         <span className="footer-monogram">OM</span>
         <p>
           Free to submit.<br />
-          Clear about the process.
+          Clear process.
         </p>
       </div>
       <div className="footer-column">
         <p className="eyebrow">Explore</p>
-        <Link href="/issue">Read an issue</Link>
+        <Link href="/issue">Read the issue</Link>
         <Link href="/review">Review process</Link>
         <Link href="/resources">Author toolkit</Link>
         <Link href="/submit">How to submit</Link>

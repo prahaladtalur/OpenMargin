@@ -5,10 +5,10 @@ import { PageIntro } from "../components/SiteShell";
 export const metadata: Metadata = { title: "About" };
 
 const commitments = [
-  ["No fees", "There are no submission, publication, membership, or expedited-review fees."],
-  ["Comments should help", "A decision matters, but the notes should still help when the author starts the next draft."],
-  ["Students run it", "Student editors shape the journal. Academic advisors help with difficult decisions, calibration, and work outside the team's expertise."],
-  ["Rules in the open", "Our rubric, policies, timelines, and annual editorial statistics stay on the site."],
+  ["No fees", "There is no submission, publication, membership, or fast-review fee."],
+  ["Comments should help", "A decision matters. The notes should help the author write the next draft."],
+  ["Students run it", "Student editors run the journal. Academic advisors help with hard decisions, calibration, and work outside the team's expertise."],
+  ["Rules in the open", "Our rubric, policies, timelines, and yearly statistics stay on the site."],
 ];
 
 export default function AboutPage() {
@@ -17,24 +17,24 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="About the journal"
         title="A student journal built around revision."
-        description="Open Margin is a student-led, open-access journal for research by authors of any age in the humanities, social sciences, and STEM."
+        description="Open Margin is a student-led, open-access journal for research by authors of any age. We publish work in the humanities, social sciences, and STEM."
       />
 
       <section className="story-grid">
         <div className="story-lead">
           <p className="drop-cap">
-            {"Ask, \"Will this get accepted?\" Then ask, \"What would make the argument harder to dismiss?\""}
+            {"Ask, \"Will this be accepted?\" Then ask, \"What would make this argument stronger?\""}
           </p>
         </div>
         <div className="story-body">
           <p>
-            Open Margin is a volunteer-run project founded in Washington. It
-            gives students a place to send research from a class, independent
-            study, capstone, or mentorship and receive a serious editorial read.
+            Open Margin is a volunteer-run project in Washington. Students can
+            send work from a class, independent study, capstone, or mentorship.
+            They receive an editorial read.
           </p>
           <p>
             We publish work in the humanities, social sciences, and STEM. We
-            accept specialized STEM papers only when a suitable editor or
+            review specialized STEM papers only when a suitable editor or
             advisor is available.
           </p>
         </div>
@@ -56,11 +56,11 @@ export default function AboutPage() {
       <section className="masthead" id="masthead">
         <div>
           <p className="eyebrow">Pilot masthead</p>
-          <h2>A journal needs more than one person.</h2>
+          <h2>More than one person runs a journal.</h2>
           <p>
-            We will publish names once the founding team and advisory roles are
-            confirmed. Affiliations describe expertise, not institutional
-            endorsement.
+            We will publish names after we confirm the founding team and
+            advisors. Affiliations show expertise. They do not show
+            institutional endorsement.
           </p>
         </div>
         <dl>
@@ -82,7 +82,7 @@ export default function AboutPage() {
           {[
             "Authorship and originality",
             "Peer review, conflicts and appeals",
-            "Research involving people",
+            "Research with people",
             "Corrections and retractions",
             "Copyright and licensing",
             "Privacy and guardian consent",

@@ -21,11 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Open Margin",
     },
     description:
-      "A free journal for student research in the humanities, social sciences, and STEM. Authors keep their copyright and receive a written editorial decision.",
+      "A free journal for research by authors of any age in the humanities, social sciences, and STEM. Authors keep their copyright and receive a written decision.",
     openGraph: {
       title: "Open Margin",
       description:
-        "A free journal for student research in the humanities, social sciences, and STEM.",
+        "A free journal for research by authors of any age in the humanities, social sciences, and STEM.",
       type: "website",
       images: [{ url: `${origin}/og.png`, width: 1200, height: 630 }],
     },
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Open Margin",
       description:
-        "A free journal for student research in the humanities, social sciences, and STEM.",
+        "A free journal for research by authors of any age in the humanities, social sciences, and STEM.",
       images: [`${origin}/og.png`],
     },
   };

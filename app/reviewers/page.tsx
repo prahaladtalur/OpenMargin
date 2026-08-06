@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Review with us" };
 const roles = [
   ["Student reviewers", "Read blinded manuscripts with a shared rubric and write comments the author can use."],
   ["Section editors", "Check fit, coordinate reviews, and make decisions with the editorial team."],
-  ["Academic advisors", "Help with calibration, specialist questions, and difficult decisions without taking over student leadership."],
+  ["Academic advisors", "Help with calibration, specialist questions, and hard decisions. Student editors keep the lead."],
   ["Research communication volunteers", "Help with copyediting, citations, accessibility, and author resources."],
 ];
 
@@ -22,13 +22,13 @@ export default function ReviewersPage() {
       />
 
       <section className="contributor-roles">
-        <div><p className="eyebrow">Ways to contribute</p><h2>Different roles, one standard.</h2><p>We look for relevant experience and careful readers. Every contributor agrees to confidentiality, conflict disclosure, and fair feedback.</p></div>
+        <div><p className="eyebrow">Ways to contribute</p><h2>Different roles. One standard.</h2><p>We look for relevant experience and careful readers. Every contributor agrees to confidentiality, conflict disclosure, and fair feedback.</p></div>
         <div className="role-list">{roles.map(([title, body], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>
       </section>
 
       <section className="contributor-principles">
         <p className="eyebrow">Before an invitation</p>
-        <div><h2>We show reviewers what the job involves.</h2><p>New reviewers start with the public rubric, sample reviews, and a calibration exercise. Editors assign work only when the field, capacity, and conflicts make sense. No contributor reviews work by a classmate, collaborator, relative, or mentee.</p><Link className="text-link" href="/review">Read the review process</Link></div>
+        <div><h2>We explain the work before an invitation.</h2><p>New reviewers start with the public rubric, sample reviews, and a calibration exercise. Editors assign work only when the field, capacity, and conflicts fit. No contributor reviews work by a classmate, collaborator, relative, or mentee.</p><Link className="text-link" href="/review">Read the review process</Link></div>
       </section>
 
       <section className="submission-portal" id="apply">

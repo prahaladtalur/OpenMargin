@@ -25,15 +25,14 @@ export default function IssuePage() {
           <p className="eyebrow">Contents</p>
           <p>Research articles</p>
         </div>
-        <div className="contents-list"><article><p className="paper-number">01</p><div><p className="paper-field">Pilot issue</p><h2>Articles will appear after acceptance.</h2><p className="paper-author">Nothing is listed before the review cycle ends.</p></div><p className="paper-note">Submissions open</p></article></div>
+        <div className="contents-list"><article><p className="paper-number">01</p><div><p className="paper-field">Pilot issue</p><h2>Articles will appear after acceptance.</h2><p className="paper-author">We list work after the review cycle ends.</p></div><p className="paper-note">Submissions open</p></article></div>
       </section>
 
       <section className="issue-empty">
           <p className="handwritten">send the first paper</p>
           <h2>The first issue has room.</h2>
         <p>
-          Send a question, the evidence behind it, and a draft you are willing
-          to revise.
+          Send a question, the evidence behind it, and a draft you can revise.
         </p>
         <Link className="button button-dark" href="/submit">Prepare a submission</Link>
       </section>

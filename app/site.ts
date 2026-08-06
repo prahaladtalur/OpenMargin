@@ -10,32 +10,32 @@ export const reviewSteps = [
     number: "01",
     title: "Editorial screen",
     timing: "Within 7 days",
-    body: "An editor checks fit, originality, consent, and whether the paper is ready for a closer read.",
+    body: "An editor checks the subject, original work, consent, and readiness for review.",
   },
   {
     number: "02",
     title: "Double-blind review",
     timing: "3 to 4 weeks",
-    body: "Two trained student reviewers read the argument, evidence, context, and clarity using our public rubric.",
+    body: "Two trained student reviewers read the claim, evidence, context, and clarity. They use the public rubric.",
   },
   {
     number: "03",
     title: "Decision letter",
     timing: "By week 6",
-    body: "Authors get a decision with comments, questions, and next steps.",
+    body: "Authors receive a decision, comments, questions, and next steps.",
   },
   {
     number: "04",
     title: "Revision and publication",
     timing: "1 to 2 rounds",
-    body: "Accepted authors respond to the comments. Editors copyedit the final version and publish it open access.",
+    body: "Accepted authors answer the comments. Editors copyedit the final file and publish it open access.",
   },
 ];
 
 export const focusAreas = [
   {
     field: "History",
-    note: "Evidence, memory, institutions, change",
+    note: "Sources, memory, institutions, change",
   },
   {
     field: "Political science",
@@ -52,9 +52,9 @@ export const focusAreas = [
 ];
 
 export const standards = [
-  "A focused question or arguable thesis",
-  "Engagement with credible primary or secondary sources",
-  "Evidence that supports the paper's conclusions",
-  "Clear disclosure of methods and limitations",
-  "Original work written by a student researcher",
+  "A clear question or thesis",
+  "Use of credible primary or secondary sources",
+  "Evidence that supports the conclusion",
+  "A clear note about methods and limits",
+  "Original work by a student researcher",
 ];

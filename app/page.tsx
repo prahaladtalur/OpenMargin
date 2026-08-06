@@ -13,9 +13,9 @@ export default function Home() {
           </h1>
           <p className="hero-deck">
             Open Margin is a free journal for research papers, essays, and
-            projects by students of any age. We publish work in the humanities,
+            projects by authors of any age. We publish work in the humanities,
             social sciences, and STEM. An editor reads each submission before
-            anything is published.
+            we decide whether to review it.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/submit">
@@ -29,9 +29,9 @@ export default function Home() {
         <aside className="editor-note" aria-label="From the editors">
           <p className="handwritten">from the editors</p>
           <p>
-            A publication should not be a line a student can buy. We read the
-            question, the evidence, and the changes that could make the paper
-            clearer.
+            A publication should not be something a student can buy. We read
+            the question and the evidence. We tell the author what could make
+            the paper clearer.
           </p>
           <p className="note-signoff">Founding editorial team</p>
         </aside>
@@ -44,12 +44,11 @@ export default function Home() {
         <p className="vertical-label">Our premise</p>
         <div className="manifesto-copy">
           <h2 id="manifesto-title">
-            A paper gets stronger in the margins.
+            A paper improves in the margins.
           </h2>
           <p>
-            A grade or a line on a résumé is not the whole point. Good comments
-            show where an argument works, where it needs work, and what to try
-            next.
+            Grades and résumés are not the whole point. Good comments show
+            what works, what needs work, and what to try next.
           </p>
         </div>
         <dl className="manifesto-facts">
@@ -73,8 +72,8 @@ export default function Home() {
               <p className="paper-number">{String(index + 1).padStart(2, "0")}</p>
               <div>
                 <p className="paper-field">{area.field}</p>
-                <h3>Send work with a real question behind it.</h3>
-                <p className="paper-author">Pilot issue accepting submissions</p>
+                <h3>Send work with a clear question.</h3>
+                <p className="paper-author">Pilot issue submissions are open</p>
               </div>
               <p className="paper-note">{area.note}</p>
               <span className="paper-arrow" aria-hidden="true">↗</span>
@@ -82,18 +81,18 @@ export default function Home() {
           ))}
         </div>
         <p className="sample-disclaimer">
-          The first issue has no published articles yet. We will list accepted
-          work after review, revision, and author approval are complete.
+          The first issue has no published articles. We will list accepted work
+          after review, revision, and author approval.
         </p>
       </section>
 
       <section className="review-preview">
         <div className="review-intro">
           <p className="eyebrow">After you submit</p>
-          <h2>You can see how we make decisions.</h2>
+          <h2>You can see how we decide.</h2>
           <p>
-            Our standards are public. Reviewers use one rubric. Editors make
-            the final decision and explain it in writing.
+            Our standards are public. Reviewers use one rubric. Editors make the
+            final decision and explain it in writing.
           </p>
           <Link className="button button-paper" href="/review">Read the complete process</Link>
         </div>
@@ -113,7 +112,7 @@ export default function Home() {
 
       <section className="closing-callout">
         <p className="eyebrow">For the first issue</p>
-        <h2>Send us the draft you want another reader to challenge.</h2>
+        <h2>Send us the draft you want another reader to test.</h2>
         <p>
           We read original work from students of any age in history, literature,
           philosophy, economics, politics, sociology, anthropology, science,

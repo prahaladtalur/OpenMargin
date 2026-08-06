@@ -17,16 +17,16 @@ export function PartnerInquiryForm() {
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) {
       setStatus("error");
-      setMessage(payload.error ?? "We could not receive your inquiry. Try again.");
+      setMessage(payload.error ?? "We could not receive the inquiry. Try again.");
       return;
     }
     setStatus("success");
-    setMessage(`Received. Your inquiry reference is ${payload.reference}. Save it for future emails.`);
+    setMessage(`Received. Inquiry reference: ${payload.reference}. Save this code.`);
     event.currentTarget.reset();
   }
 
   if (status === "success") {
-    return <section className="submission-success" aria-live="polite"><p className="handwritten">inquiry received</p><h2>We got your note.</h2><p>{message}</p><p>We will check whether the idea fits our scope and current capacity, then follow up.</p><button className="button button-dark" onClick={() => { setStatus("idle"); setMessage(""); }}>Send another inquiry</button></section>;
+    return <section className="submission-success" aria-live="polite"><p className="handwritten">inquiry received</p><h2>We got your note.</h2><p>{message}</p><p>We will check whether the idea fits our scope and capacity. Then we will reply.</p><button className="button button-dark" onClick={() => { setStatus("idle"); setMessage(""); }}>Send another inquiry</button></section>;
   }
 
   return (
@@ -46,18 +46,18 @@ export function PartnerInquiryForm() {
       <fieldset>
         <legend><span>02</span> What you are considering</legend>
         <div className="form-grid">
-          <label className="wide">Your students or program<textarea name="focus" required minLength={20} maxLength={1000} rows={4} placeholder="Who do you work with? What do students make? Which subjects matter here?" /></label>
+          <label className="wide">Your students or program<textarea name="focus" required minLength={20} maxLength={1000} rows={4} placeholder="Who do you work with? What do students make? Which subjects matter?" /></label>
           <label>Approximate cohort size <small>(optional)</small><input name="cohortSize" maxLength={80} placeholder="For example: 20 students per term" /></label>
           <label>Best next step<select name="requestedPath" required defaultValue=""><option value="" disabled>Select one</option>{paths.map((path) => <option key={path}>{path}</option>)}</select></label>
-          <label className="wide">What would success look like? <small>(80 characters minimum)</small><textarea name="goals" required minLength={80} maxLength={1800} rows={6} placeholder="Tell us what you want students or your program to gain, plus any timing or limits we should know." /></label>
+          <label className="wide">What result do you want? <small>(80 characters minimum)</small><textarea name="goals" required minLength={80} maxLength={1800} rows={6} placeholder="Tell us what you want students or your program to gain. Include timing or limits." /></label>
         </div>
       </fieldset>
 
       <fieldset>
         <legend><span>03</span> Data and independence</legend>
         <div className="declarations">
-          <label><input type="checkbox" name="privacyConfirmed" required /> I understand that any collaboration must keep participation voluntary, use direct student submission or clear consent, and leave editorial decisions independent.</label>
-          <p className="privacy-copy">I have read the <Link href="/policies#privacy">privacy policy</Link> and consent to Open Margin using this information to reply.</p>
+          <label><input type="checkbox" name="privacyConfirmed" required /> I understand that participation must stay voluntary. Students must submit directly or give clear consent. Editorial decisions must stay independent.</label>
+          <p className="privacy-copy">I read the <Link href="/policies#privacy">privacy policy</Link>. I consent to Open Margin using this information to reply.</p>
         </div>
       </fieldset>
       {status === "error" && <p className="form-error" role="alert">{message}</p>}
