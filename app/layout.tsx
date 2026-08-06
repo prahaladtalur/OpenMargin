@@ -22,6 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       "A free journal for research by authors of any age in the humanities, social sciences, and STEM. Authors keep their copyright and receive a written decision.",
+    icons: {
+      icon: "/favicon.svg",
+      shortcut: "/favicon.svg",
+    },
     openGraph: {
       title: "Open Margin",
       description:
