@@ -38,7 +38,7 @@ export default function PartnersPage() {
       <section className="partner-pathway">
         <p className="eyebrow">Run a small pilot</p>
         <ol><li><span>01</span><div><h2>Choose a fitting group</h2><p>Start with students whose work fits the journal&apos;s current scope.</p></div></li><li><span>02</span><div><h2>Share the checklist</h2><p>Give students the public toolkit. Let them decide whether to submit.</p></div></li><li><span>03</span><div><h2>Keep the review separate</h2><p>Students use the same portal, timeline, and standards as every other author.</p></div></li><li><span>04</span><div><h2>Discuss the pattern</h2><p>Discuss readiness and feedback in summary form. Do not share private manuscript information.</p></div></li></ol>
-        <Link className="button button-paper" href="/resources">See the author toolkit</Link>
+        <div className="partner-pathway-actions"><Link className="button button-paper" href="/resources">See the author toolkit</Link><Link className="text-link" href="/share">Get the forwardable message</Link></div>
       </section>
 
       <section className="submission-portal" id="inquire">

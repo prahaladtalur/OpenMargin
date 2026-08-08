@@ -540,6 +540,8 @@ button, input, textarea { font: inherit; }
 .partner-pathway li > span { color: var(--yellow); font-family: var(--serif); }
 .partner-pathway li h2 { font-size: clamp(1.55rem, 2.8vw, 2.4rem); line-height: 1; margin: 0 0 .5rem; }
 .partner-pathway li p { color: rgba(255,255,255,.82); margin: 0; }
+.partner-pathway-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.partner-pathway-actions .text-link { color: white; }
 
 .status-section { align-items: start; }
 .status-intro h2 { font-size: clamp(2.7rem, 5vw, 5rem); line-height: .95; margin: 0 0 1.5rem; }
@@ -622,6 +624,49 @@ button, input, textarea { font: inherit; }
 .policy-sources a:not(.button) { border-bottom: 1px solid var(--yellow); color: white; }
 .policy-sources .button { margin-top: 1.2rem; }
 
+.share-copy-section, .share-steps, .share-guardrails {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem);
+}
+.share-copy-section {
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(220px, .7fr) minmax(0, 1.2fr);
+}
+.share-copy-section h2, .share-steps h2, .share-guardrails h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4vw, 4.4rem);
+  font-weight: 500;
+  letter-spacing: -.05em;
+  line-height: .95;
+  margin: 0 0 1rem;
+}
+.share-copy-section p:not(.eyebrow) { color: var(--muted); max-width: 360px; }
+.share-copy {
+  background: var(--forest);
+  color: #f5f0e6;
+  font-family: var(--sans);
+  font-size: .9rem;
+  line-height: 1.65;
+  margin: 0;
+  overflow-x: auto;
+  padding: clamp(1.3rem, 3vw, 2.5rem);
+  white-space: pre-wrap;
+}
+.share-steps { border-bottom: 1px solid var(--line); border-top: 1px solid var(--ink); }
+.share-steps > div { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); margin-top: 2rem; }
+.share-steps article { background: var(--paper-light); border-right: 1px solid var(--line); min-height: 290px; padding: 1.8rem; }
+.share-steps article:last-child { border-right: 0; }
+.share-steps article > span { color: var(--red); font-family: var(--serif); font-size: 1.35rem; }
+.share-steps article h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-top: 2.8rem; }
+.share-steps article p { color: var(--muted); min-height: 72px; }
+.share-guardrails { display: grid; gap: 2rem 4rem; grid-template-columns: .8fr 1.2fr; }
+.share-guardrails ul { border-top: 1px solid var(--ink); list-style: none; margin: 0; padding: 0; }
+.share-guardrails li { border-bottom: 1px solid var(--line); padding: 1rem 0 1rem 1.4rem; position: relative; }
+.share-guardrails li::before { color: var(--red); content: "•"; left: 0; position: absolute; }
+.share-guardrails .button { grid-column: 2; justify-self: start; }
+
 .issue-cover {
   background: var(--forest);
   color: white;
@@ -669,7 +714,7 @@ button, input, textarea { font: inherit; }
   .editor-note { margin: 4rem 0 0 auto; max-width: 420px; }
   .manifesto { grid-template-columns: 30px 1fr; }
   .manifesto-facts { display: grid; grid-column: 2; grid-template-columns: repeat(3, 1fr); }
-  .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps { grid-template-columns: 1fr; }
+  .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps, .share-copy-section, .share-guardrails { grid-template-columns: 1fr; }
   .commitment-grid { grid-template-columns: 1fr 1fr; }
   .masthead, .standards-grid, .submission-specs { gap: 3rem; grid-template-columns: 1fr; }
   .policy-layout { grid-template-columns: 1fr; }
@@ -726,6 +771,9 @@ button, input, textarea { font: inherit; }
   .policy-section { gap: .5rem; grid-template-columns: 1fr; }
   .guide-option-grid { grid-template-columns: 1fr; }
   .guide-option, .guide-option:nth-child(odd) { border-left: 0; }
+  .share-steps > div { grid-template-columns: 1fr; }
+  .share-steps article { border-bottom: 1px solid var(--line); border-right: 0; min-height: 0; }
+  .share-guardrails .button { grid-column: 1; }
   .issue-cover { min-height: 560px; }
   .footer-bottom, .site-footer { grid-template-columns: 1fr; }
   .footer-bottom { align-items: flex-start; flex-direction: column; gap: .2rem; }

@@ -75,15 +75,19 @@ test("keeps contributor and partnership intake durable and editor-only", async (
 });
 
 test("keeps author status lookup private and public journal copy free of em dashes", async () => {
-  const [statusRoute, statusPage, home, issue] = await Promise.all([
+  const [statusRoute, statusPage, home, issue, share] = await Promise.all([
     source("app/api/submission-status/route.ts"),
     source("app/status/page.tsx"),
     source("app/page.tsx"),
     source("app/issue/page.tsx"),
+    source("app/share/page.tsx"),
   ]);
   assert.match(statusRoute, /submissions\.authorEmail/);
   assert.match(statusRoute, /submissions\.id/);
   assert.match(statusPage, /SubmissionStatusForm/);
+  assert.match(share, /Copy and send/);
+  assert.match(share, /Students submit directly/);
   assert.doesNotMatch(home, /—/);
   assert.doesNotMatch(issue, /—/);
+  assert.doesNotMatch(share, /—/);
 });

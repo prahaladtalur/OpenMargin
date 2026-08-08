@@ -66,6 +66,7 @@ export function SiteFooter() {
         <Link href="/policies">Editorial policies</Link>
         <Link href="/reviewers">Review with us</Link>
         <Link href="/partners">Partner with us</Link>
+        <Link href="/share">Share with a student</Link>
       </div>
       <div className="footer-bottom">
         <p>© 2026 {site.name}. A student-led, unincorporated project in Washington.</p>
