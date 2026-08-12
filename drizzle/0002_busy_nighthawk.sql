@@ -1,4 +1,4 @@
-CREATE TABLE `submission_notification_events` (
+CREATE TABLE IF NOT EXISTS `submission_notification_events` (
 	`id` text PRIMARY KEY NOT NULL,
 	`submission_id` text NOT NULL,
 	`event_key` text NOT NULL,
@@ -8,4 +8,4 @@ CREATE TABLE `submission_notification_events` (
 	`sent_at` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `submission_notification_events_submission_event_idx` ON `submission_notification_events` (`submission_id`,`event_key`);
+CREATE UNIQUE INDEX IF NOT EXISTS `submission_notification_events_submission_event_idx` ON `submission_notification_events` (`submission_id`,`event_key`);
