@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const submissions = sqliteTable("submissions", {
   id: text("id").primaryKey(),
@@ -24,6 +24,18 @@ export const submissions = sqliteTable("submissions", {
   guardianConfirmed: integer("guardian_confirmed", { mode: "boolean" }).notNull().default(false),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+export const submissionNotificationEvents = sqliteTable("submission_notification_events", {
+  id: text("id").primaryKey(),
+  submissionId: text("submission_id").notNull(),
+  eventKey: text("event_key").notNull(),
+  status: text("status").notNull().default("pending"),
+  lastError: text("last_error"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  sentAt: text("sent_at"),
+}, (table) => ({
+  submissionEventUnique: uniqueIndex("submission_notification_events_submission_event_idx").on(table.submissionId, table.eventKey),
+}));
 
 export const reviewerApplications = sqliteTable("reviewer_applications", {
   id: text("id").primaryKey(),

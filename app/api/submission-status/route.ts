@@ -9,6 +9,7 @@ const statusLabels: Record<string, { label: string; detail: string }> = {
   revise: { label: "Revision requested", detail: "An editor has recorded a revision stage. Check your editorial correspondence for the next step." },
   declined: { label: "Decision recorded", detail: "An editorial decision has been recorded. Check your editorial correspondence for details." },
   accepted: { label: "Accepted", detail: "The manuscript is moving through final revision and publication preparation." },
+  published: { label: "Published", detail: "Your manuscript has been marked as published. Check your email for the publication message." },
 };
 
 function clean(value: unknown, maxLength: number) {

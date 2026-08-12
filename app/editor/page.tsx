@@ -27,7 +27,7 @@ export default async function EditorPage() {
         <div className="editor-header-actions"><Link href="/editor/recruitment" className="editor-link">Recruitment desk</Link><Link href="/" className="editor-link">View public site</Link><Link href={editorSignOutPath("/")} className="editor-link">Sign out</Link></div>
       </header>
       <section className={`editor-notice ${emailConfigured ? "configured" : ""}`}>
-        <p><strong>Email alerts:</strong> {emailConfigured ? "New submissions go to the editorial inbox." : "Not active. The dashboard still stores submissions securely. Connect an email sender to receive alerts."}</p>
+        <p><strong>Email alerts:</strong> {emailConfigured ? "New submissions and publication alerts go to the editorial inbox. Decision and publication messages go to authors." : "Not active. The dashboard still stores submissions securely. Connect an email sender to receive alerts."}</p>
       </section>
       <section className="editor-summary" aria-label="Submission summary">
         <div><span>{rows.length}</span><p>Submissions</p></div>

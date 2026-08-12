@@ -57,6 +57,29 @@ test("keeps editorial review surfaces private", async () => {
   assert.match(statusRoute, /getEditorForApi/);
 });
 
+test("sends durable decision and publication notifications", async () => {
+  const [statusRoute, notifications, schema, database, editorActions, statusLookup] = await Promise.all([
+    source("app/api/editor/submissions/[id]/status/route.ts"),
+    source("lib/notifications.ts"),
+    source("db/schema.ts"),
+    source("db/index.ts"),
+    source("app/editor/EditorActions.tsx"),
+    source("app/api/submission-status/route.ts"),
+  ]);
+  assert.match(statusRoute, /published/);
+  assert.match(statusRoute, /submissionNotificationEvents/);
+  assert.match(statusRoute, /onConflictDoNothing/);
+  assert.match(statusRoute, /status: "sent"/);
+  assert.match(statusRoute, /notifyAuthorOfDecision/);
+  assert.match(statusRoute, /notifyEditorOfPublication/);
+  assert.match(notifications, /notifyAuthorOfDecision/);
+  assert.match(notifications, /notifyEditorOfPublication/);
+  assert.match(schema, /submissionNotificationEvents/);
+  assert.match(database, /submission_notification_events/);
+  assert.match(editorActions, /published/);
+  assert.match(statusLookup, /Published/);
+});
+
 test("keeps contributor and partnership intake durable and editor-only", async () => {
   const [reviewerRoute, partnerRoute, recruitmentPage, reviewerStatus, partnerStatus] = await Promise.all([
     source("app/api/reviewer-applications/route.ts"),

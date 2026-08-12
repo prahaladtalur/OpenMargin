@@ -84,7 +84,7 @@ export async function POST(request: Request) {
       throw error;
     }
 
-    await notifyEditorOfSubmission({ id, authorName, manuscriptTitle, discipline, guardianConfirmed });
+    await notifyEditorOfSubmission({ id, authorName, authorEmail, manuscriptTitle, discipline, guardianConfirmed });
 
     return Response.json({ reference: id }, { status: 201 });
   } catch (error) {

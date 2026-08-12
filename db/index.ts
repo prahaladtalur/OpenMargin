@@ -48,6 +48,23 @@ const submissionTableSql = `
   )
 `;
 
+const submissionNotificationEventsTableSql = `
+  CREATE TABLE IF NOT EXISTS submission_notification_events (
+    id text PRIMARY KEY NOT NULL,
+    submission_id text NOT NULL,
+    event_key text NOT NULL,
+    status text DEFAULT 'pending' NOT NULL,
+    last_error text,
+    created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    sent_at text
+  )
+`;
+
+const submissionNotificationEventsIndexSql = `
+  CREATE UNIQUE INDEX IF NOT EXISTS submission_notification_events_submission_event_idx
+  ON submission_notification_events (submission_id, event_key)
+`;
+
 const reviewerApplicationsTableSql = `
   CREATE TABLE IF NOT EXISTS reviewer_applications (
     id text PRIMARY KEY NOT NULL,
@@ -91,6 +108,8 @@ export async function ensureSubmissionTable() {
   }
   await env.DB.batch([
     env.DB.prepare(submissionTableSql),
+    env.DB.prepare(submissionNotificationEventsTableSql),
+    env.DB.prepare(submissionNotificationEventsIndexSql),
     env.DB.prepare(reviewerApplicationsTableSql),
     env.DB.prepare(partnerInquiriesTableSql),
   ]);
