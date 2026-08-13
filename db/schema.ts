@@ -37,6 +37,22 @@ export const submissionNotificationEvents = sqliteTable("submission_notification
   submissionEventUnique: uniqueIndex("submission_notification_events_submission_event_idx").on(table.submissionId, table.eventKey),
 }));
 
+export const publishedArticles = sqliteTable("published_articles", {
+  id: text("id").primaryKey(),
+  submissionId: text("submission_id").notNull(),
+  slug: text("slug").notNull(),
+  title: text("title").notNull(),
+  authorName: text("author_name").notNull(),
+  discipline: text("discipline").notNull(),
+  abstract: text("abstract").notNull(),
+  body: text("body").notNull(),
+  issue: text("issue").notNull().default("Volume 01"),
+  publishedAt: text("published_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (table) => ({
+  articleSubmissionUnique: uniqueIndex("published_articles_submission_idx").on(table.submissionId),
+  articleSlugUnique: uniqueIndex("published_articles_slug_idx").on(table.slug),
+}));
+
 export const reviewerApplications = sqliteTable("reviewer_applications", {
   id: text("id").primaryKey(),
   fullName: text("full_name").notNull(),

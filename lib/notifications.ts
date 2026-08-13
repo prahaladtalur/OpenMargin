@@ -81,7 +81,7 @@ export async function notifyEditorOfSubmission(submission: SubmissionNotificatio
   ]);
 }
 
-export async function notifyAuthorOfDecision(submission: AuthorDecisionNotification, status: EditorialDecisionStatus) {
+export async function notifyAuthorOfDecision(submission: AuthorDecisionNotification, status: EditorialDecisionStatus, publicationPath?: string) {
   const messages: Record<EditorialDecisionStatus, { subject: string; lines: string[] }> = {
     revise: {
       subject: `Open Margin decision: revision requested for ${submission.manuscriptTitle}`,
@@ -145,7 +145,7 @@ export async function notifyAuthorOfDecision(submission: AuthorDecisionNotificat
         "Thank you for sharing your work with Open Margin.",
         "",
         "Open Margin",
-        "https://openmargin.org/issue",
+        publicationPath ? `https://openmargin.org${publicationPath}` : "https://openmargin.org/issue",
       ],
     },
   };
@@ -154,7 +154,7 @@ export async function notifyAuthorOfDecision(submission: AuthorDecisionNotificat
   return sendEmail(submission.authorEmail, message.subject, message.lines);
 }
 
-export async function notifyEditorOfPublication(submission: AuthorDecisionNotification) {
+export async function notifyEditorOfPublication(submission: AuthorDecisionNotification, publicationPath?: string) {
   return sendEditorNotification(`Open Margin paper published: ${submission.manuscriptTitle}`, [
     "An editor marked a manuscript as published.",
     "",
@@ -163,6 +163,7 @@ export async function notifyEditorOfPublication(submission: AuthorDecisionNotifi
     `Author: ${submission.authorName}`,
     `Author email: ${submission.authorEmail}`,
     "",
+    publicationPath ? `Public article: https://openmargin.org${publicationPath}` : "The public article path was not provided.",
     "The author publication notice was also sent.",
   ]);
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const statuses = ["received", "screening", "under-review", "revise", "declined", "accepted", "published"];
+const statuses = ["received", "screening", "under-review", "revise", "declined", "accepted"];
 
 export function EditorActions({ id, status }: { id: string; status: string }) {
   const [value, setValue] = useState(status);
@@ -31,7 +31,7 @@ export function EditorActions({ id, status }: { id: string; status: string }) {
     <div className="editor-actions">
       <label>Editorial status
         <select value={value} onChange={(event) => setValue(event.target.value)}>
-          {statuses.map((option) => <option key={option} value={option}>{option.replaceAll("-", " ")}</option>)}
+          {[...statuses, ...(status === "published" ? ["published"] : [])].map((option) => <option key={option} value={option}>{option.replaceAll("-", " ")}</option>)}
         </select>
       </label>
       <button type="button" className="editor-save" onClick={save} disabled={state === "saving"}>{state === "saving" ? "Saving" : "Save"}</button>

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { desc } from "drizzle-orm";
 import { EditorActions } from "./EditorActions";
+import { PublishArticleForm } from "./PublishArticleForm";
 import { ensureSubmissionTable, getDb } from "../../db";
-import { submissions } from "../../db/schema";
+import { publishedArticles, submissions } from "../../db/schema";
 import { editorSignOutPath, emailNotificationsConfigured, requireEditor } from "../../lib/editor-auth";
 
 export const dynamic = "force-dynamic";
@@ -18,6 +19,7 @@ export default async function EditorPage() {
   await requireEditor("/editor");
   await ensureSubmissionTable();
   const rows = await getDb().select().from(submissions).orderBy(desc(submissions.createdAt)).limit(100);
+  const articles = await getDb().select().from(publishedArticles);
   const emailConfigured = emailNotificationsConfigured();
 
   return (
@@ -42,6 +44,18 @@ export default async function EditorPage() {
             <div className="editor-data-grid"><div><h3>Author</h3><p>{row.authorName}<br /><a href={`mailto:${row.authorEmail}`}>{row.authorEmail}</a></p></div><div><h3>Guardian</h3><p>{row.guardianEmail ? <a href={`mailto:${row.guardianEmail}`}>{row.guardianEmail}</a> : "Not supplied"}</p></div><div><h3>School or region</h3><p>{row.schoolOrOrganization ?? "Not supplied"}<br />{row.countryOrRegion ?? "Not supplied"}</p></div><div><h3>Origin</h3><p>{row.originNote}</p></div></div>
             <div className="editor-abstract"><h3>Abstract</h3><p>{row.abstract}</p><h3>AI disclosure</h3><p>{row.aiDisclosure}</p></div>
             <EditorActions id={row.id} status={row.status} />
+            {(row.status === "accepted" || row.status === "published") && (() => {
+              const article = articles.find((item) => item.submissionId === row.id);
+              return <PublishArticleForm id={row.id} status={row.status} initial={{
+                title: article?.title ?? row.manuscriptTitle,
+                authorName: article?.authorName ?? row.authorName,
+                discipline: article?.discipline ?? row.discipline,
+                abstract: article?.abstract ?? row.abstract,
+                body: article?.body ?? "",
+                issue: article?.issue ?? "Volume 01",
+                slug: article?.slug,
+              }} />;
+            })()}
           </article>
         ))}
       </section>

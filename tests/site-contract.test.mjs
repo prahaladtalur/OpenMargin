@@ -58,26 +58,52 @@ test("keeps editorial review surfaces private", async () => {
 });
 
 test("sends durable decision and publication notifications", async () => {
-  const [statusRoute, notifications, schema, database, editorActions, statusLookup] = await Promise.all([
+  const [statusRoute, notifications, notificationWorkflow, schema, database, editorActions, statusLookup] = await Promise.all([
     source("app/api/editor/submissions/[id]/status/route.ts"),
     source("lib/notifications.ts"),
+    source("lib/submission-notifications.ts"),
     source("db/schema.ts"),
     source("db/index.ts"),
     source("app/editor/EditorActions.tsx"),
     source("app/api/submission-status/route.ts"),
   ]);
   assert.match(statusRoute, /published/);
-  assert.match(statusRoute, /submissionNotificationEvents/);
-  assert.match(statusRoute, /onConflictDoNothing/);
-  assert.match(statusRoute, /status: "sent"/);
-  assert.match(statusRoute, /notifyAuthorOfDecision/);
-  assert.match(statusRoute, /notifyEditorOfPublication/);
+  assert.match(statusRoute, /sendStatusNotifications/);
   assert.match(notifications, /notifyAuthorOfDecision/);
   assert.match(notifications, /notifyEditorOfPublication/);
+  assert.match(notificationWorkflow, /submissionNotificationEvents/);
+  assert.match(notificationWorkflow, /onConflictDoNothing/);
+  assert.match(notificationWorkflow, /status: "sent"/);
   assert.match(schema, /submissionNotificationEvents/);
   assert.match(database, /submission_notification_events/);
   assert.match(editorActions, /published/);
   assert.match(statusLookup, /Published/);
+});
+
+test("publishes only approved accepted work to a public article route", async () => {
+  const [publishRoute, editorForm, articlePage, issuePage, schema, database, migration] = await Promise.all([
+    source("app/api/editor/submissions/[id]/publish/route.ts"),
+    source("app/editor/PublishArticleForm.tsx"),
+    source("app/articles/[slug]/page.tsx"),
+    source("app/issue/page.tsx"),
+    source("db/schema.ts"),
+    source("db/index.ts"),
+    source("drizzle/0003_worried_luckman.sql"),
+  ]);
+  assert.match(publishRoute, /authorApprovalConfirmed/);
+  assert.match(publishRoute, /Only an accepted submission can be published/);
+  assert.match(publishRoute, /publishedArticles/);
+  assert.match(publishRoute, /sendStatusNotifications/);
+  assert.match(editorForm, /Publish article/);
+  assert.match(editorForm, /author-approved/);
+  assert.match(articlePage, /notFound/);
+  assert.match(articlePage, /publishedArticles/);
+  assert.match(issuePage, /publishedArticles/);
+  assert.match(issuePage, /articles\//);
+  assert.match(schema, /publishedArticles/);
+  assert.match(database, /published_articles/);
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS/);
+  assert.doesNotMatch(articlePage, /—/);
 });
 
 test("keeps contributor and partnership intake durable and editor-only", async () => {

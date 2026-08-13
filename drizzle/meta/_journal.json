@@ -22,6 +22,13 @@
       "when": 1786551322590,
       "tag": "0002_busy_nighthawk",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1786637409544,
+      "tag": "0003_worried_luckman",
+      "breakpoints": true
     }
   ]
 }

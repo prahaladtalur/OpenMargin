@@ -65,6 +65,26 @@ const submissionNotificationEventsIndexSql = `
   ON submission_notification_events (submission_id, event_key)
 `;
 
+const publishedArticlesTableSql = `
+  CREATE TABLE IF NOT EXISTS published_articles (
+    id text PRIMARY KEY NOT NULL,
+    submission_id text NOT NULL,
+    slug text NOT NULL,
+    title text NOT NULL,
+    author_name text NOT NULL,
+    discipline text NOT NULL,
+    abstract text NOT NULL,
+    body text NOT NULL,
+    issue text DEFAULT 'Volume 01' NOT NULL,
+    published_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
+  )
+`;
+
+const publishedArticlesIndexesSql = [
+  `CREATE UNIQUE INDEX IF NOT EXISTS published_articles_submission_idx ON published_articles (submission_id)`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS published_articles_slug_idx ON published_articles (slug)`,
+];
+
 const reviewerApplicationsTableSql = `
   CREATE TABLE IF NOT EXISTS reviewer_applications (
     id text PRIMARY KEY NOT NULL,
@@ -110,6 +130,8 @@ export async function ensureSubmissionTable() {
     env.DB.prepare(submissionTableSql),
     env.DB.prepare(submissionNotificationEventsTableSql),
     env.DB.prepare(submissionNotificationEventsIndexSql),
+    env.DB.prepare(publishedArticlesTableSql),
+    ...publishedArticlesIndexesSql.map((statement) => env.DB.prepare(statement)),
     env.DB.prepare(reviewerApplicationsTableSql),
     env.DB.prepare(partnerInquiriesTableSql),
   ]);
