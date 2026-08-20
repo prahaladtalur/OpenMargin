@@ -40,6 +40,35 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="video-feature" aria-labelledby="video-feature-title">
+        <div className="video-feature-copy">
+          <p className="eyebrow">A short introduction</p>
+          <h2 id="video-feature-title">What Open Margin is for.</h2>
+          <p>
+            Open Margin gives research a careful next reader. Watch this short
+            introduction, then read the process before you submit.
+          </p>
+          <Link className="text-link light" href="/about">
+            Meet the journal <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+        <figure className="video-frame">
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            poster="/og.png"
+            aria-label="Introduction to Open Margin"
+          >
+            <source src="/openmargin-video.mp4" type="video/mp4" />
+            Your browser does not support this video.
+          </video>
+          <figcaption>
+            Open Margin is a free journal for research by authors of any age.
+          </figcaption>
+        </figure>
+      </section>
+
       <section className="manifesto" aria-labelledby="manifesto-title">
         <p className="vertical-label">Our premise</p>
         <div className="manifesto-copy">

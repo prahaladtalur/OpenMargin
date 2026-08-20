@@ -206,6 +206,50 @@ button, input, textarea { font: inherit; }
   transform: rotate(-90deg);
 }
 
+.video-feature {
+  background: var(--forest);
+  color: #f8f4e9;
+  display: grid;
+  gap: clamp(3rem, 8vw, 8rem);
+  grid-template-columns: .7fr 1.3fr;
+  padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem);
+}
+.video-feature-copy { align-self: center; max-width: 470px; }
+.video-feature h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  font-weight: 500;
+  letter-spacing: -.05em;
+  line-height: .95;
+  margin: 0 0 1.7rem;
+}
+.video-feature-copy > p:not(.eyebrow) {
+  color: #c9d0c8;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.45;
+  margin: 0 0 2rem;
+  max-width: 420px;
+}
+.video-frame {
+  background: #102c24;
+  border: 1px solid rgba(255,255,255,.28);
+  margin: 0;
+  padding: clamp(.6rem, 1.5vw, 1rem);
+}
+.video-frame video {
+  background: #071a15;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.video-frame figcaption {
+  color: #c9d0c8;
+  font-size: .68rem;
+  letter-spacing: .04em;
+  margin: .8rem .2rem .1rem;
+}
+
 .manifesto {
   background: var(--paper-light);
   border-bottom: 1px solid var(--ink);
@@ -749,7 +793,7 @@ button, input, textarea { font: inherit; }
   .publish-actions { align-items: flex-start; flex-direction: column; }
   .manifesto { grid-template-columns: 30px 1fr; }
   .manifesto-facts { display: grid; grid-column: 2; grid-template-columns: repeat(3, 1fr); }
-  .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps, .share-copy-section, .share-guardrails { grid-template-columns: 1fr; }
+  .video-feature, .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps, .share-copy-section, .share-guardrails { grid-template-columns: 1fr; }
   .commitment-grid { grid-template-columns: 1fr 1fr; }
   .masthead, .standards-grid, .submission-specs { gap: 3rem; grid-template-columns: 1fr; }
   .policy-layout { grid-template-columns: 1fr; }
