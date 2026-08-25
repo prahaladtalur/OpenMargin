@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const disciplines = [
   "History",
@@ -26,6 +26,17 @@ export function SubmissionForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
+  const [campaign, setCampaign] = useState({ source: "", medium: "", name: "", path: "/submit" });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setCampaign({
+      source: params.get("utm_source")?.slice(0, 80) ?? "",
+      medium: params.get("utm_medium")?.slice(0, 80) ?? "",
+      name: params.get("utm_campaign")?.slice(0, 120) ?? "",
+      path: `${window.location.pathname}`.slice(0, 160),
+    });
+  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -51,6 +62,10 @@ export function SubmissionForm() {
   return (
     <form className="submission-form" onSubmit={submit} encType="multipart/form-data">
       <div className="honeypot" aria-hidden="true"><label>Leave this blank<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+      <input type="hidden" name="campaignSource" value={campaign.source} />
+      <input type="hidden" name="campaignMedium" value={campaign.medium} />
+      <input type="hidden" name="campaignName" value={campaign.name} />
+      <input type="hidden" name="landingPath" value={campaign.path} />
       <fieldset>
         <legend><span>01</span> Your details</legend>
         <div className="form-grid">

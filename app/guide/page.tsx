@@ -5,6 +5,7 @@ import { PageIntro } from "../components/SiteShell";
 export const metadata: Metadata = {
   title: "Where can I publish a student research paper?",
   description: "A practical guide to journals, competitions, conferences, repositories, mentorship programs, and other places for student research.",
+  alternates: { canonical: "/guide" },
 };
 
 const options = [
@@ -56,6 +57,14 @@ const questions = [
   "Can I submit class or program work?",
 ];
 
+const faq = [
+  ["Is Open Margin free?", "Yes. Open Margin has no submission or publication fee."],
+  ["Who can submit?", "Authors of any age can submit original work in the humanities, social sciences, and STEM."],
+  ["Does Open Margin guarantee publication?", "No. An editor checks fit, two reviewers write comments, and an editor sends a decision."],
+  ["How long does a decision take?", "The target is six to eight weeks after the fit check. Timing can change when reviewer availability changes."],
+  ["Can I submit the same paper elsewhere?", "Check each venue's simultaneous-submission rule. Tell Open Margin if the same work is under exclusive review elsewhere."],
+] as const;
+
 const steps = [
   ["Choose your goal", "Decide if you want feedback, a competition, a public record, or a formal publication."],
   ["Read the rules", "Check scope, deadlines, fees, copyright, privacy, and simultaneous-submission rules."],
@@ -66,6 +75,20 @@ const steps = [
 export default function GuidePage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map(([question, answer]) => ({
+              "@type": "Question",
+              name: question,
+              acceptedAnswer: { "@type": "Answer", text: answer },
+            })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <PageIntro
         eyebrow="Free guide"
         title="Where can I publish a student research paper?"
@@ -110,6 +133,21 @@ export default function GuidePage() {
         <ul className="guide-question-list">
           {questions.map((question) => <li key={question}>{question}</li>)}
         </ul>
+      </section>
+
+      <section className="guide-faq" aria-labelledby="guide-faq-title">
+        <div>
+          <p className="eyebrow">Quick answers</p>
+          <h2 id="guide-faq-title">Before you choose.</h2>
+        </div>
+        <div className="guide-faq-list">
+          {faq.map(([question, answer]) => (
+            <article key={question}>
+              <h3>{question}</h3>
+              <p>{answer}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="guide-steps">

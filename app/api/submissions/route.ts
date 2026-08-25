@@ -31,6 +31,10 @@ export async function POST(request: Request) {
     const authorEmail = value(form, "authorEmail", 254).toLowerCase();
     const guardianEmail = value(form, "guardianEmail", 254).toLowerCase();
     const guardianConfirmed = form.get("guardianConfirmed") === "on";
+    const campaignSource = value(form, "campaignSource", 80);
+    const campaignMedium = value(form, "campaignMedium", 80);
+    const campaignName = value(form, "campaignName", 120);
+    const landingPath = value(form, "landingPath", 160);
     const manuscriptTitle = value(form, "manuscriptTitle", 240);
     const discipline = value(form, "discipline", 100);
     const abstract = value(form, "abstract", 1800);
@@ -66,6 +70,10 @@ export async function POST(request: Request) {
         guardianEmail: guardianConfirmed ? guardianEmail : null,
         schoolOrOrganization: value(form, "schoolOrOrganization", 160) || null,
         countryOrRegion: value(form, "countryOrRegion", 100) || null,
+        campaignSource: campaignSource || null,
+        campaignMedium: campaignMedium || null,
+        campaignName: campaignName || null,
+        landingPath: landingPath.startsWith("/") ? landingPath : null,
         manuscriptTitle,
         discipline,
         abstract,

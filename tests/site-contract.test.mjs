@@ -197,10 +197,12 @@ test("keeps review assignments and reports private and durable", async () => {
 });
 
 test("keeps operating documentation aligned with the live product", async () => {
-  const [readme, releaseChecklist, monthOne] = await Promise.all([
+  const [readme, releaseChecklist, monthOne, sprint, copyPack] = await Promise.all([
     source("README.md"),
     source("docs/release-checklist.md"),
     source("docs/month-one-delivery.md"),
+    source("docs/marketing-sprint.md"),
+    source("docs/marketing-copy-pack.md"),
   ]);
   assert.doesNotMatch(readme, /placeholder brand/);
   assert.match(readme, /Private editor desk/);
@@ -208,4 +210,33 @@ test("keeps operating documentation aligned with the live product", async () => 
   assert.match(releaseChecklist, /EDITOR_SESSION_SECRET/);
   assert.match(releaseChecklist, /No private manuscript/);
   assert.match(monthOne, /private review log/);
+  assert.match(sprint, /30-day calendar/);
+  assert.match(sprint, /Do not collect IP addresses/);
+  assert.match(copyPack, /I am the person who built it/);
+});
+
+test("keeps marketing attribution private and useful", async () => {
+  const [schema, database, migration, route, form, editorPage, marketingPage, guide, layout] = await Promise.all([
+    source("db/schema.ts"),
+    source("db/index.ts"),
+    source("drizzle/0006_campaign_attribution.sql"),
+    source("app/api/submissions/route.ts"),
+    source("app/submit/SubmissionForm.tsx"),
+    source("app/editor/page.tsx"),
+    source("app/editor/marketing/page.tsx"),
+    source("app/guide/page.tsx"),
+    source("app/layout.tsx"),
+  ]);
+  assert.match(schema, /campaignSource/);
+  assert.match(database, /campaign_source text/);
+  assert.match(migration, /ADD `campaign_name` text/);
+  assert.match(route, /landingPath/);
+  assert.match(form, /utm_source/);
+  assert.match(editorPage, /Marketing desk/);
+  assert.match(marketingPage, /requireEditor/);
+  assert.match(marketingPage, /does not collect IP addresses/);
+  assert.match(guide, /FAQPage/);
+  assert.match(guide, /Who can submit/);
+  assert.match(layout, /https:\/\/openmargin\.org/);
+  assert.doesNotMatch(layout, /x-forwarded-host/);
 });

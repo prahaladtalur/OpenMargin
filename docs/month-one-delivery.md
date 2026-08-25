@@ -15,6 +15,9 @@ This is the working record for the first month of focused operations. It separat
 - Updated pilot links that use `https://openmargin.org`
 - An indexing-readiness note that avoids claims about ISSN or Scopus status
 - A small, tailored outreach pack for research programs and educators
+- Privacy-light campaign attribution on completed submissions and a private marketing desk
+- A 30-day marketing sprint with UTM naming, referral guardrails, stop rules, and weekly measures
+- A reusable copy pack for program, teacher, reviewer, community, and chat outreach
 
 ## Evidence to collect each week
 
@@ -29,6 +32,8 @@ Record these numbers in a private tracker:
 | First decisions sent |  |  |  |  |
 | Articles published |  |  |  |  |
 | Median reply time |  |  |  |  |
+| Tagged submissions |  |  |  |  |
+| Eligible submissions |  |  |  |  |
 
 ## Next 30 days
 
@@ -38,6 +43,7 @@ Record these numbers in a private tracker:
 4. Send small, tailored messages to research programs. Follow up once only.
 5. Ask one program to share the optional submission link with students who request it.
 6. Review the public policies after the first real cycle and record any change.
+7. Use `/editor/marketing` to compare tagged submissions without collecting browsing data.
 
 ## Stop rules
 

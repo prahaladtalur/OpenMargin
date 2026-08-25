@@ -1,5 +1,8 @@
 # Open Margin: 30-day growth plan
 
+This file sets the strategic goal. Use [`marketing-sprint.md`](marketing-sprint.md)
+for the day-by-day calendar, UTM links, private measures, and copy pack.
+
 The problem is not a lack of possible audiences. The problem is that the project does not yet have enough trust evidence. The next month should create one complete review cycle, a small reviewer bench, and one program referral. More broad outreach comes after those pieces work.
 
 ## Main goal

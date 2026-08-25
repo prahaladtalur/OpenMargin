@@ -540,7 +540,7 @@ button, input, textarea { font: inherit; }
 .review-summary article:last-child { border-right: 1px solid var(--line); }
 .review-summary h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; margin: 0 0 1rem; }
 .review-summary article > p:last-child { color: var(--muted); max-width: 520px; }
-.guide-intro, .guide-options, .guide-questions, .guide-steps {
+.guide-intro, .guide-options, .guide-questions, .guide-steps, .guide-faq {
   padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 7vw, 8rem);
 }
 .guide-intro { display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: .7fr 1.3fr; }
@@ -559,6 +559,12 @@ button, input, textarea { font: inherit; }
 .guide-question-list li, .guide-step-list li { border-bottom: 1px solid var(--line); padding: 1.2rem 0; }
 .guide-question-list li { padding-left: 1.6rem; position: relative; }
 .guide-question-list li::before { color: var(--red); content: "?"; left: 0; position: absolute; }
+.guide-faq { background: var(--paper-light); border-bottom: 1px solid var(--ink); border-top: 1px solid var(--ink); display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: .7fr 1.3fr; }
+.guide-faq h2 { font-family: var(--serif); font-size: clamp(2.7rem, 5vw, 5rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; margin: 0; }
+.guide-faq-list { border-top: 1px solid var(--ink); }
+.guide-faq-list article { border-bottom: 1px solid var(--line); padding: 1.2rem 0; }
+.guide-faq-list h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; margin: 0 0 .4rem; }
+.guide-faq-list p { color: var(--muted); margin: 0; max-width: 720px; }
 .guide-steps { background: var(--forest); color: white; display: grid; gap: clamp(3rem, 8vw, 8rem); grid-template-columns: .7fr 1.3fr; }
 .guide-steps h2 { color: white; }
 .guide-step-list { border-top-color: rgba(255,255,255,.35); }
@@ -694,6 +700,17 @@ button, input, textarea { font: inherit; }
 .review-add-form { border-style: dashed; margin-top: 1rem; }
 .review-add-form .eyebrow { margin: 0; }
 .review-add-form .button { justify-self: start; }
+.marketing-table-wrap { overflow-x: auto; }
+.marketing-table { border-collapse: collapse; min-width: 760px; width: 100%; }
+.marketing-table th, .marketing-table td { border-bottom: 1px solid var(--line); padding: .85rem .7rem; text-align: left; }
+.marketing-table th { color: var(--muted); font-size: .61rem; letter-spacing: .09em; text-transform: uppercase; }
+.marketing-table td { font-size: .82rem; }
+.marketing-table td:nth-child(n+4) { font-variant-numeric: tabular-nums; text-align: right; }
+.marketing-next { background: var(--forest); color: white; margin-top: 2rem; padding: 1.5rem; }
+.marketing-next .eyebrow { color: #c9d0c8; }
+.marketing-next ol { display: grid; gap: .5rem; margin: 0 0 1.2rem; padding-left: 1.2rem; }
+.marketing-next li { color: #edf0e8; font-size: .87rem; }
+.marketing-next .button { background: white; color: var(--forest); }
 .publish-form { background: #f0eee6; border-top: 1px solid var(--ink); margin-top: 1.5rem; padding: 1.5rem 0 0; }
 .publish-form-heading { align-items: start; display: flex; gap: 2rem; justify-content: space-between; }
 .publish-form-heading h3 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; margin: .35rem 0 0; text-transform: none; }
@@ -854,7 +871,7 @@ button, input, textarea { font: inherit; }
   .publish-actions { align-items: flex-start; flex-direction: column; }
   .manifesto { grid-template-columns: 30px 1fr; }
   .manifesto-facts { display: grid; grid-column: 2; grid-template-columns: repeat(3, 1fr); }
-  .video-feature, .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps, .share-copy-section, .share-guardrails { grid-template-columns: 1fr; }
+  .video-feature, .review-preview, .rubric-section, .decision-grid, .contributor-roles, .partner-model, .status-section, .toolkit-grid, .contributor-principles, .partner-guardrails, .review-summary, .guide-intro, .guide-questions, .guide-steps, .guide-faq, .share-copy-section, .share-guardrails { grid-template-columns: 1fr; }
   .commitment-grid { grid-template-columns: 1fr 1fr; }
   .masthead, .standards-grid, .submission-specs { gap: 3rem; grid-template-columns: 1fr; }
   .policy-layout { grid-template-columns: 1fr; }
