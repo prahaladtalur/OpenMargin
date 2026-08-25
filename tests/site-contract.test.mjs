@@ -58,7 +58,7 @@ test("keeps editorial review surfaces private", async () => {
 });
 
 test("sends durable decision and publication notifications", async () => {
-  const [statusRoute, notifications, notificationWorkflow, schema, database, editorActions, statusLookup] = await Promise.all([
+  const [statusRoute, notifications, notificationWorkflow, schema, database, editorActions, statusLookup, migration] = await Promise.all([
     source("app/api/editor/submissions/[id]/status/route.ts"),
     source("lib/notifications.ts"),
     source("lib/submission-notifications.ts"),
@@ -66,6 +66,7 @@ test("sends durable decision and publication notifications", async () => {
     source("db/index.ts"),
     source("app/editor/EditorActions.tsx"),
     source("app/api/submission-status/route.ts"),
+    source("drizzle/0004_editor_messages.sql"),
   ]);
   assert.match(statusRoute, /published/);
   assert.match(statusRoute, /sendStatusNotifications/);
@@ -76,6 +77,12 @@ test("sends durable decision and publication notifications", async () => {
   assert.match(notificationWorkflow, /status: "sent"/);
   assert.match(schema, /submissionNotificationEvents/);
   assert.match(database, /submission_notification_events/);
+  assert.match(statusRoute, /editorMessage/);
+  assert.match(notifications, /Editor's message/);
+  assert.match(schema, /editorMessage/);
+  assert.match(database, /editor_message/);
+  assert.match(editorActions, /Decision letter note/);
+  assert.match(migration, /ADD `editor_message` text/);
   assert.match(editorActions, /published/);
   assert.match(statusLookup, /Published/);
 });
@@ -139,4 +146,29 @@ test("keeps author status lookup private and public journal copy free of em dash
   assert.doesNotMatch(home, /—/);
   assert.doesNotMatch(issue, /—/);
   assert.doesNotMatch(share, /—/);
+});
+
+test("keeps public publication evidence and discovery metadata connected", async () => {
+  const [home, transparency, article, sitemap, robots, launchKit, readiness] = await Promise.all([
+    source("app/page.tsx"),
+    source("app/transparency/page.tsx"),
+    source("app/articles/[slug]/page.tsx"),
+    source("app/sitemap.ts"),
+    source("app/robots.ts"),
+    source("docs/pilot-launch-kit.md"),
+    source("docs/scopus-readiness.md"),
+  ]);
+  assert.match(home, /getPublishedArticles/);
+  assert.match(home, /published work/);
+  assert.match(transparency, /Published articles/);
+  assert.match(transparency, /Authors retain copyright/);
+  assert.match(article, /ScholarlyArticle/);
+  assert.match(article, /Suggested citation/);
+  assert.match(article, /canonical/);
+  assert.match(sitemap, /openmargin\.org/);
+  assert.match(sitemap, /articles\//);
+  assert.match(robots, /sitemap\.xml/);
+  assert.match(launchKit, /https:\/\/openmargin\.org\/submit/);
+  assert.match(readiness, /not in Scopus/);
+  assert.doesNotMatch(transparency, /—/);
 });

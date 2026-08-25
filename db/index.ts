@@ -41,6 +41,7 @@ const submissionTableSql = `
     manuscript_filename text NOT NULL,
     manuscript_content_type text NOT NULL,
     status text DEFAULT 'received' NOT NULL,
+    editor_message text,
     original_work_confirmed integer NOT NULL,
     privacy_confirmed integer NOT NULL,
     guardian_confirmed integer DEFAULT false NOT NULL,

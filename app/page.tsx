@@ -1,7 +1,19 @@
 import Link from "next/link";
+import { desc } from "drizzle-orm";
+import { ensureSubmissionTable, getDb } from "../db";
+import { publishedArticles } from "../db/schema";
 import { focusAreas, reviewSteps } from "./site";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+async function getPublishedArticles() {
+  await ensureSubmissionTable();
+  return getDb().select().from(publishedArticles).orderBy(desc(publishedArticles.publishedAt)).limit(4);
+}
+
+export default async function Home() {
+  const articles = await getPublishedArticles();
+
   return (
     <main>
       <section className="hero">
@@ -96,7 +108,18 @@ export default function Home() {
           <Link className="text-link" href="/submit">See what fits <span aria-hidden="true">→</span></Link>
         </div>
         <div className="paper-list">
-          {focusAreas.map((area, index) => (
+          {articles.length > 0 ? articles.map((article, index) => (
+            <article className="paper-row" key={article.id}>
+              <p className="paper-number">{String(index + 1).padStart(2, "0")}</p>
+              <div>
+                <p className="paper-field">{article.discipline}</p>
+                <h3><Link href={`/articles/${article.slug}`}>{article.title}</Link></h3>
+                <p className="paper-author">{article.authorName} · published work</p>
+              </div>
+              <p className="paper-note">Read the article</p>
+              <span className="paper-arrow" aria-hidden="true">↗</span>
+            </article>
+          )) : focusAreas.map((area, index) => (
             <article className="paper-row" key={area.field}>
               <p className="paper-number">{String(index + 1).padStart(2, "0")}</p>
               <div>
@@ -110,8 +133,9 @@ export default function Home() {
           ))}
         </div>
         <p className="sample-disclaimer">
-          The first issue has no published articles. We will list accepted work
-          after review, revision, and author approval.
+          {articles.length > 0
+            ? `Volume 01 currently lists ${articles.length} published ${articles.length === 1 ? "article" : "articles"}. We add work after review, revision, and author approval.`
+            : "The first issue is in progress. We will list accepted work after review, revision, and author approval."}
         </p>
       </section>
 

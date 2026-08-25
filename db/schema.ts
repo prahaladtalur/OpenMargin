@@ -19,6 +19,7 @@ export const submissions = sqliteTable("submissions", {
   manuscriptFilename: text("manuscript_filename").notNull(),
   manuscriptContentType: text("manuscript_content_type").notNull(),
   status: text("status").notNull().default("received"),
+  editorMessage: text("editor_message"),
   originalWorkConfirmed: integer("original_work_confirmed", { mode: "boolean" }).notNull(),
   privacyConfirmed: integer("privacy_confirmed", { mode: "boolean" }).notNull(),
   guardianConfirmed: integer("guardian_confirmed", { mode: "boolean" }).notNull().default(false),

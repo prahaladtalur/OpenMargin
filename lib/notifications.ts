@@ -14,6 +14,7 @@ type AuthorDecisionNotification = {
   authorName: string;
   authorEmail: string;
   manuscriptTitle: string;
+  editorMessage?: string | null;
 };
 
 export type EditorialDecisionStatus = "revise" | "declined" | "accepted" | "published";
@@ -151,6 +152,10 @@ export async function notifyAuthorOfDecision(submission: AuthorDecisionNotificat
   };
 
   const message = messages[status];
+  const editorMessage = submission.editorMessage?.trim();
+  if (editorMessage && status !== "published") {
+    message.lines.splice(message.lines.length - 2, 0, "", "Editor's message:", editorMessage);
+  }
   return sendEmail(submission.authorEmail, message.subject, message.lines);
 }
 

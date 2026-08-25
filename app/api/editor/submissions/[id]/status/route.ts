@@ -15,8 +15,9 @@ function isNotificationStatus(status: string): status is EditorialDecisionStatus
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!await getEditorForApi()) return Response.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
-  const payload = await request.json().catch(() => null) as { status?: string } | null;
+  const payload = await request.json().catch(() => null) as { status?: string; editorMessage?: string } | null;
   if (!payload?.status || !statuses.has(payload.status)) return Response.json({ error: "Invalid editorial status" }, { status: 400 });
+  const editorMessage = typeof payload.editorMessage === "string" ? payload.editorMessage.trim().slice(0, 6000) : "";
 
   try {
     await ensureSubmissionTable();
@@ -27,19 +28,32 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       return Response.json({ error: "Use the Publish article form after author approval." }, { status: 409 });
     }
 
-    if (submission.status !== payload.status) {
-      await db.update(submissions).set({ status: payload.status }).where(eq(submissions.id, id));
+    const statusChanged = submission.status !== payload.status;
+    const messageChanged = (submission.editorMessage ?? "") !== editorMessage;
+    if (statusChanged || messageChanged) {
+      await db.update(submissions).set({
+        status: payload.status,
+        editorMessage: editorMessage || null,
+      }).where(eq(submissions.id, id));
     }
 
     if (!isNotificationStatus(payload.status)) {
-      return Response.json({ ok: true, status: payload.status, notificationSent: false });
+      return Response.json({ ok: true, status: payload.status, editorMessageSaved: messageChanged, notificationSent: false });
+    }
+
+    if (!statusChanged) {
+      return Response.json({ ok: true, status: payload.status, editorMessageSaved: messageChanged, notificationSent: false });
     }
 
     const [article] = payload.status === "published"
       ? await db.select({ slug: publishedArticles.slug }).from(publishedArticles).where(eq(publishedArticles.submissionId, id)).limit(1)
       : [];
     const publicationPath = article ? `/articles/${article.slug}` : undefined;
-    const pendingReasons = await sendStatusNotifications(db, { ...submission, status: payload.status }, payload.status, publicationPath);
+    const pendingReasons = await sendStatusNotifications(db, {
+      ...submission,
+      status: payload.status,
+      editorMessage: editorMessage || null,
+    }, payload.status, publicationPath);
     if (pendingReasons.length > 0) {
       return Response.json({
         ok: false,

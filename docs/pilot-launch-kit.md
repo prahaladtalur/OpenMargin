@@ -52,9 +52,9 @@ Submissions are free, reviewed through a double-blind process, and open to stude
 
 Before submitting, please read the author toolkit and prepare an anonymized manuscript. There is no guarantee of publication, but every eligible submission will receive a careful initial review.
 
-Submit here: https://open-margin-journal.dtalur.chatgpt.site/submit
+Submit here: https://openmargin.org/submit
 
-Author toolkit: https://open-margin-journal.dtalur.chatgpt.site/resources
+Author toolkit: https://openmargin.org/resources
 
 Thank you for considering it,
 
@@ -74,7 +74,7 @@ Contributors help us give students useful, ethical feedback. Depending on your e
 
 We are especially interested in people with experience in [relevant field], research communication, teaching, libraries, journalism, or youth scholarship. Every contributor agrees to confidentiality, conflict disclosure, and constructive feedback.
 
-You can learn more and apply here: https://open-margin-journal.dtalur.chatgpt.site/reviewers
+You can learn more and apply here: https://openmargin.org/reviewers
 
 The pilot is intentionally small, with no fee for students and no promised publication outcome. I would be grateful if you would consider helping us establish a careful, student-centered process.
 
@@ -95,10 +95,11 @@ Open Margin
 
 ## Useful links
 
-- Submission portal: https://open-margin-journal.dtalur.chatgpt.site/submit
-- Author toolkit: https://open-margin-journal.dtalur.chatgpt.site/resources
-- Submission status lookup: https://open-margin-journal.dtalur.chatgpt.site/status
-- Reviewer and advisor application: https://open-margin-journal.dtalur.chatgpt.site/reviewers
-- Editorial review process: https://open-margin-journal.dtalur.chatgpt.site/review
-- Policies: https://open-margin-journal.dtalur.chatgpt.site/policies
-- Editor desk: https://open-margin-journal.dtalur.chatgpt.site/editor
+- Submission portal: https://openmargin.org/submit
+- Author toolkit: https://openmargin.org/resources
+- Submission status lookup: https://openmargin.org/status
+- Reviewer and advisor application: https://openmargin.org/reviewers
+- Editorial review process: https://openmargin.org/review
+- Policies: https://openmargin.org/policies
+- Public record: https://openmargin.org/transparency
+- Editor desk: https://openmargin.org/editor

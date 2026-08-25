@@ -60,10 +60,11 @@ export function SiteFooter() {
         <Link href="/resources">Author toolkit</Link>
         <Link href="/submit">How to submit</Link>
       </div>
-      <div className="footer-column">
-        <p className="eyebrow">Journal</p>
-        <Link href="/about">About and masthead</Link>
-        <Link href="/policies">Editorial policies</Link>
+  <div className="footer-column">
+    <p className="eyebrow">Journal</p>
+    <Link href="/about">About and masthead</Link>
+    <Link href="/transparency">Public record</Link>
+    <Link href="/policies">Editorial policies</Link>
         <Link href="/reviewers">Review with us</Link>
         <Link href="/partners">Partner with us</Link>
         <Link href="/share">Share with a student</Link>

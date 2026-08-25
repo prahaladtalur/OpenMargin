@@ -4,8 +4,9 @@ import { useState } from "react";
 
 const statuses = ["received", "screening", "under-review", "revise", "declined", "accepted"];
 
-export function EditorActions({ id, status }: { id: string; status: string }) {
+export function EditorActions({ id, status, editorMessage }: { id: string; status: string; editorMessage: string | null }) {
   const [value, setValue] = useState(status);
+  const [messageValue, setMessageValue] = useState(editorMessage ?? "");
   const [state, setState] = useState<"idle" | "saving" | "error" | "warning">("idle");
   const [message, setMessage] = useState("");
 
@@ -15,7 +16,7 @@ export function EditorActions({ id, status }: { id: string; status: string }) {
     const response = await fetch(`/api/editor/submissions/${id}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: value }),
+      body: JSON.stringify({ status: value, editorMessage: messageValue }),
     });
     const payload = await response.json().catch(() => null) as { error?: string; notificationPending?: boolean } | null;
     if (!response.ok) {
@@ -29,12 +30,17 @@ export function EditorActions({ id, status }: { id: string; status: string }) {
 
   return (
     <div className="editor-actions">
-      <label>Editorial status
-        <select value={value} onChange={(event) => setValue(event.target.value)}>
-          {[...statuses, ...(status === "published" ? ["published"] : [])].map((option) => <option key={option} value={option}>{option.replaceAll("-", " ")}</option>)}
-        </select>
-      </label>
-      <button type="button" className="editor-save" onClick={save} disabled={state === "saving"}>{state === "saving" ? "Saving" : "Save"}</button>
+      <div className="editor-action-fields">
+        <label>Editorial status
+          <select value={value} onChange={(event) => setValue(event.target.value)}>
+            {[...statuses, ...(status === "published" ? ["published"] : [])].map((option) => <option key={option} value={option}>{option.replaceAll("-", " ")}</option>)}
+          </select>
+        </label>
+        <label className="editor-message-field">Decision letter note <span>(sent to the author for decision statuses)</span>
+          <textarea value={messageValue} onChange={(event) => setMessageValue(event.target.value)} maxLength={6000} rows={5} placeholder="Explain the decision, requested revision, or next step. Keep this specific and respectful." />
+        </label>
+      </div>
+      <button type="button" className="editor-save" onClick={save} disabled={state === "saving"}>{state === "saving" ? "Saving" : "Save status and note"}</button>
       {message && <p role="alert" className={state === "warning" ? "editor-warning" : undefined}>{message}</p>}
     </div>
   );
