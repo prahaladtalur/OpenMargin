@@ -2,6 +2,16 @@
 
 These drafts are for program teams, educators, and research mentors. Replace the bracketed fields. Use one message per organization. Do not send to student lists without the organization's consent.
 
+## New contacts to review
+
+These are public organization addresses checked on August 24, 2026. Review the organization's contact page before sending. The Gmail drafts for these three contacts are saved but unsent.
+
+| Organization | Contact | Why it fits | Source |
+| --- | --- | --- | --- |
+| Lumiere Education | admissions@lumiere.education | Research access and inclusion | [Lumiere Foundation](https://lumiere.foundation/our-mission) |
+| Indigo Research | hello@indigoresearch.org | High-school research mentorship | [Indigo Research](https://archive.indigoresearch.org/about) |
+| Young Minds Research Foundation | contact@ymrf.org | STEM mentorship for younger students | [YMRF](https://www.ymrf.org/) |
+
 ## 1. Research mentorship program
 
 **Subject:** A free publication option for your student researchers
