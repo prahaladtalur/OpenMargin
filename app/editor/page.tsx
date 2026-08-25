@@ -3,8 +3,9 @@ import Link from "next/link";
 import { desc } from "drizzle-orm";
 import { EditorActions } from "./EditorActions";
 import { PublishArticleForm } from "./PublishArticleForm";
+import { ReviewAssignments } from "./ReviewAssignments";
 import { ensureSubmissionTable, getDb } from "../../db";
-import { publishedArticles, submissions } from "../../db/schema";
+import { publishedArticles, reviewAssignments, submissions } from "../../db/schema";
 import { editorSignOutPath, emailNotificationsConfigured, requireEditor } from "../../lib/editor-auth";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +21,14 @@ export default async function EditorPage() {
   await ensureSubmissionTable();
   const rows = await getDb().select().from(submissions).orderBy(desc(submissions.createdAt)).limit(100);
   const articles = await getDb().select().from(publishedArticles);
+  const reviews = await getDb().select().from(reviewAssignments).orderBy(desc(reviewAssignments.createdAt));
   const emailConfigured = emailNotificationsConfigured();
+  const reviewsBySubmission = new Map<string, typeof reviews>();
+  for (const review of reviews) {
+    const current = reviewsBySubmission.get(review.submissionId) ?? [];
+    current.push(review);
+    reviewsBySubmission.set(review.submissionId, current);
+  }
 
   return (
     <main className="editor-page">
@@ -35,6 +43,7 @@ export default async function EditorPage() {
         <div><span>{rows.length}</span><p>Submissions</p></div>
         <div><span>{rows.filter((row) => row.status === "received").length}</span><p>New</p></div>
         <div><span>{rows.filter((row) => row.status === "under-review").length}</span><p>Under review</p></div>
+        <div><span>{reviews.filter((review) => review.status === "submitted").length}</span><p>Reviews submitted</p></div>
       </section>
       <section className="editor-list">
         <div className="editor-list-heading"><p className="eyebrow">Private records</p><p>Files and contact details are visible only to authorized editors.</p></div>
@@ -44,6 +53,7 @@ export default async function EditorPage() {
             <div className="editor-data-grid"><div><h3>Author</h3><p>{row.authorName}<br /><a href={`mailto:${row.authorEmail}`}>{row.authorEmail}</a></p></div><div><h3>Guardian</h3><p>{row.guardianEmail ? <a href={`mailto:${row.guardianEmail}`}>{row.guardianEmail}</a> : "Not supplied"}</p></div><div><h3>School or region</h3><p>{row.schoolOrOrganization ?? "Not supplied"}<br />{row.countryOrRegion ?? "Not supplied"}</p></div><div><h3>Origin</h3><p>{row.originNote}</p></div></div>
             <div className="editor-abstract"><h3>Abstract</h3><p>{row.abstract}</p><h3>AI disclosure</h3><p>{row.aiDisclosure}</p></div>
             <EditorActions id={row.id} status={row.status} editorMessage={row.editorMessage} />
+            <ReviewAssignments submissionId={row.id} assignments={reviewsBySubmission.get(row.id) ?? []} />
             {(row.status === "accepted" || row.status === "published") && (() => {
               const article = articles.find((item) => item.submissionId === row.id);
               return <PublishArticleForm id={row.id} status={row.status} initial={{

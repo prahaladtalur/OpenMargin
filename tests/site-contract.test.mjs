@@ -172,3 +172,26 @@ test("keeps public publication evidence and discovery metadata connected", async
   assert.match(readiness, /not in Scopus/);
   assert.doesNotMatch(transparency, /—/);
 });
+
+test("keeps review assignments and reports private and durable", async () => {
+  const [schema, database, migration, createRoute, updateRoute, editorPage, reviewForm] = await Promise.all([
+    source("db/schema.ts"),
+    source("db/index.ts"),
+    source("drizzle/0005_review_assignments.sql"),
+    source("app/api/editor/submissions/[id]/reviews/route.ts"),
+    source("app/api/editor/reviews/[id]/route.ts"),
+    source("app/editor/page.tsx"),
+    source("app/editor/ReviewAssignments.tsx"),
+  ]);
+  assert.match(schema, /reviewAssignments/);
+  assert.match(database, /review_assignments/);
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS `review_assignments`/);
+  assert.match(createRoute, /getEditorForApi/);
+  assert.match(createRoute, /reviewerEmail/);
+  assert.match(updateRoute, /conflictConfirmed/);
+  assert.match(updateRoute, /six scores/);
+  assert.match(editorPage, /reviewsBySubmission/);
+  assert.match(editorPage, /Reviews submitted/);
+  assert.match(reviewForm, /Review records/);
+  assert.match(reviewForm, /Save review record/);
+});

@@ -26,6 +26,28 @@ export const submissions = sqliteTable("submissions", {
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const reviewAssignments = sqliteTable("review_assignments", {
+  id: text("id").primaryKey(),
+  submissionId: text("submission_id").notNull(),
+  reviewerName: text("reviewer_name").notNull(),
+  reviewerEmail: text("reviewer_email").notNull(),
+  reviewerApplicationId: text("reviewer_application_id"),
+  status: text("status").notNull().default("invited"),
+  dueAt: text("due_at"),
+  conflictConfirmed: integer("conflict_confirmed", { mode: "boolean" }).notNull().default(false),
+  confidentialityConfirmed: integer("confidentiality_confirmed", { mode: "boolean" }).notNull().default(false),
+  questionScore: integer("question_score"),
+  contextScore: integer("context_score"),
+  methodScore: integer("method_score"),
+  evidenceScore: integer("evidence_score"),
+  clarityScore: integer("clarity_score"),
+  integrityScore: integer("integrity_score"),
+  recommendation: text("recommendation"),
+  comments: text("comments"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  submittedAt: text("submitted_at"),
+});
+
 export const submissionNotificationEvents = sqliteTable("submission_notification_events", {
   id: text("id").primaryKey(),
   submissionId: text("submission_id").notNull(),

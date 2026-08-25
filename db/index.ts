@@ -61,6 +61,30 @@ const submissionNotificationEventsTableSql = `
   )
 `;
 
+const reviewAssignmentsTableSql = `
+  CREATE TABLE IF NOT EXISTS review_assignments (
+    id text PRIMARY KEY NOT NULL,
+    submission_id text NOT NULL,
+    reviewer_name text NOT NULL,
+    reviewer_email text NOT NULL,
+    reviewer_application_id text,
+    status text DEFAULT 'invited' NOT NULL,
+    due_at text,
+    conflict_confirmed integer DEFAULT false NOT NULL,
+    confidentiality_confirmed integer DEFAULT false NOT NULL,
+    question_score integer,
+    context_score integer,
+    method_score integer,
+    evidence_score integer,
+    clarity_score integer,
+    integrity_score integer,
+    recommendation text,
+    comments text,
+    created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    submitted_at text
+  )
+`;
+
 const submissionNotificationEventsIndexSql = `
   CREATE UNIQUE INDEX IF NOT EXISTS submission_notification_events_submission_event_idx
   ON submission_notification_events (submission_id, event_key)
@@ -129,6 +153,7 @@ export async function ensureSubmissionTable() {
   }
   await env.DB.batch([
     env.DB.prepare(submissionTableSql),
+    env.DB.prepare(reviewAssignmentsTableSql),
     env.DB.prepare(submissionNotificationEventsTableSql),
     env.DB.prepare(submissionNotificationEventsIndexSql),
     env.DB.prepare(publishedArticlesTableSql),

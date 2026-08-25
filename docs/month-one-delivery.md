@@ -7,6 +7,7 @@ This is the working record for the first month of focused operations. It separat
 - A public submission portal with durable manuscript storage and a private editor desk
 - Status notifications with idempotent delivery tracking
 - Decision-letter notes that editors can save and send with revise, decline, and accept decisions
+- A private review log for reviewer assignments, conflict checks, six rubric scores, recommendations, and written reports
 - A public record page with live article counts, fee information, review model, and guardrails
 - A homepage issue preview that reads from the publication record instead of placeholder titles
 - Article metadata for canonical URLs, Open Graph fields, scholarly JSON-LD, and suggested citations
