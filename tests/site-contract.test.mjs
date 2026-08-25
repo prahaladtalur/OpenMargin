@@ -195,3 +195,17 @@ test("keeps review assignments and reports private and durable", async () => {
   assert.match(reviewForm, /Review records/);
   assert.match(reviewForm, /Save review record/);
 });
+
+test("keeps operating documentation aligned with the live product", async () => {
+  const [readme, releaseChecklist, monthOne] = await Promise.all([
+    source("README.md"),
+    source("docs/release-checklist.md"),
+    source("docs/month-one-delivery.md"),
+  ]);
+  assert.doesNotMatch(readme, /placeholder brand/);
+  assert.match(readme, /Private editor desk/);
+  assert.match(readme, /Publish four more articles/);
+  assert.match(releaseChecklist, /EDITOR_SESSION_SECRET/);
+  assert.match(releaseChecklist, /No private manuscript/);
+  assert.match(monthOne, /private review log/);
+});
