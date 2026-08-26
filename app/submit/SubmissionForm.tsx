@@ -22,20 +22,50 @@ const disciplines = [
   "Other STEM field",
 ];
 
+const campaignStorageKey = "openmargin-campaign";
+
+type Campaign = { source: string; medium: string; name: string; path: string };
+
+function readCampaign(): Campaign {
+  const params = new URLSearchParams(window.location.search);
+  const fromUrl = {
+    source: params.get("utm_source")?.slice(0, 80) ?? "",
+    medium: params.get("utm_medium")?.slice(0, 80) ?? "",
+    name: params.get("utm_campaign")?.slice(0, 120) ?? "",
+    path: window.location.pathname.slice(0, 160),
+  };
+  const hasCampaignInUrl = Boolean(fromUrl.source || fromUrl.medium || fromUrl.name);
+
+  try {
+    if (hasCampaignInUrl) {
+      window.sessionStorage.setItem(campaignStorageKey, JSON.stringify(fromUrl));
+      return fromUrl;
+    }
+    const stored = window.sessionStorage.getItem(campaignStorageKey);
+    if (stored) {
+      const parsed = JSON.parse(stored) as Partial<Campaign>;
+      return {
+        source: typeof parsed.source === "string" ? parsed.source.slice(0, 80) : "",
+        medium: typeof parsed.medium === "string" ? parsed.medium.slice(0, 80) : "",
+        name: typeof parsed.name === "string" ? parsed.name.slice(0, 120) : "",
+        path: typeof parsed.path === "string" && parsed.path.startsWith("/") ? parsed.path.slice(0, 160) : "/submit",
+      };
+    }
+  } catch {
+    return fromUrl;
+  }
+
+  return fromUrl;
+}
+
 export function SubmissionForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
-  const [campaign, setCampaign] = useState({ source: "", medium: "", name: "", path: "/submit" });
+  const [campaign, setCampaign] = useState<Campaign>({ source: "", medium: "", name: "", path: "/submit" });
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setCampaign({
-      source: params.get("utm_source")?.slice(0, 80) ?? "",
-      medium: params.get("utm_medium")?.slice(0, 80) ?? "",
-      name: params.get("utm_campaign")?.slice(0, 120) ?? "",
-      path: `${window.location.pathname}`.slice(0, 160),
-    });
+    setCampaign(readCampaign());
   }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {

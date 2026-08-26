@@ -232,6 +232,8 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(migration, /ADD `campaign_name` text/);
   assert.match(route, /landingPath/);
   assert.match(form, /utm_source/);
+  assert.match(form, /sessionStorage/);
+  assert.match(form, /campaignStorageKey/);
   assert.match(editorPage, /Marketing desk/);
   assert.match(marketingPage, /requireEditor/);
   assert.match(marketingPage, /does not collect IP addresses/);
