@@ -242,6 +242,7 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(form, /sessionStorage/);
   assert.match(form, /campaignStorageKey/);
   assert.match(form, /typeof window === "undefined"/);
+  assert.match(form, /formData\.set\("campaignSource"/);
   assert.match(attribution, /sessionStorage.setItem/);
   assert.match(campaign, /withCampaign/);
   assert.match(guide, /submitHref/);

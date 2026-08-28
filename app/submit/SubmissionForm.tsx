@@ -74,7 +74,13 @@ export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign
     event.preventDefault();
     setStatus("sending");
     setMessage("");
-    const response = await fetch("/api/submissions", { method: "POST", body: new FormData(event.currentTarget) });
+    const formData = new FormData(event.currentTarget);
+    const currentCampaign = campaign.source || campaign.medium || campaign.name ? campaign : readCampaign();
+    formData.set("campaignSource", currentCampaign.source);
+    formData.set("campaignMedium", currentCampaign.medium);
+    formData.set("campaignName", currentCampaign.name);
+    formData.set("landingPath", currentCampaign.path);
+    const response = await fetch("/api/submissions", { method: "POST", body: formData });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) {
       setStatus("error");
@@ -94,10 +100,10 @@ export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign
   return (
     <form className="submission-form" onSubmit={submit} encType="multipart/form-data">
       <div className="honeypot" aria-hidden="true"><label>Leave this blank<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-      <input type="hidden" name="campaignSource" value={campaign.source} />
-      <input type="hidden" name="campaignMedium" value={campaign.medium} />
-      <input type="hidden" name="campaignName" value={campaign.name} />
-      <input type="hidden" name="landingPath" value={campaign.path} />
+      <input type="hidden" name="campaignSource" defaultValue={campaign.source} />
+      <input type="hidden" name="campaignMedium" defaultValue={campaign.medium} />
+      <input type="hidden" name="campaignName" defaultValue={campaign.name} />
+      <input type="hidden" name="landingPath" defaultValue={campaign.path} />
       <fieldset>
         <legend><span>01</span> Your details</legend>
         <div className="form-grid">
