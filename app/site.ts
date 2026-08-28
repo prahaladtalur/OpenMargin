@@ -58,3 +58,38 @@ export const standards = [
   "A clear note about methods and limits",
   "Original work by a student researcher",
 ];
+
+export const publicUpdates = [
+  {
+    period: "August 2026",
+    label: "Capacity first",
+    title: "We are building the reviewer bench before we widen outreach.",
+    body: "Open Margin is inviting reviewers, section editors, and academic advisors. The next growth step is a small, qualified bench that can support two written reviews per eligible paper.",
+    href: "/reviewers",
+    link: "Review with us",
+  },
+  {
+    period: "August 2026",
+    label: "Measurement",
+    title: "Referral links now measure completed submissions.",
+    body: "Programs and mentors can use a labeled public link. We record only the optional campaign label with a submission. We do not track IP addresses, device IDs, or browsing history.",
+    href: "/transparency",
+    link: "Read the public record",
+  },
+  {
+    period: "August 2026",
+    label: "Volume 01",
+    title: "The first article is available to read.",
+    body: "Volume 01 is open. We add an article only after review, revision, and author approval. More papers will appear as the editorial process supports them.",
+    href: "/issue",
+    link: "Read Volume 01",
+  },
+  {
+    period: "Pilot launch",
+    label: "Public standards",
+    title: "The review process and policies are open to everyone.",
+    body: "Authors can read the scope, rubric, privacy rules, and decision paths before they submit. The same public standards apply to every author and partner.",
+    href: "/review",
+    link: "See the review process",
+  },
+] as const;

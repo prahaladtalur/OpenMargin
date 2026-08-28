@@ -149,7 +149,7 @@ test("keeps author status lookup private and public journal copy free of em dash
 });
 
 test("keeps public publication evidence and discovery metadata connected", async () => {
-  const [home, transparency, article, sitemap, robots, launchKit, readiness] = await Promise.all([
+  const [home, transparency, article, sitemap, robots, launchKit, readiness, updates] = await Promise.all([
     source("app/page.tsx"),
     source("app/transparency/page.tsx"),
     source("app/articles/[slug]/page.tsx"),
@@ -157,6 +157,7 @@ test("keeps public publication evidence and discovery metadata connected", async
     source("app/robots.ts"),
     source("docs/pilot-launch-kit.md"),
     source("docs/scopus-readiness.md"),
+    source("app/updates/page.tsx"),
   ]);
   assert.match(home, /getPublishedArticles/);
   assert.match(home, /published work/);
@@ -170,7 +171,11 @@ test("keeps public publication evidence and discovery metadata connected", async
   assert.match(robots, /sitemap\.xml/);
   assert.match(launchKit, /https:\/\/openmargin\.org\/submit/);
   assert.match(readiness, /not in Scopus/);
+  assert.match(updates, /complete review cycle/);
+  assert.match(updates, /Evidence before reputation/);
+  assert.match(sitemap, /"\/updates"/);
   assert.doesNotMatch(transparency, /—/);
+  assert.doesNotMatch(updates, /—/);
 });
 
 test("keeps review assignments and reports private and durable", async () => {

@@ -5,7 +5,7 @@ import { publishedArticles } from "../db/schema";
 export const dynamic = "force-dynamic";
 
 const origin = "https://openmargin.org";
-const publicRoutes = ["/", "/issue", "/about", "/review", "/guide", "/resources", "/policies", "/reviewers", "/partners", "/share", "/submit", "/transparency"];
+const publicRoutes = ["/", "/issue", "/about", "/review", "/updates", "/guide", "/resources", "/policies", "/reviewers", "/partners", "/share", "/submit", "/transparency"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseEntries = publicRoutes.map((path) => ({ url: `${origin}${path}`, changeFrequency: "weekly" as const, priority: path === "/" ? 1 : 0.6 }));
