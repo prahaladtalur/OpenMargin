@@ -240,6 +240,7 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(form, /utm_source/);
   assert.match(form, /sessionStorage/);
   assert.match(form, /campaignStorageKey/);
+  assert.match(form, /typeof window === "undefined"/);
   assert.match(attribution, /sessionStorage.setItem/);
   assert.match(editorPage, /Marketing desk/);
   assert.match(marketingPage, /requireEditor/);

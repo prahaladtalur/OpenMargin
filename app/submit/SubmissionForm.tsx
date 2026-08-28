@@ -61,7 +61,10 @@ export function SubmissionForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
-  const [campaign, setCampaign] = useState<Campaign>({ source: "", medium: "", name: "", path: "/submit" });
+  const [campaign, setCampaign] = useState<Campaign>(() => {
+    if (typeof window === "undefined") return { source: "", medium: "", name: "", path: "/submit" };
+    return readCampaign();
+  });
 
   useEffect(() => {
     setCampaign(readCampaign());
