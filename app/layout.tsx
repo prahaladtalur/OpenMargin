@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
+import { CampaignAttribution } from "./components/CampaignAttribution";
 import { SiteFooter, SiteHeader } from "./components/SiteShell";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -44,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <CampaignAttribution />
         <a className="skip-link" href="#main-content">Skip to content</a>
         <SiteHeader />
         <div id="main-content">{children}</div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
+import { campaignStorageKey } from "../components/CampaignAttribution";
 
 const disciplines = [
   "History",
@@ -21,8 +22,6 @@ const disciplines = [
   "Other humanities or social science",
   "Other STEM field",
 ];
-
-const campaignStorageKey = "openmargin-campaign";
 
 type Campaign = { source: string; medium: string; name: string; path: string };
 
