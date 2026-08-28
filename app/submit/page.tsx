@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
 import { standards } from "../site";
 import { SubmissionForm } from "./SubmissionForm";
+import { campaignFromSearchParams } from "../../lib/campaign";
 
 export const metadata: Metadata = { title: "Submit work" };
 
@@ -14,7 +15,11 @@ const checklist = [
   "Approval from a parent or guardian for authors under 18",
 ];
 
-export default function SubmitPage() {
+type SubmitPageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
+
+export default async function SubmitPage({ searchParams }: SubmitPageProps) {
+  const initialCampaign = campaignFromSearchParams((await searchParams) ?? {}, "/submit");
+
   return (
     <main>
       <PageIntro
@@ -89,7 +94,7 @@ export default function SubmitPage() {
           <h2>Send the file.</h2>
           <p>Keep a copy of your file. Only assigned editors and advisors can see it.</p>
         </div>
-        <SubmissionForm />
+        <SubmissionForm initialCampaign={initialCampaign} />
       </section>
       <section className="portal-callout"><div><p className="eyebrow">Already sent something?</p><h2>Check your status.</h2><p>Use your reference code and submission email to see the current stage. Your file stays private.</p></div><Link className="button button-paper" href="/status">Check submission status</Link></section>
     </main>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { campaignStorageKey } from "../components/CampaignAttribution";
+import type { Campaign } from "../../lib/campaign";
 
 const disciplines = [
   "History",
@@ -22,8 +23,6 @@ const disciplines = [
   "Other humanities or social science",
   "Other STEM field",
 ];
-
-type Campaign = { source: string; medium: string; name: string; path: string };
 
 function readCampaign(): Campaign {
   const params = new URLSearchParams(window.location.search);
@@ -57,11 +56,12 @@ function readCampaign(): Campaign {
   return fromUrl;
 }
 
-export function SubmissionForm() {
+export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
   const [campaign, setCampaign] = useState<Campaign>(() => {
+    if (initialCampaign?.source || initialCampaign?.medium || initialCampaign?.name) return initialCampaign;
     if (typeof window === "undefined") return { source: "", medium: "", name: "", path: "/submit" };
     return readCampaign();
   });

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
+import { campaignFromSearchParams, withCampaign } from "../../lib/campaign";
 
 export const metadata: Metadata = {
   title: "Where can I publish a student research paper?",
@@ -72,7 +73,12 @@ const steps = [
   ["Keep your own copy", "Save the submitted file, the rules, and the confirmation email in one place."],
 ];
 
-export default function GuidePage() {
+type GuidePageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
+
+export default async function GuidePage({ searchParams }: GuidePageProps) {
+  const campaign = campaignFromSearchParams((await searchParams) ?? {}, "/guide");
+  const submitHref = withCampaign("/submit", campaign);
+
   return (
     <main>
       <script
@@ -171,7 +177,7 @@ export default function GuidePage() {
         <p>See what reviewers read, what decisions mean, and what happens after a submission.</p>
         <div className="closing-actions">
           <Link className="button button-accent" href="/review">Read the review process</Link>
-          <Link className="text-link light" href="/submit">Open the submission guide</Link>
+          <Link className="text-link light" href={submitHref}>Open the submission guide</Link>
         </div>
       </section>
     </main>

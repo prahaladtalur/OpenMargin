@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
+import { campaignFromSearchParams, withCampaign } from "../../lib/campaign";
 
 export const metadata: Metadata = {
   title: "Share Open Margin",
@@ -14,7 +15,12 @@ Students submit directly. An editor checks fit, two reviewers write comments, an
 Learn more: https://openmargin.org/guide
 Submit work: https://openmargin.org/submit`;
 
-export default function SharePage() {
+type SharePageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
+
+export default async function SharePage({ searchParams }: SharePageProps) {
+  const campaign = campaignFromSearchParams((await searchParams) ?? {}, "/share");
+  const submitHref = withCampaign("/submit", campaign);
+
   return (
     <main>
       <PageIntro
@@ -36,7 +42,7 @@ export default function SharePage() {
         <p className="eyebrow">What happens next</p>
         <div>
           <article><span>01</span><h2>They read the fit.</h2><p>Students can compare Open Margin with journals, competitions, mentors, and repositories.</p><Link className="text-link" href="/guide">Read the publishing guide</Link></article>
-          <article><span>02</span><h2>They choose.</h2><p>There is no referral requirement, priority, or data exchange. Students submit only if they want to.</p><Link className="text-link" href="/submit">Open the submission page</Link></article>
+          <article><span>02</span><h2>They choose.</h2><p>There is no referral requirement, priority, or data exchange. Students submit only if they want to.</p><Link className="text-link" href={submitHref}>Open the submission page</Link></article>
           <article><span>03</span><h2>We review independently.</h2><p>Every paper uses the same public scope, rubric, and decision process.</p><Link className="text-link" href="/review">See the review process</Link></article>
         </div>
       </section>

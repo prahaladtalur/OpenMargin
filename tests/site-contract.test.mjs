@@ -221,7 +221,7 @@ test("keeps operating documentation aligned with the live product", async () => 
 });
 
 test("keeps marketing attribution private and useful", async () => {
-  const [schema, database, migration, route, form, editorPage, marketingPage, guide, layout, attribution] = await Promise.all([
+  const [schema, database, migration, route, form, editorPage, marketingPage, guide, layout, attribution, campaign] = await Promise.all([
     source("db/schema.ts"),
     source("db/index.ts"),
     source("drizzle/0006_campaign_attribution.sql"),
@@ -232,6 +232,7 @@ test("keeps marketing attribution private and useful", async () => {
     source("app/guide/page.tsx"),
     source("app/layout.tsx"),
     source("app/components/CampaignAttribution.tsx"),
+    source("lib/campaign.ts"),
   ]);
   assert.match(schema, /campaignSource/);
   assert.match(database, /campaign_source text/);
@@ -242,6 +243,8 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(form, /campaignStorageKey/);
   assert.match(form, /typeof window === "undefined"/);
   assert.match(attribution, /sessionStorage.setItem/);
+  assert.match(campaign, /withCampaign/);
+  assert.match(guide, /submitHref/);
   assert.match(editorPage, /Marketing desk/);
   assert.match(marketingPage, /requireEditor/);
   assert.match(marketingPage, /does not collect IP addresses/);
