@@ -37,6 +37,10 @@ the labels.
   messages.
 - Sent one follow-up in the existing Veritas AI thread after their team said
   they would check with their colleagues. Applied the same Gmail label.
+- Sent three new, tailored messages to Sir Luther Center, Northwestern NURPH,
+  and NYU GSTEM using their public program addresses. Each message asked for a
+  process review or optional resource share and included a tagged share link.
+- Applied the same Gmail label to those three messages.
 - Left the YRI reply draft unsent because that team said the journal does not
   match its publication goals.
 
