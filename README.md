@@ -48,8 +48,9 @@ npm test
 3. Publish only the final version approved by the author or guardian when required.
 4. Keep the public record, policies, and article metadata accurate after every publication.
 5. Publish four more articles before applying for an online ISSN for the first complete issue.
-6. Use `docs/marketing-sprint.md` for one month of permission-based outreach and record tagged submissions in `/editor/marketing`.
-7. Use `docs/30-day-growth-plan.md` for the strategic capacity and trust targets behind the sprint.
+6. Use `docs/marketing-sprint.md` for the first month of permission-based outreach and record tagged submissions in `/editor/marketing`.
+7. Use `docs/60-day-marketing-plan.md` for the two-month operating record and capacity gate.
+8. Use `docs/30-day-growth-plan.md` for the strategic capacity and trust targets behind the sprint.
 
 ## Repository structure
 
@@ -65,6 +66,7 @@ app/
   site.ts      Editable journal content and settings
 docs/
   marketing-sprint.md     30-day marketing calendar and measures
+  60-day-marketing-plan.md Two-month operating calendar and capacity gate
   marketing-copy-pack.md  Reusable, permission-based outreach copy
 ```
 

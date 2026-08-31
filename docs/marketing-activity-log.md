@@ -26,12 +26,31 @@ and original landing path in session storage, then sends those fields with a
 submission. The private marketing desk remains the only place that groups
 the labels.
 
+## 31 August 2026
+
+- Sent four targeted messages to Indigo Research, Young Minds Research
+  Foundation, Lumiere Education, and RISE Global Education.
+- The first three messages asked the organizations to review the public process
+  and share the optional resource only when it fits their students.
+- The RISE message thanked the team for offering to share Open Margin internally.
+- Applied the Gmail label `Open Margin/Partner Outreach` to the four sent
+  messages.
+- Left the YRI reply draft unsent because that team said the journal does not
+  match its publication goals.
+
+## 60-day operating record
+
+The next two months use [`60-day-marketing-plan.md`](60-day-marketing-plan.md).
+The success test is a stable review cycle, not a large mailing count.
+
 ## Next actions
 
-1. Wait for the three organizations to respond. Do not send another follow-up
-   before the stated response window.
-2. Ask the Non-Trivial team whether the share link reached the right channel.
-3. Record any qualified submission, reviewer application, or partner reply in
+1. Wait for the four new messages to receive replies. Do not send another
+   follow-up before five business days.
+2. Ask the Non-Trivial team whether the share link reached the right channel
+   after Jonah's out-of-office period ends.
+3. Recruit two qualified reviewers and one backup before widening outreach.
+4. Record any qualified submission, reviewer application, or partner reply in
    the private editor marketing desk.
-4. Use a moderator-approved or designated community thread before any public
+5. Use a moderator-approved or designated community thread before any public
    Reddit post.
