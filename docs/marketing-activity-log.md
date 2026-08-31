@@ -35,6 +35,8 @@ the labels.
 - The RISE message thanked the team for offering to share Open Margin internally.
 - Applied the Gmail label `Open Margin/Partner Outreach` to the four sent
   messages.
+- Sent one follow-up in the existing Veritas AI thread after their team said
+  they would check with their colleagues. Applied the same Gmail label.
 - Left the YRI reply draft unsent because that team said the journal does not
   match its publication goals.
 
