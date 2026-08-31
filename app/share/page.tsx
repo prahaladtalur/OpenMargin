@@ -2,24 +2,29 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
 import { campaignFromSearchParams, withCampaign } from "../../lib/campaign";
+import { CopyShareButton } from "./CopyShareButton";
 
 export const metadata: Metadata = {
   title: "Share Open Margin",
   description: "A short, accurate message for teachers, mentors, and research programs to share with students.",
 };
 
-const shareText = `Open Margin is a free, independent journal for research by authors of any age. It accepts work in the humanities, social sciences, and STEM.
+function makeShareText(guideHref: string, submitHref: string) {
+  return `Open Margin is a free, independent journal for research by authors of any age. It accepts work in the humanities, social sciences, and STEM.
 
 Students submit directly. An editor checks fit, two reviewers write comments, and the journal targets a decision in six to eight weeks. There is no fee and no guarantee of acceptance.
 
-Learn more: https://openmargin.org/guide
-Submit work: https://openmargin.org/submit`;
+Learn more: https://openmargin.org${guideHref}
+Submit work: https://openmargin.org${submitHref}`;
+}
 
 type SharePageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
 
 export default async function SharePage({ searchParams }: SharePageProps) {
   const campaign = campaignFromSearchParams((await searchParams) ?? {}, "/share");
+  const guideHref = withCampaign("/guide", campaign);
   const submitHref = withCampaign("/submit", campaign);
+  const shareText = makeShareText(guideHref, submitHref);
 
   return (
     <main>
@@ -35,7 +40,10 @@ export default async function SharePage({ searchParams }: SharePageProps) {
           <h2>A short description you can forward.</h2>
           <p>Keep the message intact so students see the same process, cost, and limits that we publish on the site.</p>
         </div>
-        <pre className="share-copy">{shareText}</pre>
+        <div className="share-copy-wrap">
+          <pre className="share-copy">{shareText}</pre>
+          <CopyShareButton text={shareText} />
+        </div>
       </section>
 
       <section className="share-steps">

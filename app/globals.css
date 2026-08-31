@@ -838,6 +838,10 @@ button, input, textarea { font: inherit; }
   padding: clamp(1.3rem, 3vw, 2.5rem);
   white-space: pre-wrap;
 }
+.share-copy-wrap { min-width: 0; }
+.share-copy-actions { align-items: center; background: var(--forest); display: flex; gap: 1rem; padding: 0 clamp(1.3rem, 3vw, 2.5rem) clamp(1.3rem, 3vw, 2.5rem); }
+.share-copy-actions .button { border: 0; cursor: pointer; }
+.share-copy-actions span { color: #d9e0d5; font-size: .78rem; }
 .share-steps { border-bottom: 1px solid var(--line); border-top: 1px solid var(--ink); }
 .share-steps > div { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); margin-top: 2rem; }
 .share-steps article { background: var(--paper-light); border-right: 1px solid var(--line); min-height: 290px; padding: 1.8rem; }
