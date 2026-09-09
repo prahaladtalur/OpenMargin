@@ -206,12 +206,13 @@ test("keeps review assignments and reports private and durable", async () => {
 });
 
 test("keeps operating documentation aligned with the live product", async () => {
-  const [readme, releaseChecklist, monthOne, sprint, copyPack] = await Promise.all([
+  const [readme, releaseChecklist, monthOne, sprint, copyPack, reviewerPack] = await Promise.all([
     source("README.md"),
     source("docs/release-checklist.md"),
     source("docs/month-one-delivery.md"),
     source("docs/marketing-sprint.md"),
     source("docs/marketing-copy-pack.md"),
+    source("docs/reviewer-recruitment-pack.md"),
   ]);
   assert.doesNotMatch(readme, /placeholder brand/);
   assert.match(readme, /Private editor desk/);
@@ -222,6 +223,8 @@ test("keeps operating documentation aligned with the live product", async () => 
   assert.match(sprint, /30-day calendar/);
   assert.match(sprint, /Do not collect IP addresses/);
   assert.match(copyPack, /I am the person who built it/);
+  assert.match(reviewerPack, /Do not send a manuscript or a student name/);
+  assert.match(reviewerPack, /one follow-up after five business days/);
 });
 
 test("keeps marketing attribution private and useful", async () => {
