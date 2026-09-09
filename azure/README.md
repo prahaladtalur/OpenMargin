@@ -10,11 +10,11 @@ npm run azure:export-public-metrics
 
 Optional environment variables:
 
-- `OPEN_MARGIN_PUBLIC_METRICS_URL` — defaults to
+- `OPEN_MARGIN_PUBLIC_METRICS_URL`, defaults to
   `https://openmargin.org/api/public-metrics`.
-- `AZURE_PUBLIC_METRICS_ENDPOINT` — the Azure Function
+- `AZURE_PUBLIC_METRICS_ENDPOINT`, the Azure Function
   `/api/research-results` endpoint.
-- `AZURE_FUNCTION_KEY` — kept in the shell/secret store, never in the site.
+- `AZURE_FUNCTION_KEY`, kept in the shell or secret store, never in the site.
 
 The endpoint intentionally omits author names, email addresses, manuscript
 files, titles, reviewer identities, decisions, and private submission counts.
