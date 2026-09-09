@@ -253,6 +253,10 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(editorPage, /Marketing desk/);
   assert.match(marketingPage, /requireEditor/);
   assert.match(marketingPage, /does not collect IP addresses/);
+  assert.match(marketingPage, /reviewerApplications/);
+  assert.match(marketingPage, /partnerInquiries/);
+  assert.match(marketingPage, /Reviewer applications/);
+  assert.match(marketingPage, /Partner inquiries/);
   assert.match(guide, /FAQPage/);
   assert.match(guide, /Who can submit/);
   assert.match(layout, /https:\/\/openmargin\.org/);

@@ -70,3 +70,15 @@ The success test is a stable review cycle, not a large mailing count.
   The partner messages from 31 August reach their five-business-day window on
   7 September, and reviewer invitations sent on 5 September should not be
   chased before 12 September.
+
+## 9 September 2026
+
+- Recorded the current baseline in the private marketing desk: four
+  submissions, three tagged submissions, three published articles, one
+  submission in screening, one reviewer application, and no partner inquiries.
+- Added reviewer application and partner inquiry counts to the private
+  marketing desk. No new outreach was sent while reviewer capacity remains
+  below the two-reviewer target plus one backup.
+- Next action: review replies after their response windows, recruit one more
+  qualified reviewer and one backup, then test one permission-based program
+  share.
