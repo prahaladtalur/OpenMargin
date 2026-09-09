@@ -79,6 +79,8 @@ The success test is a stable review cycle, not a large mailing count.
 - Added reviewer application and partner inquiry counts to the private
   marketing desk. No new outreach was sent while reviewer capacity remains
   below the two-reviewer target plus one backup.
+- Consolidated the reviewer and advisor outreach copy into a single pack. It is
+  ready for review before any new messages are sent.
 - Next action: review replies after their response windows, recruit one more
   qualified reviewer and one backup, then test one permission-based program
   share.
