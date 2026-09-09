@@ -15,6 +15,16 @@ const policies = [
     ],
   },
   {
+    id: "language",
+    title: "Language",
+    body: [
+      "Open Margin publishes in English. We do not decline manuscripts because the English is not a first language, and reviewers are instructed to assess the argument, the evidence, and the method, not the fluency of the prose.",
+      "If a manuscript is sound but the writing would make it hard to review fairly, we offer a language pass before review rather than a rejection after it. An editor works through the text with the author. This adds time and we will tell you how much.",
+      "Authors may submit an abstract in their own language alongside the English one. We publish both. The English abstract is what reviewers read.",
+      "We do not run a separate track, a separate standard, or a regional quota. There is one process and one bar.",
+    ],
+  },
+  {
     id: "authorship",
     title: "Authorship, originality and sources",
     body: [

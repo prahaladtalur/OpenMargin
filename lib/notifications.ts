@@ -82,6 +82,20 @@ export async function notifyEditorOfSubmission(submission: SubmissionNotificatio
   ]);
 }
 
+export async function notifyGuardianOfSubmission(submission: { id: string; manuscriptTitle: string; authorName: string }, guardianEmail: string) {
+  return sendEmail(guardianEmail, `Open Margin guardian confirmation: ${submission.manuscriptTitle}`, [
+    "A parent or guardian email was provided for an Open Margin submission.",
+    "",
+    `Reference: ${submission.id}`,
+    `Title: ${submission.manuscriptTitle}`,
+    `Author: ${submission.authorName}`,
+    "Please reply to the editorial team if this address is incorrect or if you have questions about consent.",
+    "",
+    "Open Margin",
+    "https://openmargin.org/policies#privacy",
+  ]);
+}
+
 export async function notifyAuthorOfDecision(submission: AuthorDecisionNotification, status: EditorialDecisionStatus, publicationPath?: string) {
   const messages: Record<EditorialDecisionStatus, { subject: string; lines: string[] }> = {
     revise: {

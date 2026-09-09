@@ -59,6 +59,7 @@ export default function ReviewPage() {
             Reviewers score each area from 1 to 5 and explain the score. These
             six questions stay the same for every paper.
           </p>
+          <p>Fluency is not a scoring criterion. Raise language concerns with the editor instead of reflecting them in the clarity score.</p>
         </div>
         <div className="rubric-list">
           {rubric.map(([title, body], index) => (

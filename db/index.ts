@@ -2,6 +2,28 @@ import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
 import * as schema from "./schema";
 
+type PreparedRunner = {
+  prepare: (sql: string) => {
+    run: () => Promise<unknown>;
+    all: () => Promise<{ results: unknown[] }>;
+  };
+};
+
+async function addMissingColumns(
+  db: PreparedRunner,
+  table: string,
+  columns: Array<[name: string, type: string]>,
+) {
+  const info = await db.prepare(`PRAGMA table_info(${table})`).all();
+  const existing = new Set(
+    (info.results as Array<{ name: string }>).map((row) => row.name),
+  );
+  for (const [name, type] of columns) {
+    if (existing.has(name)) continue;
+    await db.prepare(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`).run();
+  }
+}
+
 export function getDb() {
   if (!env.DB) {
     throw new Error(
@@ -38,6 +60,12 @@ const submissionTableSql = `
     manuscript_title text NOT NULL,
     discipline text NOT NULL,
     abstract text NOT NULL,
+    abstract_native text,
+    abstract_native_language text,
+    submission_type text DEFAULT 'article' NOT NULL,
+    data_source_url text,
+    code_url text,
+    call_slug text,
     word_count integer NOT NULL,
     origin_note text NOT NULL,
     ai_disclosure text NOT NULL,
@@ -49,6 +77,7 @@ const submissionTableSql = `
     original_work_confirmed integer NOT NULL,
     privacy_confirmed integer NOT NULL,
     guardian_confirmed integer DEFAULT false NOT NULL,
+    guardian_email_updated_at text,
     created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
   )
 `;
@@ -103,6 +132,11 @@ const publishedArticlesTableSql = `
     author_name text NOT NULL,
     discipline text NOT NULL,
     abstract text NOT NULL,
+    abstract_native text,
+    abstract_native_language text,
+    submission_type text DEFAULT 'article' NOT NULL,
+    data_source_url text,
+    code_url text,
     body text NOT NULL,
     issue text DEFAULT 'Volume 01' NOT NULL,
     published_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
@@ -128,6 +162,10 @@ const reviewerApplicationsTableSql = `
     statement text NOT NULL,
     ethics_confirmed integer NOT NULL,
     privacy_confirmed integer NOT NULL,
+    timezone text,
+    languages text,
+    highest_qualification text,
+    affiliation text,
     status text DEFAULT 'received' NOT NULL,
     created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
   )
@@ -164,6 +202,29 @@ export async function ensureSubmissionTable() {
     ...publishedArticlesIndexesSql.map((statement) => env.DB.prepare(statement)),
     env.DB.prepare(reviewerApplicationsTableSql),
     env.DB.prepare(partnerInquiriesTableSql),
+  ]);
+  const db = env.DB as unknown as PreparedRunner;
+  await addMissingColumns(db, "submissions", [
+    ["abstract_native", "text"],
+    ["abstract_native_language", "text"],
+    ["submission_type", "text DEFAULT 'article' NOT NULL"],
+    ["data_source_url", "text"],
+    ["code_url", "text"],
+    ["call_slug", "text"],
+    ["guardian_email_updated_at", "text"],
+  ]);
+  await addMissingColumns(db, "published_articles", [
+    ["abstract_native", "text"],
+    ["abstract_native_language", "text"],
+    ["submission_type", "text DEFAULT 'article' NOT NULL"],
+    ["data_source_url", "text"],
+    ["code_url", "text"],
+  ]);
+  await addMissingColumns(db, "reviewer_applications", [
+    ["timezone", "text"],
+    ["languages", "text"],
+    ["highest_qualification", "text"],
+    ["affiliation", "text"],
   ]);
 }
 

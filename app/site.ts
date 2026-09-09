@@ -5,6 +5,27 @@ export const site = {
   submissionWindow: "Volume 01 submissions are open",
 };
 
+export type CallForPapers = {
+  slug: string;
+  title: string;
+  standfirst: string;
+  opensAt: string;
+  closesAt: string;
+  scope: string[];
+  editorName: string;
+  editorRole: string;
+};
+
+export const callsForPapers: CallForPapers[] = [];
+
+const PLACEHOLDER = /^\s*\[.*\]\s*$/;
+
+export function publishableCalls(calls: CallForPapers[] = callsForPapers) {
+  return calls.filter(
+    (call) => call.editorName.trim().length > 0 && !PLACEHOLDER.test(call.editorName),
+  );
+}
+
 export const reviewSteps = [
   {
     number: "01",

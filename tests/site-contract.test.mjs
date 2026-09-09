@@ -258,3 +258,79 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(layout, /https:\/\/openmargin\.org/);
   assert.doesNotMatch(layout, /x-forwarded-host/);
 });
+
+test("supports bilingual abstracts and research notes", async () => {
+  const [schema, database, form, route, article, submitPage, publishRoute] = await Promise.all([
+    source("db/schema.ts"),
+    source("db/index.ts"),
+    source("app/submit/SubmissionForm.tsx"),
+    source("app/api/submissions/route.ts"),
+    source("app/articles/[slug]/page.tsx"),
+    source("app/submit/page.tsx"),
+    source("app/api/editor/submissions/[id]/publish/route.ts"),
+  ]);
+  assert.match(schema, /abstractNative/);
+  assert.match(schema, /submissionType/);
+  assert.match(database, /abstract_native/);
+  assert.match(form, /abstractNativeLanguage/);
+  assert.match(form, /research-note/);
+  assert.match(route, /Please give both the language and the abstract text/);
+  assert.match(route, /Research notes run between 1,500 and 3,000 words/);
+  assert.match(route, /Research notes need a link to the dataset you used/);
+  assert.match(route, /Please give a full https link/);
+  assert.match(article, /abstractNative/);
+  assert.match(article, /lang:/);
+  assert.match(article, /Research note/);
+  assert.match(submitPage, /A research note is a short paper, 1,500 to 3,000 words/);
+  assert.match(publishRoute, /abstractNative/);
+});
+
+test("publishes the language policy and reviewer guidance", async () => {
+  const [policies, review] = await Promise.all([source("app/policies/page.tsx"), source("app/review/page.tsx")]);
+  assert.match(policies, /id: "language"/);
+  assert.match(policies, /not a first language/);
+  assert.match(review, /Fluency is not a scoring criterion/);
+});
+
+test("captures reviewer routing details and the PhD target", async () => {
+  const [schema, database, form, route, recruitment] = await Promise.all([
+    source("db/schema.ts"),
+    source("db/index.ts"),
+    source("app/reviewers/ReviewerApplicationForm.tsx"),
+    source("app/api/reviewer-applications/route.ts"),
+    source("app/editor/recruitment/page.tsx"),
+  ]);
+  assert.match(schema, /timezone/);
+  assert.match(database, /highest_qualification/);
+  assert.match(form, /supportedValuesOf/);
+  assert.match(route, /validTimezone/);
+  assert.match(recruitment, /PhD-qualified advisers/);
+  assert.match(recruitment, /formatLocalTime/);
+});
+
+test("gates calls for papers and guardian email corrections", async () => {
+  const [site, calls, call, sitemap, submit, editor, guardianRoute, notifications, assetCheck, nextConfig] = await Promise.all([
+    source("app/site.ts"),
+    source("app/calls/page.tsx"),
+    source("app/calls/[slug]/page.tsx"),
+    source("app/sitemap.ts"),
+    source("app/submit/SubmissionForm.tsx"),
+    source("app/editor/page.tsx"),
+    source("app/api/editor/submissions/[id]/guardian-email/route.ts"),
+    source("lib/notifications.ts"),
+    source("scripts/check-asset-weight.mjs"),
+    source("next.config.mjs"),
+  ]);
+  assert.match(site, /publishableCalls/);
+  assert.match(site, /PLACEHOLDER/);
+  assert.match(calls, /notFound/);
+  assert.match(call, /submit\?call=/);
+  assert.match(sitemap, /publishableCalls/);
+  assert.match(submit, /callSlug/);
+  assert.match(editor, /callSlug/);
+  assert.match(guardianRoute, /getEditorForApi/);
+  assert.match(guardianRoute, /guardian-email-corrected/);
+  assert.match(notifications, /notifyGuardianOfSubmission/);
+  assert.match(assetCheck, /500 \* 1024/);
+  assert.match(nextConfig, /image\/webp/);
+});

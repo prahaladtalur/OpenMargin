@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { ensureSubmissionTable, getDb } from "../../../db";
 import { publishedArticles } from "../../../db/schema";
+import { languageCode } from "../../../lib/languages";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +41,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!article) notFound();
   const publicUrl = `https://openmargin.org/articles/${article.slug}`;
   const citation = `${article.authorName}. (${new Date(article.publishedAt).getFullYear()}). ${article.title}. Open Margin, ${article.issue}. ${publicUrl}`;
+  const nativeCode = languageCode(article.abstractNativeLanguage);
 
   return (
     <main>
@@ -58,12 +60,24 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         }) }} />
         <header className="article-header">
           <div className="article-header-meta"><span>{article.issue}</span><span>{formatDate(article.publishedAt)}</span></div>
-          <p className="eyebrow">{article.discipline}</p>
+          <p className="eyebrow">{article.discipline}{article.submissionType === "research-note" && <span className="article-badge">Research note</span>}</p>
           <h1>{article.title}</h1>
           <p className="article-byline">{article.authorName}</p>
         </header>
         <section className="article-body">
-          <aside className="article-aside"><p className="eyebrow">Abstract</p><p>{article.abstract}</p><p className="article-citation-label">Suggested citation</p><p className="article-citation">{citation}</p><Link className="text-link" href="/issue">Back to the issue</Link></aside>
+          <aside className="article-aside">
+            <p className="eyebrow">Abstract</p>
+            <p>{article.abstract}</p>
+            {article.abstractNative && <div className="article-native-abstract" {...(nativeCode ? { lang: nativeCode } : {})} dir={nativeCode === "ur" ? "rtl" : undefined}>
+              <p className="eyebrow">{article.abstractNativeLanguage ?? "Additional abstract"}</p>
+              <p>{article.abstractNative}</p>
+            </div>}
+            {article.submissionType === "research-note" && <div className="article-data-links">
+              <p className="eyebrow">Research note data</p>
+              <p><a href={article.dataSourceUrl ?? "#"} target="_blank" rel="noreferrer">Dataset</a>{article.codeUrl && <> · <a href={article.codeUrl} target="_blank" rel="noreferrer">Code</a></>}</p>
+            </div>}
+            <p className="article-citation-label">Suggested citation</p><p className="article-citation">{citation}</p><Link className="text-link" href="/issue">Back to the issue</Link>
+          </aside>
           <div className="article-text">{bodyParagraphs(article.body).map((paragraph, index) => <p key={`${article.id}-${index}`}>{paragraph}</p>)}</div>
         </section>
       </article>

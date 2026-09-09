@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
-import { standards } from "../site";
+import { publishableCalls, standards } from "../site";
 import { SubmissionForm } from "./SubmissionForm";
 import { campaignFromSearchParams } from "../../lib/campaign";
 
@@ -18,7 +18,10 @@ const checklist = [
 type SubmitPageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
 
 export default async function SubmitPage({ searchParams }: SubmitPageProps) {
-  const initialCampaign = campaignFromSearchParams((await searchParams) ?? {}, "/submit");
+  const params = (await searchParams) ?? {};
+  const initialCampaign = campaignFromSearchParams(params, "/submit");
+  const requestedCall = typeof params.call === "string" ? params.call : Array.isArray(params.call) ? params.call[0] : undefined;
+  const initialCall = publishableCalls().find((call) => call.slug === requestedCall);
 
   return (
     <main>
@@ -48,6 +51,9 @@ export default async function SubmitPage({ searchParams }: SubmitPageProps) {
             Anyone can submit. Authors under 18 need approval from a parent or
             guardian. We review specialized STEM work only when a suitable
             subject reviewer is available.
+          </p>
+          <p>
+            A research note is a short paper, 1,500 to 3,000 words, that answers one question using data anyone can download. Census and household survey microdata, government statistics portals, published replication files. You need a laptop and a question, not a lab.
           </p>
           <p>
             Open Margin is one option. If the same work is under consideration
@@ -94,7 +100,7 @@ export default async function SubmitPage({ searchParams }: SubmitPageProps) {
           <h2>Send the file.</h2>
           <p>Keep a copy of your file. Only assigned editors and advisors can see it.</p>
         </div>
-        <SubmissionForm initialCampaign={initialCampaign} />
+        <SubmissionForm initialCampaign={initialCampaign} initialCall={initialCall ? { slug: initialCall.slug, title: initialCall.title } : undefined} />
       </section>
       <section className="portal-callout"><div><p className="eyebrow">Already sent something?</p><h2>Check your status.</h2><p>Use your reference code and submission email to see the current stage. Your file stays private.</p></div><Link className="button button-paper" href="/status">Check submission status</Link></section>
     </main>

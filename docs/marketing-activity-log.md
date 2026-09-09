@@ -60,3 +60,13 @@ The success test is a stable review cycle, not a large mailing count.
    the private editor marketing desk.
 5. Use a moderator-approved or designated community thread before any public
    Reddit post.
+
+## 6 September 2026
+
+- Sent one final, low-pressure follow-up to Inspirit AI in the existing thread.
+  Ronil had said the team was still reviewing the idea. Gmail message
+  `1a077daf2c701b61`.
+- Did not follow up with the newer partner contacts or reviewer candidates.
+  The partner messages from 31 August reach their five-business-day window on
+  7 September, and reviewer invitations sent on 5 September should not be
+  chased before 12 September.

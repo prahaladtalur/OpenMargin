@@ -56,10 +56,13 @@ function readCampaign(): Campaign {
   return fromUrl;
 }
 
-export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign }) {
+type CallSummary = { slug: string; title: string };
+
+export function SubmissionForm({ initialCampaign, initialCall }: { initialCampaign?: Campaign; initialCall?: CallSummary }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
+  const [submissionType, setSubmissionType] = useState<"article" | "research-note">("article");
   const [campaign, setCampaign] = useState<Campaign>(() => {
     if (initialCampaign?.source || initialCampaign?.medium || initialCampaign?.name) return initialCampaign;
     if (typeof window === "undefined") return { source: "", medium: "", name: "", path: "/submit" };
@@ -91,6 +94,7 @@ export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign
     setMessage(`Received. Reference code: ${payload.reference}. Save this code.`);
     event.currentTarget.reset();
     setRequiresGuardian(false);
+    setSubmissionType("article");
   }
 
   if (status === "success") {
@@ -104,6 +108,8 @@ export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign
       <input type="hidden" name="campaignMedium" defaultValue={campaign.medium} />
       <input type="hidden" name="campaignName" defaultValue={campaign.name} />
       <input type="hidden" name="landingPath" defaultValue={campaign.path} />
+      <input type="hidden" name="callSlug" defaultValue={initialCall?.slug ?? ""} />
+      {initialCall && <p className="form-call-note">Submitting to: <strong>{initialCall.title}</strong></p>}
       <fieldset>
         <legend><span>01</span> Your details</legend>
         <div className="form-grid">
@@ -121,8 +127,15 @@ export function SubmissionForm({ initialCampaign }: { initialCampaign?: Campaign
         <div className="form-grid">
           <label className="wide">Manuscript title<input name="manuscriptTitle" required maxLength={240} /></label>
           <label>Primary discipline<select name="discipline" required defaultValue=""><option value="" disabled>Select one</option>{disciplines.map((discipline) => <option key={discipline}>{discipline}</option>)}</select></label>
-          <label>Approximate word count<input name="wordCount" type="number" min="2500" max="8000" required /></label>
+          <label>Submission type<select name="submissionType" value={submissionType} onChange={(event) => setSubmissionType(event.target.value as "article" | "research-note")}><option value="article">Article</option><option value="research-note">Research note</option></select></label>
+          <label>Approximate word count<input name="wordCount" type="number" min={submissionType === "research-note" ? 1500 : 2500} max={submissionType === "research-note" ? 3000 : 8000} required /></label>
           <label className="wide">Abstract <small>(300 to 1,800 characters)</small><textarea name="abstract" required minLength={300} maxLength={1800} rows={7} /></label>
+          <label>Language of your abstract (optional)<input name="abstractNativeLanguage" maxLength={60} minLength={2} placeholder="Bangla, Hindi, Tamil, Urdu…" /></label>
+          <label className="wide">Abstract in that language (optional)<textarea name="abstractNative" minLength={300} maxLength={1800} rows={7} /><small>If you would rather write your abstract in your first language as well as English, we publish both. Reviewers assess the English abstract. The other is for readers.</small></label>
+          {submissionType === "research-note" && <>
+            <label className="wide">Dataset link<input name="dataSourceUrl" type="url" required placeholder="https://..." /></label>
+            <label className="wide">Code link <small>(optional)</small><input name="codeUrl" type="url" placeholder="https://..." /></label>
+          </>}
           <label className="wide">Work origin<textarea name="originNote" required maxLength={1000} rows={4} placeholder="For example: classwork, science fair, lab, design project, independent study, or mentored research." /></label>
           <label className="wide">AI assistance used<input name="aiDisclosure" required maxLength={1000} placeholder={'Write "No material AI use" or list each tool and its use.'} /></label>
         </div>

@@ -11,6 +11,13 @@ function invalid(error: string) {
   return Response.json({ error }, { status: 400 });
 }
 
+function validTimezone(timezone: string) {
+  if (!timezone) return true;
+  const supportedValuesOf = (Intl as typeof Intl & { supportedValuesOf?: (key: "timeZone") => string[] }).supportedValuesOf;
+  if (supportedValuesOf) return supportedValuesOf("timeZone").includes(timezone);
+  return timezone.length <= 64;
+}
+
 export async function POST(request: Request) {
   try {
     const form = await request.formData();
@@ -26,10 +33,15 @@ export async function POST(request: Request) {
     const experience = value(form, "experience", 1600);
     const availability = value(form, "availability", 500);
     const statement = value(form, "statement", 1600);
+    const timezone = value(form, "timezone", 64);
+    const languages = value(form, "languages", 300);
+    const highestQualification = value(form, "highestQualification", 40);
+    const affiliation = value(form, "affiliation", 240);
 
     if (!fullName || !/^\S+@\S+\.\S+$/.test(email)) return invalid("Enter a valid name and email address.");
     if (isMinor && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Applicants under 18 need a guardian email.");
     if (!role || !disciplines || experience.length < 80 || !availability || statement.length < 80) return invalid("Tell us about your interests, experience, availability, and motivation.");
+    if (!validTimezone(timezone)) return invalid("Enter a valid time zone.");
     if (form.get("ethicsConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the ethics and privacy declarations.");
     if (isMinor && form.get("guardianConfirmed") !== "on") return invalid("Guardian permission is required for applicants under 18.");
 
@@ -48,6 +60,10 @@ export async function POST(request: Request) {
       statement,
       ethicsConfirmed: true,
       privacyConfirmed: true,
+      timezone: timezone || null,
+      languages: languages || null,
+      highestQualification: highestQualification || null,
+      affiliation: affiliation || null,
       status: "received",
     });
 

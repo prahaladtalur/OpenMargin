@@ -4,6 +4,10 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const roles = ["Student reviewer", "Section editor", "Academic advisor", "Copyeditor or research-communication volunteer"];
+const supportedTimeZones = typeof Intl !== "undefined" && "supportedValuesOf" in Intl
+  ? (Intl as unknown as { supportedValuesOf: (key: "timeZone") => string[] }).supportedValuesOf("timeZone")
+  : [];
+const defaultTimeZone = typeof Intl !== "undefined" ? Intl.DateTimeFormat().resolvedOptions().timeZone : "";
 
 export function ReviewerApplicationForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -56,7 +60,17 @@ export function ReviewerApplicationForm() {
       </fieldset>
 
       <fieldset>
-        <legend><span>03</span> Commitments</legend>
+        <legend><span>03</span> Practical details</legend>
+        <div className="form-grid">
+          {supportedTimeZones.length > 0 ? <label>Time zone<select name="timezone" defaultValue={defaultTimeZone}><option value="">Select a time zone</option>{supportedTimeZones.map((timeZone) => <option key={timeZone} value={timeZone}>{timeZone}</option>)}</select></label> : <label>Time zone<input name="timezone" maxLength={64} defaultValue={defaultTimeZone} placeholder="For example: Asia/Dhaka" /></label>}
+          <label>Languages you can read academic work in<input name="languages" maxLength={300} placeholder="For example: English, Bangla, Hindi" /></label>
+          <label>Highest qualification<select name="highestQualification" defaultValue=""><option value="">Select one</option><option value="secondary">Secondary</option><option value="undergraduate">Undergraduate</option><option value="masters">Master&apos;s</option><option value="phd">PhD</option><option value="other">Other</option></select></label>
+          <label>Affiliation <small>(optional)</small><input name="affiliation" maxLength={240} placeholder="School, university, or organization" /></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>04</span> Commitments</legend>
         <div className="declarations">
           <label><input type="checkbox" name="ethicsConfirmed" required /> I will keep manuscripts and editorial conversations confidential. I will disclose conflicts of interest. I will give specific, respectful feedback.</label>
           <label><input type="checkbox" name="privacyConfirmed" required /> I read the <Link href="/policies#privacy">privacy policy</Link>. I consent to Open Margin using this information to consider my application.</label>

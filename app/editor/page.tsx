@@ -7,6 +7,7 @@ import { ReviewAssignments } from "./ReviewAssignments";
 import { ensureSubmissionTable, getDb } from "../../db";
 import { publishedArticles, reviewAssignments, submissions } from "../../db/schema";
 import { editorSignOutPath, emailNotificationsConfigured, requireEditor } from "../../lib/editor-auth";
+import { publishableCalls } from "../site";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Private editor" };
@@ -23,6 +24,7 @@ export default async function EditorPage() {
   const articles = await getDb().select().from(publishedArticles);
   const reviews = await getDb().select().from(reviewAssignments).orderBy(desc(reviewAssignments.createdAt));
   const emailConfigured = emailNotificationsConfigured();
+  const calls = publishableCalls();
   const reviewsBySubmission = new Map<string, typeof reviews>();
   for (const review of reviews) {
     const current = reviewsBySubmission.get(review.submissionId) ?? [];
@@ -45,6 +47,7 @@ export default async function EditorPage() {
         <div><span>{rows.filter((row) => row.status === "under-review").length}</span><p>Under review</p></div>
         <div><span>{reviews.filter((review) => review.status === "submitted").length}</span><p>Reviews submitted</p></div>
       </section>
+      {calls.length > 0 && <section className="editor-list" aria-label="Call submission counts"><div className="editor-list-heading"><p className="eyebrow">Calls for papers</p><p>Submission counts are private to the editorial team.</p></div><div className="editor-data-grid editor-data-grid-three">{calls.map((call) => <div key={call.slug}><h3>{call.title}</h3><p>{rows.filter((row) => row.callSlug === call.slug).length} submissions</p></div>)}</div></section>}
       <section className="editor-list">
         <div className="editor-list-heading"><p className="eyebrow">Private records</p><p>Files and contact details are visible only to authorized editors.</p></div>
         {rows.length === 0 ? <div className="editor-empty"><h2>No submissions yet.</h2><p>New submissions will appear here when the portal receives them.</p></div> : rows.map((row) => (
@@ -52,7 +55,7 @@ export default async function EditorPage() {
             <div className="editor-card-heading"><div><p className="editor-reference">{row.id}</p><h2>{row.manuscriptTitle}</h2><p className="editor-meta">{row.discipline} · {row.wordCount.toLocaleString()} words · received {formatDate(row.createdAt)}</p></div><a className="button button-dark" href={`/api/editor/submissions/${row.id}/manuscript`}>Download manuscript</a></div>
             <div className="editor-data-grid"><div><h3>Author</h3><p>{row.authorName}<br /><a href={`mailto:${row.authorEmail}`}>{row.authorEmail}</a></p></div><div><h3>Guardian</h3><p>{row.guardianEmail ? <a href={`mailto:${row.guardianEmail}`}>{row.guardianEmail}</a> : "Not supplied"}</p></div><div><h3>School or region</h3><p>{row.schoolOrOrganization ?? "Not supplied"}<br />{row.countryOrRegion ?? "Not supplied"}</p></div><div><h3>Campaign</h3><p>{row.campaignSource ? `${row.campaignSource}${row.campaignName ? ` · ${row.campaignName}` : ""}` : "Direct or not tagged"}<br />{row.landingPath ?? ""}</p></div></div>
             <div className="editor-abstract"><h3>Abstract</h3><p>{row.abstract}</p><h3>AI disclosure</h3><p>{row.aiDisclosure}</p></div>
-            <EditorActions id={row.id} status={row.status} editorMessage={row.editorMessage} />
+            <EditorActions id={row.id} status={row.status} editorMessage={row.editorMessage} ageBand={row.ageBand} guardianEmail={row.guardianEmail} />
             <ReviewAssignments submissionId={row.id} assignments={reviewsBySubmission.get(row.id) ?? []} />
             {(row.status === "accepted" || row.status === "published") && (() => {
               const article = articles.find((item) => item.submissionId === row.id);
@@ -61,6 +64,11 @@ export default async function EditorPage() {
                 authorName: article?.authorName ?? row.authorName,
                 discipline: article?.discipline ?? row.discipline,
                 abstract: article?.abstract ?? row.abstract,
+                abstractNative: article?.abstractNative ?? row.abstractNative,
+                abstractNativeLanguage: article?.abstractNativeLanguage ?? row.abstractNativeLanguage,
+                submissionType: article?.submissionType ?? row.submissionType,
+                dataSourceUrl: article?.dataSourceUrl ?? row.dataSourceUrl,
+                codeUrl: article?.codeUrl ?? row.codeUrl,
                 body: article?.body ?? "",
                 issue: article?.issue ?? "Volume 01",
                 slug: article?.slug,

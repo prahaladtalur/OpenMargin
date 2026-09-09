@@ -7,6 +7,11 @@ type ArticleDraft = {
   authorName: string;
   discipline: string;
   abstract: string;
+  abstractNative?: string | null;
+  abstractNativeLanguage?: string | null;
+  submissionType?: string;
+  dataSourceUrl?: string | null;
+  codeUrl?: string | null;
   body: string;
   issue: string;
   slug?: string;
@@ -36,6 +41,10 @@ export function PublishArticleForm({ id, status, initial }: PublishArticleFormPr
         authorName: form.get("authorName"),
         discipline: form.get("discipline"),
         abstract: form.get("abstract"),
+        abstractNativeLanguage: form.get("abstractNativeLanguage"),
+        abstractNative: form.get("abstractNative"),
+        dataSourceUrl: form.get("dataSourceUrl"),
+        codeUrl: form.get("codeUrl"),
         body: form.get("body"),
         issue: form.get("issue"),
         authorApprovalConfirmed: form.get("authorApprovalConfirmed") === "on",
@@ -64,6 +73,12 @@ export function PublishArticleForm({ id, status, initial }: PublishArticleFormPr
         <label>Discipline<input name="discipline" required maxLength={120} defaultValue={initial.discipline} /></label>
         <label>Issue<input name="issue" required maxLength={80} defaultValue={initial.issue || "Volume 01"} /></label>
         <label className="publish-wide">Abstract<small>At least 80 characters.</small><textarea name="abstract" required minLength={80} maxLength={2400} rows={5} defaultValue={initial.abstract} /></label>
+        <label>Abstract language <small>(optional)</small><input name="abstractNativeLanguage" maxLength={60} minLength={2} defaultValue={initial.abstractNativeLanguage ?? ""} /></label>
+        <label className="publish-wide">Additional abstract <small>(optional)</small><textarea name="abstractNative" minLength={300} maxLength={1800} rows={5} defaultValue={initial.abstractNative ?? ""} /></label>
+        {initial.submissionType === "research-note" && <>
+          <label className="publish-wide">Dataset link<input name="dataSourceUrl" type="url" required defaultValue={initial.dataSourceUrl ?? ""} /></label>
+          <label className="publish-wide">Code link <small>(optional)</small><input name="codeUrl" type="url" defaultValue={initial.codeUrl ?? ""} /></label>
+        </>}
         <label className="publish-wide">Article text<small>Use a blank line between paragraphs. The page shows plain text only.</small><textarea name="body" required minLength={240} maxLength={120000} rows={16} defaultValue={initial.body} placeholder="Paste the final, author-approved article here." /></label>
       </div>
       <label className="publish-approval"><input type="checkbox" name="authorApprovalConfirmed" required /> I confirmed that the author, or a parent or guardian when required, approved this final version for public release.</label>

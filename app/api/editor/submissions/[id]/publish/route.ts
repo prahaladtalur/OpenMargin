@@ -26,6 +26,14 @@ function paragraphs(body: string) {
   return body.split(/\n\s*\n/).map((part) => part.trim()).filter(Boolean).length;
 }
 
+function isHttpsUrl(valueToCheck: string) {
+  try {
+    return new URL(valueToCheck).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!await getEditorForApi()) return Response.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
@@ -38,6 +46,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const authorName = value(payload, "authorName", 180);
     const discipline = value(payload, "discipline", 120);
     const abstract = value(payload, "abstract", 2400);
+    const abstractNativeLanguageInput = value(payload, "abstractNativeLanguage", 60);
+    const abstractNativeInput = value(payload, "abstractNative", 1800);
+    const dataSourceUrlInput = value(payload, "dataSourceUrl", 2000);
+    const codeUrlInput = value(payload, "codeUrl", 2000);
     const body = value(payload, "body", 120000);
     const issue = value(payload, "issue", 80) || "Volume 01";
     const approvalConfirmed = payload.authorApprovalConfirmed === true;
@@ -57,6 +69,27 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       return Response.json({ error: "Only an accepted submission can be published." }, { status: 409 });
     }
 
+    const abstractNativeLanguage = abstractNativeLanguageInput || submission.abstractNativeLanguage || "";
+    const abstractNative = abstractNativeInput || submission.abstractNative || "";
+    const submissionType = submission.submissionType || "article";
+    const dataSourceUrl = dataSourceUrlInput || submission.dataSourceUrl || "";
+    const codeUrl = codeUrlInput || submission.codeUrl || "";
+    if (Boolean(abstractNativeLanguage) !== Boolean(abstractNative)) {
+      return Response.json({ error: "Please give both the language and the abstract text, or leave both blank." }, { status: 400 });
+    }
+    if (abstractNativeLanguage && (abstractNativeLanguage.length < 2 || abstractNativeLanguage.length > 60)) {
+      return Response.json({ error: "Enter a language name between 2 and 60 characters." }, { status: 400 });
+    }
+    if (abstractNative && (abstractNative.length < 300 || abstractNative.length > 1800)) {
+      return Response.json({ error: "The second abstract must be between 300 and 1,800 characters." }, { status: 400 });
+    }
+    if (submissionType === "research-note" && !dataSourceUrl) {
+      return Response.json({ error: "Research notes need a link to the dataset you used." }, { status: 400 });
+    }
+    if ((dataSourceUrl && !isHttpsUrl(dataSourceUrl)) || (codeUrl && !isHttpsUrl(codeUrl))) {
+      return Response.json({ error: "Please give a full https link." }, { status: 400 });
+    }
+
     const [existing] = await db.select().from(publishedArticles).where(eq(publishedArticles.submissionId, id)).limit(1);
     const slug = existing?.slug ?? `${slugBase(title)}-${submissionSlug(id)}`;
     const publishedAt = existing?.publishedAt ?? new Date().toISOString();
@@ -68,6 +101,11 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       authorName,
       discipline,
       abstract,
+      abstractNative: abstractNative || null,
+      abstractNativeLanguage: abstractNativeLanguage || null,
+      submissionType,
+      dataSourceUrl: dataSourceUrl || null,
+      codeUrl: codeUrl || null,
       body,
       issue,
       publishedAt,

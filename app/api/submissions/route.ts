@@ -1,6 +1,7 @@
 import { ensureSubmissionTable, getDb, getManuscriptBucket } from "../../../db";
 import { submissions } from "../../../db/schema";
 import { notifyEditorOfSubmission } from "../../../lib/notifications";
+import { publishableCalls } from "../../site";
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
 const supportedTypes = new Set([
@@ -22,6 +23,14 @@ function invalid(error: string) {
   return Response.json({ error }, { status: 400 });
 }
 
+function isHttpsUrl(valueToCheck: string) {
+  try {
+    return new URL(valueToCheck).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const form = await request.formData();
@@ -38,6 +47,13 @@ export async function POST(request: Request) {
     const manuscriptTitle = value(form, "manuscriptTitle", 240);
     const discipline = value(form, "discipline", 100);
     const abstract = value(form, "abstract", 1800);
+    const abstractNativeLanguage = value(form, "abstractNativeLanguage", 60);
+    const abstractNative = value(form, "abstractNative", 1800);
+    const submissionType = value(form, "submissionType", 30) || "article";
+    const dataSourceUrl = value(form, "dataSourceUrl", 2000);
+    const codeUrl = value(form, "codeUrl", 2000);
+    const callSlugValue = value(form, "callSlug", 120);
+    const callSlug = publishableCalls().some((call) => call.slug === callSlugValue) ? callSlugValue : null;
     const originNote = value(form, "originNote", 1000);
     const aiDisclosure = value(form, "aiDisclosure", 1000);
     const wordCount = Number.parseInt(value(form, "wordCount", 8), 10);
@@ -45,8 +61,19 @@ export async function POST(request: Request) {
 
     if (!authorName || !/^\S+@\S+\.\S+$/.test(authorEmail)) return invalid("Enter a valid name and email address.");
     if (guardianConfirmed && !/^\S+@\S+\.\S+$/.test(guardianEmail)) return invalid("Add a valid parent or guardian email.");
+    if (submissionType !== "article" && submissionType !== "research-note") return invalid("Choose a valid submission type.");
     if (!manuscriptTitle || !discipline || abstract.length < 300 || !originNote || !aiDisclosure) return invalid("Complete every manuscript field before you submit.");
-    if (!Number.isInteger(wordCount) || wordCount < 2500 || wordCount > 8000) return invalid("Enter a word count between 2,500 and 8,000.");
+    if (Boolean(abstractNativeLanguage) !== Boolean(abstractNative)) return invalid("Please give both the language and the abstract text, or leave both blank.");
+    if (abstractNativeLanguage && (abstractNativeLanguage.length < 2 || abstractNativeLanguage.length > 60)) return invalid("Enter a language name between 2 and 60 characters.");
+    if (abstractNative && (abstractNative.length < 300 || abstractNative.length > 1800)) return invalid("The second abstract must be between 300 and 1,800 characters.");
+    if (submissionType === "research-note") {
+      if (!Number.isInteger(wordCount) || wordCount < 1500 || wordCount > 3000) return invalid("Research notes run between 1,500 and 3,000 words.");
+      if (!dataSourceUrl) return invalid("Research notes need a link to the dataset you used.");
+      if (!isHttpsUrl(dataSourceUrl) || (codeUrl && !isHttpsUrl(codeUrl))) return invalid("Please give a full https link.");
+    } else if (!Number.isInteger(wordCount) || wordCount < 2500 || wordCount > 8000) {
+      return invalid("Enter a word count between 2,500 and 8,000.");
+    }
+    if (submissionType === "article" && ((dataSourceUrl && !isHttpsUrl(dataSourceUrl)) || (codeUrl && !isHttpsUrl(codeUrl)))) return invalid("Please give a full https link.");
     if (!(manuscript instanceof File) || !manuscript.size) return invalid("Attach a manuscript file.");
     if (manuscript.size > MAX_FILE_BYTES || (!supportedTypes.has(manuscript.type) && !supportedExtensions.test(manuscript.name))) return invalid("Use a PDF or DOCX file no larger than 10 MB.");
     if (form.get("originalWorkConfirmed") !== "on" || form.get("privacyConfirmed") !== "on") return invalid("Confirm the originality and privacy checkboxes.");
@@ -77,6 +104,12 @@ export async function POST(request: Request) {
         manuscriptTitle,
         discipline,
         abstract,
+        abstractNative: abstractNative || null,
+        abstractNativeLanguage: abstractNativeLanguage || null,
+        submissionType,
+        dataSourceUrl: dataSourceUrl || null,
+        codeUrl: codeUrl || null,
+        callSlug,
         wordCount,
         originNote,
         aiDisclosure,
