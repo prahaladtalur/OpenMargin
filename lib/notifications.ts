@@ -1,3 +1,4 @@
+// @ts-expect-error Cloudflare provides this virtual module in the Workers runtime.
 import { env } from "cloudflare:workers";
 
 type SubmissionNotification = {
