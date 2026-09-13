@@ -172,12 +172,13 @@ export default async function GuidePage({ searchParams }: GuidePageProps) {
       </section>
 
       <section className="closing-callout">
-        <p className="eyebrow">If Open Margin fits</p>
+        <p className="eyebrow">Choose your next step</p>
         <h2>Read the process before you send the paper.</h2>
-        <p>See what reviewers read, what decisions mean, and what happens after a submission.</p>
+        <p>See what reviewers read, what decisions mean, and what happens after a submission. If you mentor students, share this guide instead of sending their information to us.</p>
         <div className="closing-actions">
           <Link className="button button-accent" href="/review">Read the review process</Link>
           <Link className="text-link light" href={submitHref}>Open the submission guide</Link>
+          <Link className="text-link light" href="/share">Share with a student</Link>
         </div>
       </section>
     </main>

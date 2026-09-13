@@ -164,16 +164,17 @@ export default async function Home() {
       </section>
 
       <section className="closing-callout">
-        <p className="eyebrow">For the first issue</p>
-        <h2>Send us the draft you want another reader to test.</h2>
+        <p className="eyebrow">For authors and mentors</p>
+        <h2>Have a finished paper? Start with the path that fits.</h2>
         <p>
-          We read original work from students of any age in history, literature,
-          philosophy, economics, politics, sociology, anthropology, science,
-          mathematics, computing, engineering, and related fields.
+          Authors of any age can read the guide, check the process, and submit
+          original work in the humanities, social sciences, and STEM. Mentors
+          and programs can share the same public information with students.
         </p>
         <div className="closing-actions">
-          <Link className="button button-accent" href="/submit">Read the submission guide</Link>
-          <Link className="text-link light" href="/partners">Partner with the journal</Link>
+          <Link className="button button-accent" href="/guide">Compare publication options</Link>
+          <Link className="text-link light" href="/submit">Submit a manuscript</Link>
+          <Link className="text-link light" href="/share">Share with a student</Link>
         </div>
       </section>
     </main>

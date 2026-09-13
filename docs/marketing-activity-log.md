@@ -61,6 +61,14 @@ The success test is a stable review cycle, not a large mailing count.
 5. Use a moderator-approved or designated community thread before any public
    Reddit post.
 
+## 13 September 2026
+
+- Tightened the public referral path on the home page and publishing guide.
+- Added four tagged, ready-to-share links to the private marketing desk for
+  programs, teachers, research communities, and direct referrals.
+- Kept the campaign focused on qualified submissions and partner replies. No
+  student contact list, manuscript, or unsolicited message was sent.
+
 ## 6 September 2026
 
 - Sent one final, low-pressure follow-up to Inspirit AI in the existing thread.

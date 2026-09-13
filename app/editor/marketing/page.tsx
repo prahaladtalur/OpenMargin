@@ -18,6 +18,29 @@ type CampaignRow = {
   published: number;
 };
 
+const campaignLinks = [
+  {
+    audience: "Programs and mentors",
+    path: "/share?utm_source=program&utm_medium=referral&utm_campaign=fall-2026",
+    label: "Forwardable share page",
+  },
+  {
+    audience: "Teachers and librarians",
+    path: "/guide?utm_source=teacher&utm_medium=referral&utm_campaign=fall-2026",
+    label: "Publishing guide",
+  },
+  {
+    audience: "Research communities",
+    path: "/guide?utm_source=reddit&utm_medium=community&utm_campaign=fall-2026",
+    label: "Community-safe guide link",
+  },
+  {
+    audience: "Direct author referrals",
+    path: "/submit?utm_source=partner&utm_medium=referral&utm_campaign=fall-2026",
+    label: "Submission portal",
+  },
+];
+
 export default async function MarketingDeskPage() {
   await requireEditor("/editor/marketing");
   await Promise.all([ensureSubmissionTable(), ensureOperationsTables()]);
@@ -54,6 +77,7 @@ export default async function MarketingDeskPage() {
       <section className="editor-notice configured"><p><strong>Privacy boundary:</strong> this report stores only campaign labels submitted with a form. It does not collect IP addresses, device IDs, or browsing history.</p></section>
       <section className="editor-summary" aria-label="Marketing summary"><div><span>{rows.length}</span><p>Submissions</p></div><div><span>{tagged}</span><p>Tagged submissions</p></div><div><span>{rows.filter((row) => row.status === "accepted" || row.status === "published").length}</span><p>Accepted</p></div><div><span>{rows.filter((row) => row.status === "published").length}</span><p>Published</p></div><div><span>{reviewerRows.length}</span><p>Reviewer applications</p></div><div><span>{partnerRows.length}</span><p>Partner inquiries</p></div></section>
       <section className="editor-list"><div className="editor-list-heading"><p className="eyebrow">Campaign attribution</p><p>Use UTM links from the marketing calendar.</p></div>{campaigns.length === 0 ? <div className="editor-empty"><h2>No submissions yet.</h2><p>Tagged campaigns will appear after an author submits through a campaign link.</p></div> : <div className="marketing-table-wrap"><table className="marketing-table"><thead><tr><th>Source</th><th>Medium</th><th>Campaign</th><th>Submissions</th><th>Reviewed</th><th>Accepted</th><th>Published</th></tr></thead><tbody>{campaigns.map((campaign) => <tr key={`${campaign.source}-${campaign.medium}-${campaign.name}`}><td>{campaign.source}</td><td>{campaign.medium}</td><td>{campaign.name}</td><td>{campaign.submissions}</td><td>{campaign.reviewed}</td><td>{campaign.accepted}</td><td>{campaign.published}</td></tr>)}</tbody></table></div>}</section>
+      <section className="editor-list marketing-links"><div className="editor-list-heading"><p className="eyebrow">Ready-to-share links</p><p>Use one link per audience. Keep the destination visible.</p></div><div className="marketing-link-grid">{campaignLinks.map((link) => <article key={link.path}><p className="editor-reference">{link.audience}</p><h2>{link.label}</h2><code>{`https://openmargin.org${link.path}`}</code><a className="button button-paper" href={link.path}>Open link</a></article>)}</div></section>
       <section className="marketing-next"><p className="eyebrow">How to use this desk</p><ol><li>Give each channel one clear UTM campaign name.</li><li>Count qualified submissions, reviewer applications, and partner replies, not clicks or follower totals.</li><li>Keep outreach small until reviewer capacity can support the current scope.</li></ol><Link className="button button-paper" href="/share">Open the share page</Link></section>
     </main>
   );
