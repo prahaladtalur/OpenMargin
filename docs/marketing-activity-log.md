@@ -67,7 +67,11 @@ The success test is a stable review cycle, not a large mailing count.
 - Added four tagged, ready-to-share links to the private marketing desk for
   programs, teachers, research communities, and direct referrals.
 - Kept the campaign focused on qualified submissions and partner replies. No
-  student contact list, manuscript, or unsolicited message was sent.
+  student contact list, manuscript, or personal data was sent.
+- Sent the ten prepared India outreach messages to public institutional or
+  program contacts. Each message asked for a process review or an optional
+  resource share, used one public link, and asked for no student data.
+- Applied the Gmail label `Open Margin/India Outreach` to the sent messages.
 
 ## 6 September 2026
 
