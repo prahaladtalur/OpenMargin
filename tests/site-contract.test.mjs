@@ -228,7 +228,7 @@ test("keeps operating documentation aligned with the live product", async () => 
 });
 
 test("keeps marketing attribution private and useful", async () => {
-  const [schema, database, migration, route, form, editorPage, marketingPage, guide, layout, attribution, campaign] = await Promise.all([
+  const [schema, database, migration, route, form, editorPage, marketingPage, copyCampaignLinkButton, guide, layout, attribution, campaign] = await Promise.all([
     source("db/schema.ts"),
     source("db/index.ts"),
     source("drizzle/0006_campaign_attribution.sql"),
@@ -236,6 +236,7 @@ test("keeps marketing attribution private and useful", async () => {
     source("app/submit/SubmissionForm.tsx"),
     source("app/editor/page.tsx"),
     source("app/editor/marketing/page.tsx"),
+    source("app/editor/marketing/CopyCampaignLinkButton.tsx"),
     source("app/guide/page.tsx"),
     source("app/layout.tsx"),
     source("app/components/CampaignAttribution.tsx"),
@@ -262,6 +263,8 @@ test("keeps marketing attribution private and useful", async () => {
   assert.match(marketingPage, /Partner inquiries/);
   assert.match(marketingPage, /Ready-to-share links/);
   assert.match(marketingPage, /utm_campaign=fall-2026/);
+  assert.match(marketingPage, /CopyCampaignLinkButton/);
+  assert.match(copyCampaignLinkButton, /navigator\.clipboard/);
   assert.match(guide, /FAQPage/);
   assert.match(guide, /Who can submit/);
   assert.match(layout, /https:\/\/openmargin\.org/);
