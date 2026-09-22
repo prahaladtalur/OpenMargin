@@ -14,11 +14,6 @@ async function getArticle(slug: string) {
   return article;
 }
 
-function formatDate(value: string) {
-  const date = new Date(value);
-  return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat("en-US", { dateStyle: "long" }).format(date);
-}
-
 function bodyParagraphs(body: string) {
   return body.split(/\n\s*\n/).map((part) => part.trim()).filter(Boolean);
 }
@@ -31,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: article.title,
     description: article.abstract,
     alternates: { canonical: `/articles/${article.slug}` },
-    openGraph: { title: article.title, description: article.abstract, type: "article", publishedTime: article.publishedAt, authors: [article.authorName] },
+    openGraph: { title: article.title, description: article.abstract, type: "article", authors: [article.authorName] },
   };
 }
 
@@ -40,7 +35,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = await getArticle(slug);
   if (!article) notFound();
   const publicUrl = `https://openmargin.org/articles/${article.slug}`;
-  const citation = `${article.authorName}. (${new Date(article.publishedAt).getFullYear()}). ${article.title}. Open Margin, ${article.issue}. ${publicUrl}`;
+  const citation = `${article.authorName}. ${article.title}. Open Margin, ${article.issue}. Pilot record, audit pending. ${publicUrl}`;
   const nativeCode = languageCode(article.abstractNativeLanguage);
 
   return (
@@ -48,18 +43,18 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <article className="article-page">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ScholarlyArticle",
+          "@type": "CreativeWork",
           headline: article.title,
           abstract: article.abstract,
           author: { "@type": "Person", name: article.authorName },
-          datePublished: article.publishedAt,
+          creativeWorkStatus: "Pilot record, audit pending",
           isPartOf: { "@type": "PublicationIssue", name: article.issue, isPartOf: { "@type": "Periodical", name: "Open Margin", url: "https://openmargin.org" } },
           url: publicUrl,
           isAccessibleForFree: true,
           inLanguage: "en",
         }) }} />
         <header className="article-header">
-          <div className="article-header-meta"><span>{article.issue}</span><span>{formatDate(article.publishedAt)}</span></div>
+          <div className="article-header-meta"><span>{article.issue}</span><span>Pilot record · audit pending</span></div>
           <p className="eyebrow">{article.discipline}{article.submissionType === "research-note" && <span className="article-badge">Research note</span>}</p>
           <h1>{article.title}</h1>
           <p className="article-byline">{article.authorName}</p>

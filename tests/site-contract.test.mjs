@@ -164,10 +164,11 @@ test("keeps public publication evidence and discovery metadata connected", async
     source("app/updates/page.tsx"),
   ]);
   assert.match(home, /getPublishedArticles/);
-  assert.match(home, /published work/);
-  assert.match(transparency, /Published articles/);
+  assert.match(home, /pilot record, audit pending/);
+  assert.match(transparency, /Public records under audit/);
   assert.match(transparency, /Authors retain copyright/);
-  assert.match(article, /ScholarlyArticle/);
+  assert.match(article, /CreativeWork/);
+  assert.match(article, /creativeWorkStatus/);
   assert.match(article, /Suggested citation/);
   assert.match(article, /canonical/);
   assert.match(sitemap, /openmargin\.org/);

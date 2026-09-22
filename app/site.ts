@@ -2,7 +2,7 @@ export const site = {
   name: "Open Margin",
   descriptor: "A student research journal",
   location: "Washington, United States",
-  submissionWindow: "Volume 01 submissions are open",
+  submissionWindow: "Volume 01 pilot records are under audit",
 };
 
 export type CallForPapers = {
@@ -100,8 +100,8 @@ export const publicUpdates = [
   {
     period: "August 2026",
     label: "Volume 01",
-    title: "The first article is available to read.",
-    body: "Volume 01 is open. We add an article only after review, revision, and author approval. More papers will appear as the editorial process supports them.",
+    title: "The first pilot records are available to read.",
+    body: "The pilot records remain readable while we reconcile review, revision, author approval, and final-file evidence. They are not presented as completed publications.",
     href: "/issue",
     link: "Read Volume 01",
   },

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 function formatDate(value: string | undefined) {
-  if (!value) return "No article published yet";
+  if (!value) return "No public record yet";
   const date = new Date(value);
   return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat("en-US", { dateStyle: "long" }).format(date);
 }
@@ -34,23 +34,23 @@ export default async function TransparencyPage() {
       <section className="transparency-summary" aria-labelledby="transparency-summary-title">
         <div className="section-heading"><div><p className="eyebrow">Current snapshot</p><h2 id="transparency-summary-title">Volume 01, in public.</h2></div><p className="transparency-updated">Updated from the publication record</p></div>
         <div className="transparency-stat-grid">
-          <article><span>{articles.length}</span><p>Published articles</p></article>
+          <article><span>{articles.length}</span><p>Public records under audit</p></article>
           <article><span>$0</span><p>Submission or publication fee</p></article>
           <article><span>2×</span><p>Written reviews per eligible manuscript</p></article>
-          <article><span>{disciplines.length || "Open"}</span><p>{disciplines.length ? "Published fields" : "Fields currently open"}</p></article>
+          <article><span>{disciplines.length || "Open"}</span><p>{disciplines.length ? "Fields represented" : "Fields currently open"}</p></article>
         </div>
       </section>
 
       <section className="transparency-grid">
         <div>
           <p className="eyebrow">Publication record</p>
-          <h2>{latest ? "The latest article is available to read." : "The first article is still in progress."}</h2>
-          <p>{latest ? `The most recent article was published on ${formatDate(latest.publishedAt)}. We add work only after review, revision, and author approval.` : "We will list an article only after the review cycle ends and the author approves the final version."}</p>
-          {latest && <Link className="text-link" href={`/articles/${latest.slug}`}>Read the latest article <span aria-hidden="true">↗</span></Link>}
+          <h2>{latest ? "The pilot records are available to read." : "The first article is still in progress."}</h2>
+          <p>{latest ? `The most recent public record was added on ${formatDate(latest.publishedAt)}. The records remain readable while we reconcile review, revision, author approval, and final-file evidence. They are not presented as completed publications.` : "We will list an article only after the review cycle ends and the author approves the final version."}</p>
+          {latest && <Link className="text-link" href={`/articles/${latest.slug}`}>Read the latest public record <span aria-hidden="true">↗</span></Link>}
         </div>
         <dl className="transparency-details">
           <div><dt>Issue</dt><dd>Volume 01 · Autumn 2026</dd></div>
-          <div><dt>Last publication</dt><dd>{formatDate(latest?.publishedAt)}</dd></div>
+          <div><dt>Latest public record</dt><dd>{formatDate(latest?.publishedAt)}</dd></div>
           <div><dt>Author rights</dt><dd>Authors retain copyright</dd></div>
           <div><dt>Review model</dt><dd>Double-blind when practical</dd></div>
         </dl>

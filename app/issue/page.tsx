@@ -7,11 +7,6 @@ import { publishedArticles } from "../../db/schema";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Pilot issue" };
 
-function formatDate(value: string) {
-  const date = new Date(value);
-  return Number.isNaN(date.valueOf()) ? value : new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(date);
-}
-
 export default async function IssuePage() {
   await ensureSubmissionTable();
   const articles = await getDb().select().from(publishedArticles).orderBy(desc(publishedArticles.publishedAt));
@@ -24,9 +19,9 @@ export default async function IssuePage() {
         </div>
         <div>
           <p className="eyebrow">Pilot issue</p>
-          <h1>{articles.length > 0 ? "Volume 01 is open." : "Volume 01 is in progress."}</h1>
+          <h1>{articles.length > 0 ? "Volume 01 is open for reading." : "Volume 01 is in progress."}</h1>
           <p>
-            {articles.length > 0 ? "Read the accepted work below. We will add more articles after review, revision, and author approval." : "We will add articles after review, revision, and author approval."}
+            {articles.length > 0 ? "Read the pilot records below while we reconcile review, revision, author approval, and readable final files. They are not presented as completed publications." : "We will add articles after review, revision, and author approval."}
           </p>
         </div>
         <p className="issue-cover-number" aria-hidden="true">01</p>
@@ -43,8 +38,8 @@ export default async function IssuePage() {
           ) : articles.map((article, index) => (
             <article key={article.id}>
               <p className="paper-number">{String(index + 1).padStart(2, "0")}</p>
-              <div><p className="paper-field">{article.discipline}</p><h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2><p className="paper-author">{article.authorName} · published {formatDate(article.publishedAt)}</p></div>
-              <p className="paper-note">Read article</p>
+              <div><p className="paper-field">{article.discipline}</p><h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2><p className="paper-author">{article.authorName} · pilot record, audit pending</p></div>
+              <p className="paper-note">Read record</p>
             </article>
           ))}
         </div>

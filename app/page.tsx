@@ -114,7 +114,7 @@ export default async function Home() {
               <div>
                 <p className="paper-field">{article.discipline}</p>
                 <h3><Link href={`/articles/${article.slug}`}>{article.title}</Link></h3>
-                <p className="paper-author">{article.authorName} · published work</p>
+                <p className="paper-author">{article.authorName} · pilot record, audit pending</p>
               </div>
               <p className="paper-note">Read the article</p>
               <span className="paper-arrow" aria-hidden="true">↗</span>
@@ -134,7 +134,7 @@ export default async function Home() {
         </div>
         <p className="sample-disclaimer">
           {articles.length > 0
-            ? `Volume 01 currently lists ${articles.length} published ${articles.length === 1 ? "article" : "articles"}. We add work after review, revision, and author approval.`
+            ? `Volume 01 currently lists ${articles.length} pilot ${articles.length === 1 ? "record" : "records"} under audit. They remain readable while we reconcile review, revision, author approval, and final-file evidence.`
             : "The first issue is in progress. We will list accepted work after review, revision, and author approval."}
         </p>
       </section>

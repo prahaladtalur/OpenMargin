@@ -15,7 +15,7 @@ export function SiteHeader() {
     <>
       <div className="notice">
         <p>{site.submissionWindow}</p>
-        <Link href="/submit">Submission guide <span aria-hidden="true">↗</span></Link>
+        <Link href="/transparency">Read the public record <span aria-hidden="true">↗</span></Link>
       </div>
       <header className="site-header">
         <Link className="wordmark" href="/" aria-label={`${site.name} home`}>
