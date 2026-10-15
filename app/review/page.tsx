@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageIntro } from "../components/SiteShell";
 import { reviewSteps } from "../site";
 
@@ -22,19 +23,23 @@ export default function ReviewPage() {
       <PageIntro
         eyebrow="Review process"
         title="A clear process for every paper."
-        description="You submit once. An editor checks fit. Two reviewers read the paper. You receive a written decision and comments. Our target is a decision within six to eight weeks."
+        description="You submit once. An editor checks fit. Each eligible paper needs one written review from a qualified human reviewer before acceptance or publication. With your specific permission, AI may also prepare labeled preliminary feedback."
       />
 
       <section className="review-summary" aria-label="Review promises">
         <article>
           <p className="eyebrow">What you receive</p>
-          <h2>Two written reviews and a decision letter.</h2>
+          <h2>A written review and a decision letter.</h2>
           <p>We tell you what is working, what needs work, and what to try next.</p>
+          <p>With your specific permission, editorial feedback may include separate reports from ChatGPT, Claude, or Gemini. We label them and name the tools used. An editor checks them before sharing. They do not replace the required human review.</p>
+          <p>Before any AI upload, we tell you what service, model, account or route, and information we plan to use. You can decline AI processing without affecting your eligibility.</p>
+          <p>We check subject fit, conflicts, confidentiality, and reviewer availability before review begins. If we cannot arrange a suitable human review, we will tell you.</p>
+          <p>We are still looking for reviewers in some subject areas. <Link href="/reviewers">See how to review with us.</Link></p>
         </article>
         <article>
           <p className="eyebrow">What we do not promise</p>
           <h2>Acceptance or a fixed date.</h2>
-          <p>We do not sell publication. Our six to eight week timeline is a target. A complex paper or a specialist review can take longer.</p>
+          <p>We do not sell publication. Timing depends on the paper and reviewer availability. We share an estimate after the fit check.</p>
         </article>
       </section>
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "About" };
 const commitments = [
   ["No fees", "There is no submission, publication, membership, or fast-review fee."],
   ["Comments should help", "A decision matters. The notes should help the author write the next draft."],
-  ["Students run it", "Student editors run the journal. Academic advisors help with hard decisions, calibration, and work outside the team's expertise."],
+  ["Students run it", "Student editors run the journal. Academic advisors help with hard decisions and work outside the team's expertise."],
   ["Rules in the open", "Our rubric, policies, timelines, and yearly statistics stay on the site."],
 ];
 
@@ -81,7 +81,7 @@ export default function AboutPage() {
         <div className="policy-list">
           {[
             "Authorship and originality",
-            "Peer review, conflicts and appeals",
+            "Review, conflicts and appeals",
             "Research with people",
             "Corrections and retractions",
             "Copyright and licensing",

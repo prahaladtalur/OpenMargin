@@ -12,7 +12,7 @@ Hello [name],
 
 I am building Open Margin, a free journal for research by authors of any age.
 We accept work in the humanities, social sciences, and STEM. An editor checks
-fit, two reviewers write comments for eligible papers, and an editor sends a
+fit, one independent reviewer writes comments for eligible papers, and an editor sends a
 written decision. We do not promise acceptance or admissions value.
 
 Would you be willing to review the process and tell me if this could be a useful
@@ -84,7 +84,7 @@ I built Open Margin, a free journal for student research by authors of any age.
 I am sharing it because people often ask where to send a finished paper.
 
 The site explains the scope, fees, privacy policy, and review process. Eligible
-papers get two written reviews and a decision letter. There is no guarantee of
+papers get one independent written review and a decision letter. There is no guarantee of
 publication or admissions benefit.
 
 I am the person who built it, so this is self-promotion. If your community
@@ -104,7 +104,7 @@ https://openmargin.org/guide?utm_source=program&utm_medium=referral&utm_campaign
 ## Two-sentence version
 
 Open Margin is a free journal for original research by authors of any age. It
-offers a public process, two written reviews for eligible work, and a written
+offers a public process, one independent written review for eligible work, and a written
 decision, with no promise of publication: https://openmargin.org/guide
 
 ## Reply to a question about fit
@@ -113,3 +113,41 @@ Thank you for asking. Open Margin is one option, not a required step. Please
 compare the scope, review model, fees, copyright terms, and simultaneous-
 submission rules before you choose. Our public process is here:
 https://openmargin.org/review
+
+## Route-specific author messages
+
+Use one route only when it matches the reader. These messages are invitations
+to read the public requirements, not promises of publication.
+
+### AP Research, IB, or school paper
+
+**Subject:** A free route for a finished school research paper
+
+If you have a finished AP Research project, IB Extended Essay, capstone, or
+similar paper, Open Margin is one optional place to compare. The fit page
+explains the manuscript length, double-blind file, guardian approval, and
+simultaneous-submission rules. Students submit directly and publication is not
+guaranteed:
+
+https://openmargin.org/submit/ap-research?utm_source=school_research&utm_medium=referral&utm_campaign=fall-2026
+
+### Class, science-fair, or capstone project
+
+**Subject:** What to do with a finished class research project
+
+Classwork, science-fair studies, lab reports, and design projects may fit Open
+Margin when the work is original and shareable. Read the privacy and permission
+checklist before uploading. A teacher or mentor can share the page, but the
+student decides whether to submit:
+
+https://openmargin.org/submit/class-project?utm_source=teacher&utm_medium=referral&utm_campaign=fall-2026
+
+### Research note from public data
+
+**Subject:** A short route for student research using public data
+
+Open Margin has a research-note path for a 1,500 to 3,000 word paper built
+from a dataset anyone can download. The dataset link is required, code is
+optional, and the paper should explain its method and limits:
+
+https://openmargin.org/submit/research-note?utm_source=research&utm_medium=community&utm_campaign=fall-2026

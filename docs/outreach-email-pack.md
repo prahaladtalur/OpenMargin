@@ -18,7 +18,7 @@ These are public organization addresses checked on August 24, 2026. Review the o
 
 Hello [name],
 
-I run Open Margin, a new free journal for student research in the humanities, social sciences, and STEM. We offer an initial editorial screen, two written reviews for eligible manuscripts, and a written decision. Authors keep control of their work.
+I run Open Margin, a new free journal for student research in the humanities, social sciences, and STEM. We offer an initial editorial screen, one independent written review for eligible manuscripts, and a written decision. Authors keep control of their work.
 
 Would you be open to reviewing the site and deciding whether the submission link could be a useful optional resource for your students? There is no fee, admissions promise, or guaranteed publication outcome.
 
@@ -47,7 +47,7 @@ Prahalad Talur
 
 Hello [name],
 
-Open Margin gives student authors a free place to submit research papers and scholarly essays. We read for a clear question, sound evidence, and honest limits. Eligible manuscripts receive two written reviews and a decision letter.
+Open Margin gives student authors a free place to submit research papers and scholarly essays. We read for a clear question, sound evidence, and honest limits. Eligible manuscripts receive one independent written review and a decision letter.
 
 Could I send you the short process page for review? I would welcome any concern you have before we ask a program to share it.
 

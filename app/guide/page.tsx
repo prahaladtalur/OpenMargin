@@ -43,7 +43,7 @@ const options = [
   {
     title: "Open Margin",
     bestFor: "One free option for a careful review.",
-    body: "Open Margin is a student-led journal project. Authors of any age can submit in the humanities, social sciences, and STEM. We charge no submission or publication fee, ask two reviewers for written comments, and target a decision within six to eight weeks. We do not guarantee acceptance.",
+    body: "Open Margin is a student-led journal project. Authors of any age can submit in the humanities, social sciences, and STEM. We charge no submission or publication fee and ask one reviewer for written comments. Timing depends on the paper and reviewer availability. We share an estimate after the fit check. The public pilot records are unreviewed and are not completed publications. We do not guarantee acceptance.",
     label: "This journal",
   },
 ];
@@ -61,8 +61,8 @@ const questions = [
 const faq = [
   ["Is Open Margin free?", "Yes. Open Margin has no submission or publication fee."],
   ["Who can submit?", "Authors of any age can submit original work in the humanities, social sciences, and STEM."],
-  ["Does Open Margin guarantee publication?", "No. An editor checks fit, two reviewers write comments, and an editor sends a decision."],
-  ["How long does a decision take?", "The target is six to eight weeks after the fit check. Timing can change when reviewer availability changes."],
+  ["Does Open Margin guarantee publication?", "No. An editor checks fit, one reviewer writes comments, and an editor sends a decision."],
+  ["How long does a decision take?", "Timing depends on the paper and reviewer availability. We share an estimate after the fit check."],
   ["Can I submit the same paper elsewhere?", "Check each venue's simultaneous-submission rule. Tell Open Margin if the same work is under exclusive review elsewhere."],
 ] as const;
 
@@ -78,6 +78,7 @@ type GuidePageProps = { searchParams?: Promise<Record<string, string | string[] 
 export default async function GuidePage({ searchParams }: GuidePageProps) {
   const campaign = campaignFromSearchParams((await searchParams) ?? {}, "/guide");
   const submitHref = withCampaign("/submit", campaign);
+  const studentResearchHref = withCampaign("/submit/student-research", campaign);
 
   return (
     <main>
@@ -126,6 +127,7 @@ export default async function GuidePage({ searchParams }: GuidePageProps) {
               <h3>{option.title}</h3>
               <p>{option.body}</p>
               <p>{option.label}</p>
+              {option.title === "Open Margin" && <Link className="text-link" href={studentResearchHref}>Read the student research route</Link>}
             </article>
           ))}
         </div>

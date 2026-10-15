@@ -94,7 +94,7 @@ export default async function Home() {
         </div>
         <dl className="manifesto-facts">
           <div><dt>$0</dt><dd>to submit or publish</dd></div>
-          <div><dt>2×</dt><dd>reviewers per manuscript</dd></div>
+          <div><dt>1×</dt><dd>written human review per manuscript</dd></div>
           <div><dt>6 wk</dt><dd>target first decision</dd></div>
         </dl>
       </section>
@@ -114,7 +114,7 @@ export default async function Home() {
               <div>
                 <p className="paper-field">{article.discipline}</p>
                 <h3><Link href={`/articles/${article.slug}`}>{article.title}</Link></h3>
-                <p className="paper-author">{article.authorName} · pilot record, audit pending</p>
+                <p className="paper-author">{article.authorName} · unreviewed pilot record</p>
               </div>
               <p className="paper-note">Read the article</p>
               <span className="paper-arrow" aria-hidden="true">↗</span>
@@ -134,7 +134,7 @@ export default async function Home() {
         </div>
         <p className="sample-disclaimer">
           {articles.length > 0
-            ? `Volume 01 currently lists ${articles.length} pilot ${articles.length === 1 ? "record" : "records"} under audit. They remain readable while we reconcile review, revision, author approval, and final-file evidence.`
+            ? `Volume 01 currently lists ${articles.length} pilot ${articles.length === 1 ? "record" : "records"} under public audit. We will describe a paper as published only after review, revision, author approval, and a readable final file are verified.`
             : "The first issue is in progress. We will list accepted work after review, revision, and author approval."}
         </p>
       </section>

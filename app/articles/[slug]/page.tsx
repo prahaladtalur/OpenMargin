@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ensureSubmissionTable, getDb } from "../../../db";
 import { publishedArticles } from "../../../db/schema";
 import { languageCode } from "../../../lib/languages";
+import { ArticleReadingActions } from "../ArticleReadingActions";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +36,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = await getArticle(slug);
   if (!article) notFound();
   const publicUrl = `https://openmargin.org/articles/${article.slug}`;
-  const citation = `${article.authorName}. ${article.title}. Open Margin, ${article.issue}. Pilot record, audit pending. ${publicUrl}`;
+  const citation = `${article.authorName}. ${article.title}. Open Margin, ${article.issue}. Unreviewed pilot record. ${publicUrl}`;
   const nativeCode = languageCode(article.abstractNativeLanguage);
 
   return (
@@ -46,16 +47,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           "@type": "CreativeWork",
           headline: article.title,
           abstract: article.abstract,
+          creativeWorkStatus: "Unreviewed pilot record",
           author: { "@type": "Person", name: article.authorName },
-          creativeWorkStatus: "Pilot record, audit pending",
-          isPartOf: { "@type": "PublicationIssue", name: article.issue, isPartOf: { "@type": "Periodical", name: "Open Margin", url: "https://openmargin.org" } },
+          isPartOf: { "@type": "CreativeWork", name: article.issue, isPartOf: { "@type": "Organization", name: "Open Margin", url: "https://openmargin.org" } },
           url: publicUrl,
           isAccessibleForFree: true,
           inLanguage: "en",
         }) }} />
         <header className="article-header">
-          <div className="article-header-meta"><span>{article.issue}</span><span>Pilot record · audit pending</span></div>
-          <p className="eyebrow">{article.discipline}{article.submissionType === "research-note" && <span className="article-badge">Research note</span>}</p>
+          <div className="article-header-meta"><span>{article.issue}</span><span>Unreviewed pilot record</span></div>
+          <p className="eyebrow">{article.discipline}<span className="article-badge">Unreviewed pilot record</span>{article.submissionType === "research-note" && <span className="article-badge">Research note</span>}</p>
           <h1>{article.title}</h1>
           <p className="article-byline">{article.authorName}</p>
         </header>
@@ -67,6 +68,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <p className="eyebrow">{article.abstractNativeLanguage ?? "Additional abstract"}</p>
               <p>{article.abstractNative}</p>
             </div>}
+            <ArticleReadingActions />
             {article.submissionType === "research-note" && <div className="article-data-links">
               <p className="eyebrow">Research note data</p>
               <p><a href={article.dataSourceUrl ?? "#"} target="_blank" rel="noreferrer">Dataset</a>{article.codeUrl && <> · <a href={article.codeUrl} target="_blank" rel="noreferrer">Code</a></>}</p>

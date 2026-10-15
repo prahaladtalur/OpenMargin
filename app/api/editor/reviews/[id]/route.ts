@@ -1,9 +1,10 @@
-import { eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { getEditorForApi } from "../../../../../lib/editor-auth";
 import { ensureSubmissionTable, getDb } from "../../../../../db";
-import { reviewAssignments } from "../../../../../db/schema";
+import { reviewerApplications, reviewAssignments, submissionRevisions } from "../../../../../db/schema";
+import { isReviewerEligibleForManuscriptAccess } from "../../../../../lib/reviewer-eligibility.mjs";
 
-const statuses = new Set(["invited", "accepted", "in-progress", "submitted", "declined", "withdrawn"]);
+const statuses = new Set(["draft", "invited", "accepted", "in-progress", "submitted", "declined", "withdrawn"]);
 const recommendations = new Set(["strong-revise", "revise", "accept-with-changes", "accept", "decline"]);
 const scoreKeys = ["questionScore", "contextScore", "methodScore", "evidenceScore", "clarityScore", "integrityScore"] as const;
 
@@ -38,6 +39,23 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const db = getDb();
     const [assignment] = await db.select().from(reviewAssignments).where(eq(reviewAssignments.id, id)).limit(1);
     if (!assignment) return Response.json({ error: "Review assignment not found." }, { status: 404 });
+    if (status === "submitted") {
+      if (!assignment.reviewerApplicationId) {
+        return Response.json({ error: "This report is not linked to an active reviewer application." }, { status: 409 });
+      }
+      const [latestRevision] = await db.select({ id: submissionRevisions.id }).from(submissionRevisions)
+        .where(eq(submissionRevisions.submissionId, assignment.submissionId))
+        .orderBy(desc(submissionRevisions.versionNumber)).limit(1);
+      const latestManuscriptVersionId = latestRevision?.id ?? "original";
+      if (!assignment.manuscriptVersionId || assignment.manuscriptVersionId !== latestManuscriptVersionId) {
+        return Response.json({ error: "This assignment is not linked to the latest saved manuscript version. Create a new private draft for that version." }, { status: 409 });
+      }
+      const [activeReviewer] = await db.select({ id: reviewerApplications.id, status: reviewerApplications.status, ageBand: reviewerApplications.ageBand, guardianApprovalAt: reviewerApplications.guardianApprovalAt, guardianApprovalEvidence: reviewerApplications.guardianApprovalEvidence }).from(reviewerApplications).where(and(
+        eq(reviewerApplications.id, assignment.reviewerApplicationId),
+        eq(reviewerApplications.status, "active"),
+      )).limit(1);
+      if (!isReviewerEligibleForManuscriptAccess(activeReviewer)) return Response.json({ error: "The assigned reviewer is not eligible for manuscript access. Verify active status and guardian approval when required." }, { status: 409 });
+    }
     await db.update(reviewAssignments).set({
       status,
       dueAt: clean(payload?.dueAt, 40) || null,

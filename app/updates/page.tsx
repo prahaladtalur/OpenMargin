@@ -33,9 +33,9 @@ export default async function UpdatesPage() {
       <section className="updates-snapshot" aria-labelledby="updates-snapshot-title">
         <div>
           <p className="eyebrow">Current snapshot</p>
-          <h2 id="updates-snapshot-title">A current snapshot of publication and capacity.</h2>
+          <h2 id="updates-snapshot-title">A current snapshot of the public record and capacity.</h2>
           <p>
-            Volume 01 currently lists {articles.length} published {articles.length === 1 ? "article" : "articles"}. We will add work after the full review process, author approval, and final copyediting.
+            Volume 01 currently lists {articles.length} public record {articles.length === 1 ? "entry" : "entries"} under audit. We will describe a paper as published only after the full review process, author approval, final copyediting, and readable-file check are verified.
           </p>
           <div className="updates-actions">
             <Link className="button button-dark" href="/issue">Read the issue</Link>
@@ -44,8 +44,8 @@ export default async function UpdatesPage() {
         </div>
         <dl className="updates-facts">
           <div><dt>Cost</dt><dd>$0 to submit or publish</dd></div>
-          <div><dt>Review target</dt><dd>Six to eight weeks</dd></div>
-          <div><dt>Current public record</dt><dd>{latest ? <Link href={`/articles/${latest.slug}`}>{latest.title}</Link> : "No article published yet"}</dd></div>
+          <div><dt>Review process</dt><dd>One written human review</dd></div>
+          <div><dt>Latest public record</dt><dd>{latest ? <Link href={`/articles/${latest.slug}`}>{latest.title}</Link> : "No public record yet"}</dd></div>
         </dl>
       </section>
 
@@ -77,8 +77,8 @@ export default async function UpdatesPage() {
           <h2 id="updates-next-title">The next milestone is a complete review cycle.</h2>
         </div>
         <ol>
-          <li><span>01</span><p>Confirm two qualified reviewers and one backup for the paper&apos;s field.</p></li>
-          <li><span>02</span><p>Run the fit check, two written reviews, and an editor decision.</p></li>
+          <li><span>01</span><p>Confirm one qualified reviewer and a backup for the paper&apos;s field.</p></li>
+          <li><span>02</span><p>Run the fit check, one written review, and an editor decision.</p></li>
           <li><span>03</span><p>Publish only the final version that the author approves.</p></li>
         </ol>
       </section>

@@ -15,6 +15,13 @@ const checklist = [
   "Approval from a parent or guardian for authors under 18",
 ];
 
+const submissionPaths = [
+  ["Student research paper", "A finished paper from school, independent study, or a mentored project.", "/submit/student-research"],
+  ["AP Research or IB Extended Essay", "A school research paper that is ready to stand on its own.", "/submit/ap-research"],
+  ["Research note from public data", "A 1,500 to 3,000 word analysis with a dataset anyone can download.", "/submit/research-note"],
+  ["Class, capstone, or science-fair project", "Original work that can be shared with an independent reader.", "/submit/class-project"],
+] as const;
+
 type SubmitPageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
 
 export default async function SubmitPage({ searchParams }: SubmitPageProps) {
@@ -62,6 +69,21 @@ export default async function SubmitPage({ searchParams }: SubmitPageProps) {
         </div>
       </section>
 
+      <section className="guide-options">
+        <div className="section-heading">
+          <div><p className="eyebrow">Common starting points</p><h2>Find the route that sounds like your work.</h2></div>
+        </div>
+        <div className="guide-option-grid">
+          {submissionPaths.map(([title, body, href], index) => (
+            <article className="guide-option" key={href}>
+              <p className="eyebrow">{String(index + 1).padStart(2, "0")}</p>
+              <h3><Link href={href}>{title}</Link></h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="standards-section">
         <p className="eyebrow">What we look for</p>
         <div className="standards-grid">
@@ -87,7 +109,7 @@ export default async function SubmitPage({ searchParams }: SubmitPageProps) {
           <dl>
             <div><dt>Length</dt><dd>2,500 to 8,000 words</dd></div>
             <div><dt>Format</dt><dd>PDF or DOCX</dd></div>
-            <div><dt>Review</dt><dd>Double-blind</dd></div>
+            <div><dt>Review</dt><dd>Names concealed where practical</dd></div>
             <div><dt>Cost</dt><dd>Always $0</dd></div>
             <div><dt>License</dt><dd>Author retains copyright</dd></div>
           </dl>
@@ -98,7 +120,7 @@ export default async function SubmitPage({ searchParams }: SubmitPageProps) {
         <div className="portal-heading">
           <p className="eyebrow">Pilot submission portal</p>
           <h2>Send the file.</h2>
-          <p>Keep a copy of your file. Only assigned editors and advisors can see it.</p>
+          <p>Keep a copy of your file. Assigned editors and reviewers can see it for review. We will not send it to an external AI service without your separate permission. Read the <Link href="/policies#ai-editorial">AI-assisted feedback policy</Link>.</p>
         </div>
         <SubmissionForm initialCampaign={initialCampaign} initialCall={initialCall ? { slug: initialCall.slug, title: initialCall.title } : undefined} />
       </section>

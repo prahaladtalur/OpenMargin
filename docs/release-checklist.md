@@ -15,11 +15,14 @@ Use this checklist before each public release. Keep secrets in the Sites environ
 ## Editorial checks
 
 - [ ] The public policies match the current process
-- [ ] At least two reviewers are available for the fields shown as open
-- [ ] Each eligible manuscript has two private review records
+- [ ] One qualified independent reviewer and a backup are available for the fields shown as open
+- [ ] Each accepted manuscript has one complete private independent review record
 - [ ] Conflict and confidentiality checks are recorded
 - [ ] Decision notes are specific and respectful
-- [ ] The author or guardian approved the final public version
+- [ ] The author's age status and its source are recorded privately
+- [ ] The author approved the exact public text; record the source and date
+- [ ] If the author is under 18, the guardian approved that exact public text
+- [ ] The private release record is linked to the hash of the exact public version
 
 ## Public checks
 

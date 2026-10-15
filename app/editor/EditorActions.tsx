@@ -13,13 +13,13 @@ export function EditorActions({ id, status, editorMessage, ageBand, guardianEmai
   const [guardianState, setGuardianState] = useState<"idle" | "saving" | "error">("idle");
   const [guardianMessage, setGuardianMessage] = useState("");
 
-  async function save() {
+  async function save(noteOnly = false) {
     setState("saving");
     setMessage("");
     const response = await fetch(`/api/editor/submissions/${id}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: value, editorMessage: messageValue }),
+      body: JSON.stringify(noteOnly ? { noteOnly: true, editorMessage: messageValue } : { status: value, editorMessage: messageValue }),
     });
     const payload = await response.json().catch(() => null) as { error?: string; notificationPending?: boolean } | null;
     if (!response.ok) {
@@ -61,7 +61,9 @@ export function EditorActions({ id, status, editorMessage, ageBand, guardianEmai
           <textarea value={messageValue} onChange={(event) => setMessageValue(event.target.value)} maxLength={6000} rows={5} placeholder="Explain the decision, requested revision, or next step. Keep this specific and respectful." />
         </label>
       </div>
-      <button type="button" className="editor-save" onClick={save} disabled={state === "saving"}>{state === "saving" ? "Saving" : "Save status and note"}</button>
+      <button type="button" className="editor-save" onClick={() => save(true)} disabled={state === "saving"}>Save note only</button>
+      <button type="button" className="editor-save" onClick={() => save()} disabled={state === "saving"}>{state === "saving" ? "Saving" : "Save status and note"}</button>
+      <p>Save note only keeps the current status and sends no email. Saving a decision status can send or retry an author email.</p>
       {message && <p role="alert" className={state === "warning" ? "editor-warning" : undefined}>{message}</p>}
       {["minor", "14-17", "under-18"].includes(ageBand) && <div className="guardian-email-editor"><label>Guardian email<input type="email" value={guardianValue} onChange={(event) => setGuardianValue(event.target.value)} maxLength={254} /></label><button type="button" className="editor-save" onClick={saveGuardianEmail} disabled={guardianState === "saving"}>{guardianState === "saving" ? "Saving" : "Update guardian email"}</button>{guardianMessage && <p role="alert" className={guardianState === "error" ? "form-error" : undefined}>{guardianMessage}</p>}</div>}
     </div>

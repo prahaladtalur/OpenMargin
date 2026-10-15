@@ -17,16 +17,22 @@ type ArticleDraft = {
   slug?: string;
 };
 
+type ManuscriptVersionOption = { id: string; label: string };
+
 type PublishArticleFormProps = {
   id: string;
   status: string;
   initial: ArticleDraft;
+  initialAgeStatus: "adult" | "under-18" | "";
+  manuscriptVersions: ManuscriptVersionOption[];
+  initialManuscriptVersionId: string;
 };
 
-export function PublishArticleForm({ id, status, initial }: PublishArticleFormProps) {
+export function PublishArticleForm({ id, status, initial, initialAgeStatus, manuscriptVersions, initialManuscriptVersionId }: PublishArticleFormProps) {
   const [state, setState] = useState<"idle" | "saving" | "error">("idle");
   const [message, setMessage] = useState("");
   const [publicPath, setPublicPath] = useState(initial.slug ? `/articles/${initial.slug}` : "");
+  const [authorAgeStatus, setAuthorAgeStatus] = useState<"adult" | "under-18" | "">(initialAgeStatus);
 
   async function publish(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -47,7 +53,13 @@ export function PublishArticleForm({ id, status, initial }: PublishArticleFormPr
         codeUrl: form.get("codeUrl"),
         body: form.get("body"),
         issue: form.get("issue"),
+        manuscriptVersionId: form.get("manuscriptVersionId"),
         authorApprovalConfirmed: form.get("authorApprovalConfirmed") === "on",
+        authorAgeStatus: form.get("authorAgeStatus"),
+        ageStatusEvidence: form.get("ageStatusEvidence"),
+        authorApprovalEvidence: form.get("authorApprovalEvidence"),
+        guardianApprovalConfirmed: form.get("guardianApprovalConfirmed") === "on",
+        guardianApprovalEvidence: form.get("guardianApprovalEvidence"),
       }),
     });
     const payload = await response.json().catch(() => null) as { error?: string; publicPath?: string; notificationPending?: boolean; notificationMessage?: string | null } | null;
@@ -72,6 +84,7 @@ export function PublishArticleForm({ id, status, initial }: PublishArticleFormPr
         <label>Public author name<input name="authorName" required maxLength={180} defaultValue={initial.authorName} /><small>Use the byline the author approved. You can use a pseudonym.</small></label>
         <label>Discipline<input name="discipline" required maxLength={120} defaultValue={initial.discipline} /></label>
         <label>Issue<input name="issue" required maxLength={80} defaultValue={initial.issue || "Volume 01"} /></label>
+        <label className="publish-wide">Final manuscript version<select name="manuscriptVersionId" required defaultValue={initialManuscriptVersionId}><option value="">Choose the reviewed version</option>{manuscriptVersions.map((version) => <option key={version.id} value={version.id}>{version.label}</option>)}</select><small>This must be the latest saved file and the version covered by the written review.</small></label>
         <label className="publish-wide">Abstract<small>At least 80 characters.</small><textarea name="abstract" required minLength={80} maxLength={2400} rows={5} defaultValue={initial.abstract} /></label>
         <label>Abstract language <small>(optional)</small><input name="abstractNativeLanguage" maxLength={60} minLength={2} defaultValue={initial.abstractNativeLanguage ?? ""} /></label>
         <label className="publish-wide">Additional abstract <small>(optional)</small><textarea name="abstractNative" minLength={300} maxLength={1800} rows={5} defaultValue={initial.abstractNative ?? ""} /></label>
@@ -81,6 +94,19 @@ export function PublishArticleForm({ id, status, initial }: PublishArticleFormPr
         </>}
         <label className="publish-wide">Article text<small>Use a blank line between paragraphs. The page shows plain text only.</small><textarea name="body" required minLength={240} maxLength={120000} rows={16} defaultValue={initial.body} placeholder="Paste the final, author-approved article here." /></label>
       </div>
+      <fieldset className="publish-release-evidence">
+        <legend>Private release record</legend>
+        <p>These notes stay in the editor record. Do not paste a full private email. Record the source and date, and confirm that the author approved this exact public text.</p>
+        <div className="publish-fields">
+          <label>Author age status<select name="authorAgeStatus" required value={authorAgeStatus} onChange={(event) => setAuthorAgeStatus(event.target.value as "adult" | "under-18" | "")}><option value="">Confirm before release</option><option value="adult">18 or older</option><option value="under-18">Under 18</option></select></label>
+          <label>Age check source and date<input name="ageStatusEvidence" required minLength={8} maxLength={500} placeholder="Submission record, 2026-10-12" /></label>
+          <label className="publish-wide">Author&apos;s approval source and date<input name="authorApprovalEvidence" required minLength={8} maxLength={500} placeholder="Author email, 2026-10-12: approved this final text" /></label>
+          {authorAgeStatus === "under-18" && <>
+            <label className="publish-wide publish-approval"><input name="guardianApprovalConfirmed" type="checkbox" required /> The parent or guardian approved this exact public version.</label>
+            <label className="publish-wide">Guardian&apos;s approval source and date<input name="guardianApprovalEvidence" required minLength={8} maxLength={500} placeholder="Guardian email, 2026-10-12: approved this final text" /></label>
+          </>}
+        </div>
+      </fieldset>
       <label className="publish-approval"><input type="checkbox" name="authorApprovalConfirmed" required /> I confirmed that the author, or a parent or guardian when required, approved this final version for public release.</label>
       {message && <p className={state === "error" ? "form-error" : "publish-success"} role="alert">{message}{publicPath && state !== "error" && <> <a href={publicPath} target="_blank" rel="noreferrer">Open article</a>.</>}</p>}
       <div className="publish-actions"><p>Publishing creates a public article page and adds the article to the issue.</p><button className="editor-save" disabled={state === "saving"}>{state === "saving" ? "Publishing" : status === "published" ? "Save public article" : "Publish article"}</button></div>
