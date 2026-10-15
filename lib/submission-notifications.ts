@@ -30,7 +30,9 @@ export async function sendStatusNotifications(
   submission: Submission,
   status: EditorialDecisionStatus,
   publicationPath?: string,
+  options: { existingOnly?: boolean } = {},
 ) {
+  let authorNoticeAccepted: boolean | null = null;
   const messages = [
     {
       key: `author:${status}`,
@@ -41,21 +43,34 @@ export async function sendStatusNotifications(
   if (status === "published") {
     messages.push({
       key: "editor:published",
-      send: () => notifyEditorOfPublication(submission, publicationPath),
+      send: () => notifyEditorOfPublication(submission, publicationPath, authorNoticeAccepted),
     });
   }
 
   const pendingReasons: string[] = [];
   for (const message of messages) {
-    const event = await getOrCreateNotificationEvent(db, submission.id, message.key);
+    const [existingEvent] = options.existingOnly
+      ? await db.select().from(submissionNotificationEvents).where(and(
+        eq(submissionNotificationEvents.submissionId, submission.id),
+        eq(submissionNotificationEvents.eventKey, message.key),
+      )).limit(1)
+      : [];
+    const event = options.existingOnly
+      ? existingEvent
+      : await getOrCreateNotificationEvent(db, submission.id, message.key);
+    if (message.key === `author:${status}` && event) {
+      authorNoticeAccepted = event.status === "sent";
+    }
     if (!event || event.status === "sent") continue;
 
     const result = await message.send();
     if (result.sent) {
+      if (message.key === `author:${status}`) authorNoticeAccepted = true;
       await db.update(submissionNotificationEvents)
         .set({ status: "sent", lastError: null, sentAt: new Date().toISOString() })
         .where(eq(submissionNotificationEvents.id, event.id));
     } else {
+      if (message.key === `author:${status}`) authorNoticeAccepted = false;
       const reason = result.reason ?? "The email could not be sent.";
       pendingReasons.push(reason);
       await db.update(submissionNotificationEvents)

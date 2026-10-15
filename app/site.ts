@@ -2,7 +2,7 @@ export const site = {
   name: "Open Margin",
   descriptor: "A student research journal",
   location: "Washington, United States",
-  submissionWindow: "Volume 01 pilot records are under audit",
+  submissionWindow: "Volume 01 public pilot records are unreviewed",
 };
 
 export type CallForPapers = {
@@ -30,20 +30,20 @@ export const reviewSteps = [
   {
     number: "01",
     title: "Fit check",
-    timing: "Within 7 days",
+    timing: "After submission",
     body: "An editor checks that the paper fits our scope, is original work, and is ready for review.",
   },
   {
     number: "02",
-    title: "Two written reviews",
-    timing: "Weeks 2 to 5",
-    body: "Two reviewers read the question, evidence, method, and writing. Each reviewer sends written comments.",
+    title: "One written review",
+    timing: "After the fit check",
+    body: "One reviewer reads the question, evidence, method, and writing, then sends written comments.",
   },
   {
     number: "03",
     title: "Decision letter",
-    timing: "Target: weeks 6 to 8",
-    body: "An editor considers the reviews and sends a decision letter with comments and next steps. We aim to give useful feedback when we decline a paper.",
+    timing: "After the review",
+    body: "An editor considers the review and sends a decision letter with comments and next steps. We aim to give useful feedback when we decline a paper.",
   },
   {
     number: "04",
@@ -85,7 +85,7 @@ export const publicUpdates = [
     period: "August 2026",
     label: "Capacity first",
     title: "We are building the reviewer bench before we widen outreach.",
-    body: "Open Margin is inviting reviewers, section editors, and academic advisors. The next growth step is a small, qualified bench that can support two written reviews per eligible paper.",
+    body: "Open Margin is inviting reviewers, section editors, and academic advisors. The next growth step is a small, qualified bench that can support one written review per eligible paper.",
     href: "/reviewers",
     link: "Review with us",
   },
@@ -99,11 +99,11 @@ export const publicUpdates = [
   },
   {
     period: "August 2026",
-    label: "Volume 01",
-    title: "The first pilot records are available to read.",
-    body: "The pilot records remain readable while we reconcile review, revision, author approval, and final-file evidence. They are not presented as completed publications.",
-    href: "/issue",
-    link: "Read Volume 01",
+    label: "Public record audit",
+    title: "Unreviewed pilot records are being reconciled.",
+    body: "The first records were added while the journal workflow was being tested. No completed written reviews are recorded yet. We are reconciling each entry with review, revision, author approval, and readable-file evidence before describing it as published.",
+    href: "/transparency#public-record-audit",
+    link: "Read the audit note",
   },
   {
     period: "Pilot launch",

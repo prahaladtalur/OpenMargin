@@ -174,7 +174,17 @@ export async function notifyAuthorOfDecision(submission: AuthorDecisionNotificat
   return sendEmail(submission.authorEmail, message.subject, message.lines);
 }
 
-export async function notifyEditorOfPublication(submission: AuthorDecisionNotification, publicationPath?: string) {
+export async function notifyEditorOfPublication(
+  submission: AuthorDecisionNotification,
+  publicationPath: string | undefined,
+  authorNoticeAccepted: boolean | null,
+) {
+  const authorNoticeStatus = authorNoticeAccepted === true
+    ? "The email provider accepted the author's publication notice. This does not confirm delivery to the author's inbox."
+    : authorNoticeAccepted === false
+      ? "The email provider did not accept the author's publication notice. Its status is recorded in the editor."
+      : "The author's publication-notice status is unknown. Check the editor before contacting the author.";
+
   return sendEditorNotification(`Open Margin paper published: ${submission.manuscriptTitle}`, [
     "An editor marked a manuscript as published.",
     "",
@@ -184,7 +194,7 @@ export async function notifyEditorOfPublication(submission: AuthorDecisionNotifi
     `Author email: ${submission.authorEmail}`,
     "",
     publicationPath ? `Public article: https://openmargin.org${publicationPath}` : "The public article path was not provided.",
-    "The author publication notice was also sent.",
+    authorNoticeStatus,
   ]);
 }
 

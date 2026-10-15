@@ -6,7 +6,7 @@ import { publishableCalls } from "./site";
 export const dynamic = "force-dynamic";
 
 const origin = "https://openmargin.org";
-const publicRoutes = ["/", "/issue", "/about", "/review", "/updates", "/guide", "/resources", "/policies", "/reviewers", "/partners", "/share", "/submit", "/transparency"];
+const publicRoutes = ["/", "/issue", "/about", "/review", "/updates", "/guide", "/resources", "/policies", "/reviewers", "/partners", "/share", "/submit", "/submit/student-research", "/submit/ap-research", "/submit/research-note", "/submit/class-project", "/transparency"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseEntries = publicRoutes.map((path) => ({ url: `${origin}${path}`, changeFrequency: "weekly" as const, priority: path === "/" ? 1 : 0.6 }));

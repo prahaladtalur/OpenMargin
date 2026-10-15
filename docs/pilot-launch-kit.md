@@ -34,7 +34,7 @@ Send the student invitation to students with work that fits the journal's humani
 
 Use the editor desk to check fit, anonymization, file format, author eligibility, and guardian requirements. Ask authors for missing information before sending work to review.
 
-### Days 11 through 14: calibrate and assign reviews
+### Days 11 through 14: assign reviews
 
 Give reviewers the public rubric and a sample review first. Assign only manuscripts that match their field and have no disclosed conflict. Keep communication constructive and specific.
 
@@ -70,7 +70,7 @@ Hi [First name],
 
 I am helping launch Open Margin, a free, student-led journal for rigorous student scholarship across the humanities, social sciences, and STEM. We are preparing a small pilot issue and are looking for a few thoughtful adult advisors and reviewers.
 
-Contributors help us give students useful, ethical feedback. Depending on your expertise and availability, the role may involve a calibration exercise, occasional blinded manuscript review, subject-specific guidance, citation checks, or editorial consultation. We do not ask reviewers to take on work outside their field or capacity.
+Contributors help us give students useful, ethical feedback. Depending on your expertise and availability, the role may involve occasional blinded manuscript review, subject-specific guidance, citation checks, or editorial consultation. We do not ask reviewers to take on work outside their field or capacity.
 
 We are especially interested in people with experience in [relevant field], research communication, teaching, libraries, journalism, or youth scholarship. Every contributor agrees to confidentiality, conflict disclosure, and constructive feedback.
 

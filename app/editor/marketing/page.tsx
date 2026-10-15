@@ -26,13 +26,28 @@ const campaignLinks = [
     label: "Forwardable share page",
   },
   {
+    audience: "Student research authors",
+    path: "/submit/student-research?utm_source=student_research&utm_medium=referral&utm_campaign=fall-2026",
+    label: "Student-research fit page",
+  },
+  {
+    audience: "AP, IB and school research",
+    path: "/submit/ap-research?utm_source=school_research&utm_medium=referral&utm_campaign=fall-2026",
+    label: "AP / IB fit page",
+  },
+  {
     audience: "Teachers and librarians",
-    path: "/guide?utm_source=teacher&utm_medium=referral&utm_campaign=fall-2026",
-    label: "Publishing guide",
+    path: "/submit/class-project?utm_source=teacher&utm_medium=referral&utm_campaign=fall-2026",
+    label: "Class-project fit page",
+  },
+  {
+    audience: "Data and methods communities",
+    path: "/submit/research-note?utm_source=research&utm_medium=community&utm_campaign=fall-2026",
+    label: "Research-note fit page",
   },
   {
     audience: "Research communities",
-    path: "/guide?utm_source=reddit&utm_medium=community&utm_campaign=fall-2026",
+    path: "/guide?utm_source=community&utm_medium=community&utm_campaign=fall-2026",
     label: "Community-safe guide link",
   },
   {

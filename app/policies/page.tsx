@@ -34,9 +34,9 @@ const policies = [
   },
   {
     id: "review",
-    title: "Peer review, conflicts and appeals",
+    title: "Review, conflicts and appeals",
     body: [
-      "We use double-blind review when practical. Authors and reviewers do not receive each other's names. Two trained student reviewers normally assess each manuscript with a published rubric. Editors make the final decision. An academic advisor may help with specialized or disputed work.",
+      "Each manuscript needs one completed written review from a human reviewer before acceptance and publication. The reviewer uses our published rubric. Editors check subject fit and conflicts, then make the final decision. Authors cannot review their own work. We conceal author and reviewer names when practical. An academic advisor or additional reviewer may help with specialized or disputed work.",
       "Reviewers and editors must step away from work by classmates, close collaborators, relatives, mentors, or anyone whose relationship could affect judgment. Reviews and manuscripts are confidential. Do not share them outside the editorial process.",
       "Authors may appeal only for a serious process error, an undisclosed conflict, or a serious factual misunderstanding. Disagreement with a scholarly judgment is not enough. Send a short appeal within 30 days. An uninvolved editor or advisor will review it.",
     ],
@@ -56,6 +56,17 @@ const policies = [
     body: [
       "Authors are responsible for every claim, citation, analysis, and sentence in a manuscript. Do not list a generative AI tool as an author. Do not use it to invent sources, evidence, quotations, analysis, or participant data.",
       "Authors must disclose material AI help with drafting, editing, translation, coding, data analysis, image generation, or research support. Routine spellcheck and grammar suggestions do not need a detailed log. Authors must still check the result. Editors may request prompts, outputs, or more detail to assess integrity.",
+    ],
+  },
+  {
+    id: "ai-editorial",
+    title: "AI-assisted editorial feedback",
+    body: [
+      "With the author's specific permission, editors may use ChatGPT, Claude, or Gemini to prepare separate, preliminary feedback on clarity, structure, sources, or reasoning. These reports may overlap and can contain errors. An editor checks each comment before sharing it. AI-assisted feedback does not replace the required written review from a human reviewer or make editorial decisions.",
+      "Before any upload, we tell the author the service and model, the account or API route, the information we plan to share, and the provider's applicable data-handling and retention terms. We obtain the author's documented permission for that specific plan. If we cannot verify the applicable terms, we do not upload the manuscript. An author may decline without affecting eligibility for editorial consideration or human review.",
+      "We label each AI-assisted report and name the service and model. A published paper's review note states whether AI-assisted feedback was used.",
+      "We do not upload an unpublished manuscript, abstract, or review to an external AI service without the author's permission and an editor's approval. We remove identifying and sensitive information when practical. Reviewers must also obtain editorial approval before using an AI service.",
+      "This policy does not give permission to process earlier submissions. General submission consent, an author's use of AI, and permission to send a paper to a qualified reviewer do not permit an upload to an AI service. Authors with earlier submissions must opt in separately. When guardian approval is required, it must cover this permission too.",
     ],
   },
   {
@@ -89,7 +100,7 @@ export default function PoliciesPage() {
   return (
     <main>
       <PageIntro
-        eyebrow="Editorial policies · Updated July 29, 2026"
+        eyebrow="Editorial policies · Updated October 12, 2026"
         title="How we handle submissions."
         description="These policies explain how we receive, review, publish, correct, and protect submitted work."
       />

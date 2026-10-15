@@ -6,6 +6,7 @@ type Assignment = {
   id: string;
   reviewerName: string;
   reviewerEmail: string;
+  manuscriptVersionId: string | null;
   status: string;
   dueAt: string | null;
   conflictConfirmed: boolean;
@@ -21,7 +22,10 @@ type Assignment = {
   submittedAt: string | null;
 };
 
-const statuses = ["invited", "accepted", "in-progress", "submitted", "declined", "withdrawn"];
+type ReviewerOption = { id: string; fullName: string; email: string };
+type ManuscriptVersion = { id: string; label: string };
+
+const statuses = ["draft", "invited", "accepted", "in-progress", "submitted", "declined", "withdrawn"];
 const scores = ["questionScore", "contextScore", "methodScore", "evidenceScore", "clarityScore", "integrityScore"] as const;
 const scoreLabels: Record<(typeof scores)[number], string> = {
   questionScore: "Question",
@@ -34,10 +38,11 @@ const scoreLabels: Record<(typeof scores)[number], string> = {
 const recommendations = ["strong-revise", "revise", "accept-with-changes", "accept", "decline"];
 
 function label(value: string) {
+  if (value === "draft") return "draft (not sent)";
   return value.replaceAll("-", " ");
 }
 
-function AssignmentCard({ assignment }: { assignment: Assignment }) {
+function AssignmentCard({ assignment, manuscriptVersions }: { assignment: Assignment; manuscriptVersions: ManuscriptVersion[] }) {
   const [status, setStatus] = useState(assignment.status);
   const [dueAt, setDueAt] = useState(assignment.dueAt ?? "");
   const [conflictConfirmed, setConflictConfirmed] = useState(assignment.conflictConfirmed);
@@ -47,6 +52,7 @@ function AssignmentCard({ assignment }: { assignment: Assignment }) {
   const [scoresValue, setScoresValue] = useState<Record<(typeof scores)[number], string>>(() => Object.fromEntries(scores.map((key) => [key, assignment[key]?.toString() ?? ""])) as Record<(typeof scores)[number], string>);
   const [state, setState] = useState<"idle" | "saving" | "error">("idle");
   const [message, setMessage] = useState("");
+  const manuscriptVersionLabel = manuscriptVersions.find((version) => version.id === assignment.manuscriptVersionId)?.label;
 
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -80,6 +86,7 @@ function AssignmentCard({ assignment }: { assignment: Assignment }) {
         <div><h4>{assignment.reviewerName}</h4><p>{assignment.reviewerEmail}</p></div>
         {assignment.submittedAt && <span className="review-submitted">Report saved</span>}
       </div>
+      <p className="review-source-version">Manuscript version: {manuscriptVersionLabel ?? "Not linked (legacy record)"}</p>
       <div className="review-assignment-controls">
         <label>Status<select value={status} onChange={(event) => setStatus(event.target.value)}>{statuses.map((option) => <option key={option} value={option}>{label(option)}</option>)}</select></label>
         <label>Due date<input type="date" value={dueAt} onChange={(event) => setDueAt(event.target.value)} /></label>
@@ -99,9 +106,9 @@ function AssignmentCard({ assignment }: { assignment: Assignment }) {
   );
 }
 
-export function ReviewAssignments({ submissionId, assignments }: { submissionId: string; assignments: Assignment[] }) {
-  const [reviewerName, setReviewerName] = useState("");
-  const [reviewerEmail, setReviewerEmail] = useState("");
+export function ReviewAssignments({ submissionId, assignments, reviewers, manuscriptVersions, latestManuscriptVersionId }: { submissionId: string; assignments: Assignment[]; reviewers: ReviewerOption[]; manuscriptVersions: ManuscriptVersion[]; latestManuscriptVersionId: string }) {
+  const [reviewerApplicationId, setReviewerApplicationId] = useState("");
+  const [manuscriptVersionId, setManuscriptVersionId] = useState("");
   const [dueAt, setDueAt] = useState("");
   const [state, setState] = useState<"idle" | "saving" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -110,10 +117,20 @@ export function ReviewAssignments({ submissionId, assignments }: { submissionId:
     event.preventDefault();
     setState("saving");
     setMessage("");
+    if (!reviewerApplicationId) {
+      setState("error");
+      setMessage("Choose an active reviewer first.");
+      return;
+    }
+    if (!manuscriptVersionId) {
+      setState("error");
+      setMessage("Choose the exact manuscript version for this private draft.");
+      return;
+    }
     const response = await fetch(`/api/editor/submissions/${submissionId}/reviews`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ reviewerName, reviewerEmail, dueAt }),
+      body: JSON.stringify({ reviewerApplicationId, manuscriptVersionId, dueAt }),
     });
     const payload = await response.json().catch(() => null) as { error?: string } | null;
     if (!response.ok) {
@@ -127,12 +144,14 @@ export function ReviewAssignments({ submissionId, assignments }: { submissionId:
   return (
     <section className="review-assignments" aria-labelledby={`reviews-${submissionId}`}>
       <div className="review-assignments-heading"><div><h3 id={`reviews-${submissionId}`}>Review records</h3><p>Keep assignments, conflicts, and written reports private to the editorial team.</p></div><span>{assignments.filter((assignment) => assignment.status === "submitted").length} submitted</span></div>
-      {assignments.length > 0 && <div className="review-assignment-list">{assignments.map((assignment) => <AssignmentCard key={assignment.id} assignment={assignment} />)}</div>}
+      {assignments.length > 0 && <div className="review-assignment-list">{assignments.map((assignment) => <AssignmentCard key={assignment.id} assignment={assignment} manuscriptVersions={manuscriptVersions} />)}</div>}
       <form className="review-add-form" onSubmit={addAssignment}>
         <p className="eyebrow">Add reviewer</p>
-        <div className="review-add-fields"><label>Name<input required value={reviewerName} onChange={(event) => setReviewerName(event.target.value)} maxLength={180} /></label><label>Email<input required type="email" value={reviewerEmail} onChange={(event) => setReviewerEmail(event.target.value)} maxLength={240} /></label><label>Due date<input type="date" value={dueAt} onChange={(event) => setDueAt(event.target.value)} /></label></div>
+        <p>This saves a private draft only. It does not contact the reviewer or share the manuscript. Select the exact file to review. Before you invite anyone, confirm subject fit, conflicts, confidentiality, author permission to share this version, and a due date.</p>
+        <div className="review-add-fields"><label>Active reviewer<select required value={reviewerApplicationId} onChange={(event) => setReviewerApplicationId(event.target.value)}><option value="">Choose a reviewer</option>{reviewers.map((reviewer) => <option key={reviewer.id} value={reviewer.id}>{reviewer.fullName} · {reviewer.email}</option>)}</select></label><label>Manuscript version<select required value={manuscriptVersionId} onChange={(event) => setManuscriptVersionId(event.target.value)}><option value="">Choose exact version</option>{manuscriptVersions.filter((version) => version.id === latestManuscriptVersionId).map((version) => <option key={version.id} value={version.id}>{version.label}</option>)}</select><small>New assignments can only use the latest saved file.</small></label><label>Due date<input type="date" value={dueAt} onChange={(event) => setDueAt(event.target.value)} /></label></div>
+        {reviewers.length === 0 && <p>No active reviewers are available for assignment.</p>}
         {message && <p className="form-error" role="alert">{message}</p>}
-        <button className="button button-paper" type="submit" disabled={state === "saving"}>{state === "saving" ? "Adding" : "Add assignment"}</button>
+        <button className="button button-paper" type="submit" disabled={state === "saving" || reviewers.length === 0}>{state === "saving" ? "Adding" : "Add assignment"}</button>
       </form>
     </section>
   );

@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 function makeShareText(guideHref: string, submitHref: string) {
   return `Open Margin is a free, independent journal for research by authors of any age. It accepts work in the humanities, social sciences, and STEM.
 
-Students submit directly. An editor checks fit, two reviewers write comments, and the journal targets a decision in six to eight weeks. There is no fee and no guarantee of acceptance.
+Students submit directly. An editor checks fit, one reviewer writes comments, and an editor sends a decision. Timing depends on the paper and reviewer availability. There is no fee and no guarantee of acceptance.
+
+Open Margin is an early-stage project. Its public pilot records are unreviewed and should not be described as completed publications.
 
 Learn more: https://openmargin.org${guideHref}
 Submit work: https://openmargin.org${submitHref}`;
@@ -23,7 +25,7 @@ type SharePageProps = { searchParams?: Promise<Record<string, string | string[] 
 export default async function SharePage({ searchParams }: SharePageProps) {
   const campaign = campaignFromSearchParams((await searchParams) ?? {}, "/share");
   const guideHref = withCampaign("/guide", campaign);
-  const submitHref = withCampaign("/submit", campaign);
+  const submitHref = withCampaign("/submit/student-research", campaign);
   const shareText = makeShareText(guideHref, submitHref);
 
   return (
@@ -50,8 +52,8 @@ export default async function SharePage({ searchParams }: SharePageProps) {
         <p className="eyebrow">What happens next</p>
         <div>
           <article><span>01</span><h2>They read the fit.</h2><p>Students can compare Open Margin with journals, competitions, mentors, and repositories.</p><Link className="text-link" href="/guide">Read the publishing guide</Link></article>
-          <article><span>02</span><h2>They choose.</h2><p>There is no referral requirement, priority, or data exchange. Students submit only if they want to.</p><Link className="text-link" href={submitHref}>Open the submission page</Link></article>
-          <article><span>03</span><h2>We review independently.</h2><p>Every paper uses the same public scope, rubric, and decision process.</p><Link className="text-link" href="/review">See the review process</Link></article>
+          <article><span>02</span><h2>They choose.</h2><p>There is no referral requirement, priority, or data exchange. Students submit only if they want to.</p><Link className="text-link" href={submitHref}>Open the student research route</Link></article>
+          <article><span>03</span><h2>We use the same review process.</h2><p>Every paper uses the same public scope, rubric, and decision process.</p><Link className="text-link" href="/review">See the review process</Link></article>
         </div>
       </section>
 

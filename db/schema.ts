@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const submissions = sqliteTable("submissions", {
   id: text("id").primaryKey(),
@@ -37,9 +37,38 @@ export const submissions = sqliteTable("submissions", {
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const submissionRevisions = sqliteTable("submission_revisions", {
+  id: text("id").primaryKey(),
+  submissionId: text("submission_id").notNull(),
+  versionNumber: integer("version_number").notNull(),
+  fileName: text("file_name").notNull(),
+  contentType: text("content_type").notNull(),
+  sizeBytes: integer("size_bytes").notNull(),
+  objectKey: text("object_key").notNull(),
+  editorNote: text("editor_note"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (table) => ({
+  submissionVersionUnique: uniqueIndex("submission_revisions_submission_version_idx").on(table.submissionId, table.versionNumber),
+  submissionCreatedIndex: index("submission_revisions_submission_idx").on(table.submissionId, table.createdAt),
+}));
+
+export const publicationReleaseApprovals = sqliteTable("publication_release_approvals", {
+  id: text("id").primaryKey(),
+  submissionId: text("submission_id").notNull(),
+  publicVersionHash: text("public_version_hash").notNull(),
+  authorAgeStatus: text("author_age_status").notNull(),
+  ageStatusEvidence: text("age_status_evidence").notNull(),
+  authorApprovalEvidence: text("author_approval_evidence").notNull(),
+  guardianApprovalEvidence: text("guardian_approval_evidence"),
+  recordedAt: text("recorded_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (table) => ({
+  submissionVersionIndex: index("publication_release_approvals_submission_version_idx").on(table.submissionId, table.publicVersionHash),
+}));
+
 export const reviewAssignments = sqliteTable("review_assignments", {
   id: text("id").primaryKey(),
   submissionId: text("submission_id").notNull(),
+  manuscriptVersionId: text("manuscript_version_id"),
   reviewerName: text("reviewer_name").notNull(),
   reviewerEmail: text("reviewer_email").notNull(),
   reviewerApplicationId: text("reviewer_application_id"),
@@ -74,6 +103,7 @@ export const submissionNotificationEvents = sqliteTable("submission_notification
 export const publishedArticles = sqliteTable("published_articles", {
   id: text("id").primaryKey(),
   submissionId: text("submission_id").notNull(),
+  manuscriptVersionId: text("manuscript_version_id"),
   slug: text("slug").notNull(),
   title: text("title").notNull(),
   authorName: text("author_name").notNull(),
@@ -110,6 +140,8 @@ export const reviewerApplications = sqliteTable("reviewer_applications", {
   highestQualification: text("highest_qualification"),
   affiliation: text("affiliation"),
   status: text("status").notNull().default("received"),
+  guardianApprovalAt: text("guardian_approval_at"),
+  guardianApprovalEvidence: text("guardian_approval_evidence"),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 

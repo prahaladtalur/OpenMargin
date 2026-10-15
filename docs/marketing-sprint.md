@@ -1,14 +1,27 @@
 # Open Margin: 30-day marketing sprint
 
 This plan is designed for a small, student-led journal. It favors useful links,
-clear claims, and direct referrals over broad promotion. Do not send a message,
-post in a community, or add a contact to a list without permission.
+clear claims, and direct referrals over broad promotion. The explicit outcome
+target is 10 completed, good-fit submissions, subject to the editorial capacity
+and trust gates in [`10-submission-campaign.md`](10-submission-campaign.md).
+Do not send a message, post in a community, or add a contact to a list without
+permission.
 
 ## The goal
 
-Bring in a small number of good-fit submissions and learn which people help
-authors find the journal. The primary measure is completed, eligible
-submissions. Impressions and follower counts are secondary.
+Reach 10 completed, good-fit submissions and learn which people help authors
+find the journal. The primary measure is completed, eligible submissions.
+Impressions and follower counts are secondary. Ten submissions is not a reason
+to weaken screening, skip a review, or leave a misleading public record online.
+
+## Capacity and trust gate
+
+Before author outreach, reconcile every public article with a completed review,
+final edit, and author or guardian approval. Fix any status or readability
+mismatch first. Then check the private editor desk for the current submission
+count and the reviewer bench. Pause author acquisition when the public record
+is unresolved or one qualified independent reviewer plus a backup cannot support the promoted
+fields.
 
 ## The operating numbers
 
@@ -104,7 +117,7 @@ every author.
 ## Stop rules
 
 - Stop a channel if it brings repeated off-scope work, pressure on minors, or requests for special treatment.
-- Stop invitations if two qualified reviewers are not available for the fields shown as open.
+- Stop author invitations if a qualified independent reviewer and backup are not available for the fields shown as open.
 - Do not use paid ads until the free referral path works and the review capacity is known.
 - Do not buy student contact lists or scrape personal email addresses.
 - Do not claim indexing, prestige, selectivity, or admissions benefit that Open Margin cannot prove.

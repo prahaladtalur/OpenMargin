@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "../site";
+import { PublicRecordNotice } from "./PublicRecordNotice";
 
 const nav = [
   { href: "/issue", label: "Read" },
@@ -15,8 +16,9 @@ export function SiteHeader() {
     <>
       <div className="notice">
         <p>{site.submissionWindow}</p>
-        <Link href="/transparency">Read the public record <span aria-hidden="true">↗</span></Link>
+        <Link href="/transparency#public-record-audit">Read the audit note <span aria-hidden="true">↗</span></Link>
       </div>
+      <PublicRecordNotice />
       <header className="site-header">
         <Link className="wordmark" href="/" aria-label={`${site.name} home`}>
           <span className="wordmark-name">{site.name}</span>

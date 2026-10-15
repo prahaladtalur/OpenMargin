@@ -95,10 +95,38 @@ const submissionNotificationEventsTableSql = `
   )
 `;
 
+const submissionRevisionsTableSql = `
+  CREATE TABLE IF NOT EXISTS submission_revisions (
+    id text PRIMARY KEY NOT NULL,
+    submission_id text NOT NULL,
+    version_number integer NOT NULL,
+    file_name text NOT NULL,
+    content_type text NOT NULL,
+    size_bytes integer NOT NULL,
+    object_key text NOT NULL,
+    editor_note text,
+    created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
+  )
+`;
+
+const publicationReleaseApprovalsTableSql = `
+  CREATE TABLE IF NOT EXISTS publication_release_approvals (
+    id text PRIMARY KEY NOT NULL,
+    submission_id text NOT NULL,
+    public_version_hash text NOT NULL,
+    author_age_status text NOT NULL,
+    age_status_evidence text NOT NULL,
+    author_approval_evidence text NOT NULL,
+    guardian_approval_evidence text,
+    recorded_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
+  )
+`;
+
 const reviewAssignmentsTableSql = `
   CREATE TABLE IF NOT EXISTS review_assignments (
     id text PRIMARY KEY NOT NULL,
     submission_id text NOT NULL,
+    manuscript_version_id text,
     reviewer_name text NOT NULL,
     reviewer_email text NOT NULL,
     reviewer_application_id text,
@@ -124,10 +152,20 @@ const submissionNotificationEventsIndexSql = `
   ON submission_notification_events (submission_id, event_key)
 `;
 
+const submissionRevisionIndexesSql = [
+  `CREATE UNIQUE INDEX IF NOT EXISTS submission_revisions_submission_version_idx ON submission_revisions (submission_id, version_number)`,
+  `CREATE INDEX IF NOT EXISTS submission_revisions_submission_idx ON submission_revisions (submission_id, created_at)`,
+];
+
+const publicationReleaseApprovalIndexesSql = [
+  `CREATE INDEX IF NOT EXISTS publication_release_approvals_submission_version_idx ON publication_release_approvals (submission_id, public_version_hash)`,
+];
+
 const publishedArticlesTableSql = `
   CREATE TABLE IF NOT EXISTS published_articles (
     id text PRIMARY KEY NOT NULL,
     submission_id text NOT NULL,
+    manuscript_version_id text,
     slug text NOT NULL,
     title text NOT NULL,
     author_name text NOT NULL,
@@ -168,6 +206,8 @@ const reviewerApplicationsTableSql = `
     highest_qualification text,
     affiliation text,
     status text DEFAULT 'received' NOT NULL,
+    guardian_approval_at text,
+    guardian_approval_evidence text,
     created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
   )
 `;
@@ -196,6 +236,10 @@ export async function ensureSubmissionTable() {
   }
   await env.DB.batch([
     env.DB.prepare(submissionTableSql),
+    env.DB.prepare(submissionRevisionsTableSql),
+    ...submissionRevisionIndexesSql.map((statement) => env.DB.prepare(statement)),
+    env.DB.prepare(publicationReleaseApprovalsTableSql),
+    ...publicationReleaseApprovalIndexesSql.map((statement) => env.DB.prepare(statement)),
     env.DB.prepare(reviewAssignmentsTableSql),
     env.DB.prepare(submissionNotificationEventsTableSql),
     env.DB.prepare(submissionNotificationEventsIndexSql),
@@ -215,6 +259,7 @@ export async function ensureSubmissionTable() {
     ["guardian_email_updated_at", "text"],
   ]);
   await addMissingColumns(db, "published_articles", [
+    ["manuscript_version_id", "text"],
     ["abstract_native", "text"],
     ["abstract_native_language", "text"],
     ["submission_type", "text DEFAULT 'article' NOT NULL"],
@@ -226,7 +271,10 @@ export async function ensureSubmissionTable() {
     ["languages", "text"],
     ["highest_qualification", "text"],
     ["affiliation", "text"],
+    ["guardian_approval_at", "text"],
+    ["guardian_approval_evidence", "text"],
   ]);
+  await addMissingColumns(db, "review_assignments", [["manuscript_version_id", "text"]]);
 }
 
 export const ensureOperationsTables = ensureSubmissionTable;

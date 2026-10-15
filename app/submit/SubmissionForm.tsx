@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { campaignStorageKey } from "../components/CampaignAttribution";
 import type { Campaign } from "../../lib/campaign";
 
@@ -25,6 +25,7 @@ const disciplines = [
 ];
 
 function readCampaign(): Campaign {
+  if (typeof window === "undefined") return { source: "", medium: "", name: "", path: "/submit" };
   const params = new URLSearchParams(window.location.search);
   const fromUrl = {
     source: params.get("utm_source")?.slice(0, 80) ?? "",
@@ -63,15 +64,10 @@ export function SubmissionForm({ initialCampaign, initialCall }: { initialCampai
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
   const [submissionType, setSubmissionType] = useState<"article" | "research-note">("article");
-  const [campaign, setCampaign] = useState<Campaign>(() => {
+  const [campaign] = useState<Campaign>(() => {
     if (initialCampaign?.source || initialCampaign?.medium || initialCampaign?.name) return initialCampaign;
-    if (typeof window === "undefined") return { source: "", medium: "", name: "", path: "/submit" };
-    return readCampaign();
+    return { source: "", medium: "", name: "", path: "/submit" };
   });
-
-  useEffect(() => {
-    setCampaign(readCampaign());
-  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

@@ -17,12 +17,12 @@ Do not target programs that want guaranteed publication, admissions results, pri
 
 ## Message
 
-> When a student finishes a research project, Open Margin gives them one optional place to get two written reviews and a decision letter without paying a fee or giving up control of the work.
+> When a student finishes a research project, Open Margin gives them one optional place to get one independent written review and a decision letter without paying a fee or giving up control of the work.
 
 ## Days 1 to 7: make the process credible
 
 - Invite three qualified adult reviewers or advisors.
-- Ask two reviewers to complete a short rubric calibration.
+- Share the public rubric and sample reviews with each reviewer before assigning work.
 - Record the current funnel baseline: visits, guide visits, partner inquiries, reviewer applications, submission starts, completed submissions, and response status.
 - Keep the [share page](/share) and [partner page](/partners) consistent with the public [review process](/review).
 
@@ -31,7 +31,7 @@ Do not target programs that want guaranteed publication, admissions results, pri
 - Send 20 tailored messages to the correct program contact.
 - Use one follow-up after the recipient's stated response window.
 - Invite one trusted author to submit a real or clearly labeled test manuscript.
-- Process the submission through screening, two reviews, an editorial decision, and author communication.
+- Process the submission through screening, one independent written review, an editorial decision, and author communication.
 
 ## Days 21 to 30: decide what to change
 

@@ -19,12 +19,15 @@ export async function GET() {
 
   return Response.json({
     generatedAt: new Date().toISOString(),
-    publishedArticleCount: articles.length,
+    publicRecordStatus: "under-audit",
+    publicRecordEntryCount: articles.length,
+    publishedArticleCount: 0,
     publicDisciplines,
-    latestPublishedAt: articles[0]?.publishedAt ?? null,
+    latestPublishedAt: null,
+    latestPublicRecordAt: articles[0]?.publishedAt ?? null,
     reviewPolicy: {
-      writtenReviewsPerEligibleManuscript: 2,
-      decisionTarget: "six to eight weeks",
+      writtenReviewsPerEligibleManuscript: 1,
+      decisionTarget: "No fixed date; timing depends on reviewer availability",
     },
   }, {
     headers: {

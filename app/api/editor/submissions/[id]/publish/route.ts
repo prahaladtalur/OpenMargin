@@ -1,7 +1,9 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { getEditorForApi } from "../../../../../../lib/editor-auth";
 import { ensureSubmissionTable, getDb } from "../../../../../../db";
-import { publishedArticles, submissions } from "../../../../../../db/schema";
+import { publicationReleaseApprovals, publishedArticles, reviewerApplications, reviewAssignments, submissionRevisions, submissions } from "../../../../../../db/schema";
+import { hasRequiredIndependentReview } from "../../../../../../lib/review-policy";
+import { hasEvidenceNote, hashPublicVersion, isKnownMinorSubmission } from "../../../../../../lib/publication-approval.mjs";
 import { sendStatusNotifications } from "../../../../../../lib/submission-notifications";
 
 function value(payload: Record<string, unknown>, key: string, maxLength: number) {
@@ -53,6 +55,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const body = value(payload, "body", 120000);
     const issue = value(payload, "issue", 80) || "Volume 01";
     const approvalConfirmed = payload.authorApprovalConfirmed === true;
+    const authorAgeStatus = value(payload, "authorAgeStatus", 20);
+    const ageStatusEvidence = value(payload, "ageStatusEvidence", 500);
+    const authorApprovalEvidence = value(payload, "authorApprovalEvidence", 500);
+    const manuscriptVersionId = value(payload, "manuscriptVersionId", 100);
+    const guardianApprovalConfirmed = payload.guardianApprovalConfirmed === true;
+    const guardianApprovalEvidence = value(payload, "guardianApprovalEvidence", 500);
 
     if (!title || !authorName || !discipline || abstract.length < 80 || body.length < 240 || paragraphs(body) < 1) {
       return Response.json({ error: "Add a title, public author name, discipline, abstract, and article text." }, { status: 400 });
@@ -60,13 +68,39 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     if (!approvalConfirmed) {
       return Response.json({ error: "Confirm that the author or guardian approved this final version for public release." }, { status: 400 });
     }
+    if (authorAgeStatus !== "adult" && authorAgeStatus !== "under-18") {
+      return Response.json({ error: "Confirm the author's age status before publication." }, { status: 400 });
+    }
+    if (!hasEvidenceNote(ageStatusEvidence) || !hasEvidenceNote(authorApprovalEvidence)) {
+      return Response.json({ error: "Record a short source and date for the age check and the author's approval." }, { status: 400 });
+    }
 
     await ensureSubmissionTable();
     const db = getDb();
     const [submission] = await db.select().from(submissions).where(eq(submissions.id, id)).limit(1);
     if (!submission) return Response.json({ error: "Submission not found" }, { status: 404 });
+    if (isKnownMinorSubmission(submission) && authorAgeStatus !== "under-18") {
+      return Response.json({ error: "The submission record indicates that the author is under 18. Use the under-18 option and record guardian approval." }, { status: 409 });
+    }
+    if (authorAgeStatus === "under-18" && (!submission.guardianEmail || !guardianApprovalConfirmed || !hasEvidenceNote(guardianApprovalEvidence))) {
+      return Response.json({ error: "For an author under 18, record the guardian's approval for this exact public version." }, { status: 409 });
+    }
     if (submission.status !== "accepted" && submission.status !== "published") {
       return Response.json({ error: "Only an accepted submission can be published." }, { status: 409 });
+    }
+    const [reviews, activeReviewers, latestRevision] = await Promise.all([
+      db.select().from(reviewAssignments).where(eq(reviewAssignments.submissionId, id)),
+      db.select({ id: reviewerApplications.id }).from(reviewerApplications).where(eq(reviewerApplications.status, "active")),
+      db.select({ id: submissionRevisions.id }).from(submissionRevisions)
+        .where(eq(submissionRevisions.submissionId, id)).orderBy(desc(submissionRevisions.versionNumber)).limit(1),
+    ]);
+    const latestManuscriptVersionId = latestRevision[0]?.id ?? "original";
+    if (!manuscriptVersionId || manuscriptVersionId !== latestManuscriptVersionId) {
+      return Response.json({ error: "Select the latest saved manuscript version for publication." }, { status: 409 });
+    }
+    const activeReviewerIds = new Set(activeReviewers.map((reviewer) => reviewer.id));
+    if (!hasRequiredIndependentReview(reviews, submission, activeReviewerIds, latestManuscriptVersionId)) {
+      return Response.json({ error: "Publication requires one complete written review of the latest saved manuscript version. Save the report and confirm conflicts and confidentiality first." }, { status: 409 });
     }
 
     const abstractNativeLanguage = abstractNativeLanguageInput || submission.abstractNativeLanguage || "";
@@ -96,6 +130,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const article = {
       id: existing?.id ?? `OMA-${crypto.randomUUID()}`,
       submissionId: id,
+      manuscriptVersionId,
       slug,
       title,
       authorName,
@@ -111,6 +146,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       publishedAt,
     };
 
+    const publicVersionHash = await hashPublicVersion(article);
     if (existing) {
       await db.update(publishedArticles).set(article).where(eq(publishedArticles.id, existing.id));
     } else {
@@ -119,6 +155,15 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     if (submission.status !== "published") {
       await db.update(submissions).set({ status: "published" }).where(eq(submissions.id, id));
     }
+    await db.insert(publicationReleaseApprovals).values({
+      id: `OMPA-${crypto.randomUUID()}`,
+      submissionId: id,
+      publicVersionHash,
+      authorAgeStatus,
+      ageStatusEvidence,
+      authorApprovalEvidence,
+      guardianApprovalEvidence: authorAgeStatus === "under-18" ? guardianApprovalEvidence : null,
+    });
 
     const publicationPath = `/articles/${slug}`;
     const pendingReasons = await sendStatusNotifications(db, { ...submission, status: "published" }, "published", publicationPath);

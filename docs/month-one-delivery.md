@@ -38,7 +38,7 @@ Record these numbers in a private tracker:
 ## Next 30 days
 
 1. Recruit two qualified reviewers and one backup in fields that match incoming work.
-2. Run one complete review cycle with two written reviews and a clear decision note.
+2. Run one complete review cycle with one independent written review and a clear decision note.
 3. Invite four more suitable papers so Volume 01 can reach five articles.
 4. Send small, tailored messages to research programs. Follow up once only.
 5. Ask one program to share the optional submission link with students who request it.
