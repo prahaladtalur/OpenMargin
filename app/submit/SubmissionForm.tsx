@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { campaignStorageKey } from "../components/CampaignAttribution";
 import type { Campaign } from "../../lib/campaign";
 
@@ -63,15 +63,10 @@ export function SubmissionForm({ initialCampaign, initialCall }: { initialCampai
   const [message, setMessage] = useState("");
   const [requiresGuardian, setRequiresGuardian] = useState(false);
   const [submissionType, setSubmissionType] = useState<"article" | "research-note">("article");
-  const [campaign, setCampaign] = useState<Campaign>(() => {
+  const [campaign] = useState<Campaign>(() => {
     if (initialCampaign?.source || initialCampaign?.medium || initialCampaign?.name) return initialCampaign;
-    if (typeof window === "undefined") return { source: "", medium: "", name: "", path: "/submit" };
-    return readCampaign();
+    return { source: "", medium: "", name: "", path: "/submit" };
   });
-
-  useEffect(() => {
-    setCampaign(readCampaign());
-  }, []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -146,11 +141,11 @@ export function SubmissionForm({ initialCampaign, initialCall }: { initialCampai
         <label className="file-field">Blinded paper or report <small>PDF or DOCX, up to 10 MB. Remove your name, school, and acknowledgments.</small><input name="manuscript" type="file" accept="application/pdf,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" required /></label>
         <div className="declarations">
           <label><input type="checkbox" name="originalWorkConfirmed" required /> I confirm this is original work. I cited all sources. Every listed author approves the submission.</label>
-          <label><input type="checkbox" name="privacyConfirmed" required /> I read the <Link href="/policies#privacy">privacy and guardian-contact policy</Link>. I consent to editorial use of this information and manuscript.</label>
+          <label><input type="checkbox" name="privacyConfirmed" required /> I read the <Link href="/policies#privacy">privacy and guardian-contact policy</Link>. I consent to editorial use of this information and confidential reviewer access. External AI processing requires separate, specific permission.</label>
         </div>
       </fieldset>
       {status === "error" && <p className="form-error" role="alert">{message}</p>}
-      <div className="form-submit"><p>Free to submit. Editors read each submission before deciding whether to review it.</p><button className="button button-dark" disabled={status === "sending"}>{status === "sending" ? "Sending" : "Submit work"}</button></div>
+      <div className="form-submit"><p>Free to submit. Editors read each submission before deciding whether to review it.</p><p>By clicking <strong>Submit work</strong>, you authorize Open Margin to publish this paper if accepted, including its accepted file, title, byline, and abstract. You retain copyright. You confirm you can give this permission for all listed authors. Authors under 18 need separate guardian approval for publication. External AI processing requires separate, specific permission.</p><button className="button button-dark" disabled={status === "sending"}>{status === "sending" ? "Sending" : "Submit work"}</button></div>
     </form>
   );
 }

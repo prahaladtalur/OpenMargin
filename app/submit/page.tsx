@@ -98,7 +98,7 @@ export default async function SubmitPage({ searchParams }: SubmitPageProps) {
         <div className="portal-heading">
           <p className="eyebrow">Pilot submission portal</p>
           <h2>Send the file.</h2>
-          <p>Keep a copy of your file. Only assigned editors and advisors can see it.</p>
+          <p>Keep a copy of your file. Editors assess each submission, and an assigned reviewer may access it for confidential review. Clicking Submit work authorizes publication if accepted. Authors under 18 also need separate guardian approval for publication. External AI processing needs separate permission.</p>
         </div>
         <SubmissionForm initialCampaign={initialCampaign} initialCall={initialCall ? { slug: initialCall.slug, title: initialCall.title } : undefined} />
       </section>

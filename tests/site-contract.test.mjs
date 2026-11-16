@@ -97,12 +97,13 @@ test("publishes only approved accepted work to a public article route", async ()
     source("db/index.ts"),
     source("drizzle/0003_worried_luckman.sql"),
   ]);
-  assert.match(publishRoute, /authorApprovalConfirmed/);
+  assert.match(publishRoute, /publicReleaseConsentConfirmed/);
+  assert.doesNotMatch(publishRoute, /authorApprovalConfirmed/);
   assert.match(publishRoute, /Only an accepted submission can be published/);
   assert.match(publishRoute, /publishedArticles/);
   assert.match(publishRoute, /sendStatusNotifications/);
   assert.match(editorForm, /Publish article/);
-  assert.match(editorForm, /author-approved/);
+  assert.match(editorForm, /accepted paper for publication/);
   assert.match(articlePage, /notFound/);
   assert.match(articlePage, /publishedArticles/);
   assert.match(issuePage, /publishedArticles/);

@@ -45,7 +45,7 @@ export default async function TransparencyPage() {
         <div>
           <p className="eyebrow">Publication record</p>
           <h2>{latest ? "The pilot records are available to read." : "The first article is still in progress."}</h2>
-          <p>{latest ? `The most recent public record was added on ${formatDate(latest.publishedAt)}. The records remain readable while we reconcile review, revision, author approval, and final-file evidence. They are not presented as completed publications.` : "We will list an article only after the review cycle ends and the author approves the final version."}</p>
+          <p>{latest ? `The most recent public record was added on ${formatDate(latest.publishedAt)}. The records remain readable while we reconcile review, revision history, submission-level publication permission, and final-file evidence. They are not presented as completed publications.` : "We will list an article after the review cycle ends and its submission-level publication permission is confirmed."}</p>
           {latest && <Link className="text-link" href={`/articles/${latest.slug}`}>Read the latest public record <span aria-hidden="true">↗</span></Link>}
         </div>
         <dl className="transparency-details">

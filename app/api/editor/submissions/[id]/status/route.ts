@@ -25,7 +25,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const [submission] = await db.select().from(submissions).where(eq(submissions.id, id)).limit(1);
     if (!submission) return Response.json({ error: "Submission not found" }, { status: 404 });
     if (payload.status === "published" && submission.status !== "published") {
-      return Response.json({ error: "Use the Publish article form after author approval." }, { status: 409 });
+      return Response.json({ error: "Use the Publish article form to record publication permission and prepare the public article." }, { status: 409 });
     }
 
     const statusChanged = submission.status !== payload.status;

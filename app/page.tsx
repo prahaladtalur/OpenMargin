@@ -134,8 +134,8 @@ export default async function Home() {
         </div>
         <p className="sample-disclaimer">
           {articles.length > 0
-            ? `Volume 01 currently lists ${articles.length} pilot ${articles.length === 1 ? "record" : "records"} under audit. They remain readable while we reconcile review, revision, author approval, and final-file evidence.`
-            : "The first issue is in progress. We will list accepted work after review, revision, and author approval."}
+            ? `Volume 01 currently lists ${articles.length} pilot ${articles.length === 1 ? "record" : "records"} under audit. They remain readable while we reconcile review, revision history, submission-level publication permission, and final-file evidence.`
+            : "The first issue is in progress. We will list accepted work after review and revision, under the publication permission given at submission."}
         </p>
       </section>
 

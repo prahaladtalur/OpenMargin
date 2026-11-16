@@ -118,6 +118,9 @@ export async function POST(request: Request) {
         manuscriptContentType: manuscript.type || "application/octet-stream",
         originalWorkConfirmed: true,
         privacyConfirmed: true,
+        publicReleaseConsentConfirmed: true,
+        publicReleaseConsentEvidence: "Submission form consent",
+        publicReleaseConsentAt: new Date().toISOString(),
         guardianConfirmed,
       });
     } catch (error) {

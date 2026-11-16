@@ -142,7 +142,7 @@ export async function notifyAuthorOfDecision(submission: AuthorDecisionNotificat
         `Reference: ${submission.id}`,
         "Decision: Accepted for publication.",
         "",
-        "The editor will contact you about final revisions, copyediting, and author approval.",
+        "The editor will contact you about any revisions and copyediting before publication under the permission given at submission.",
         "Acceptance does not mean that the paper is published yet.",
         "",
         "Open Margin",

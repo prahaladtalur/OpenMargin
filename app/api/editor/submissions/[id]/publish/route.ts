@@ -52,21 +52,40 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const codeUrlInput = value(payload, "codeUrl", 2000);
     const body = value(payload, "body", 120000);
     const issue = value(payload, "issue", 80) || "Volume 01";
-    const approvalConfirmed = payload.authorApprovalConfirmed === true;
+    const publicConsentEvidenceInput = value(payload, "publicReleaseConsentEvidence", 500);
+    const publicConsentConfirmedInput = payload.publicReleaseConsentConfirmed === true;
+    const authorAgeStatusInput = value(payload, "authorAgeStatus", 20);
+    const ageStatusEvidenceInput = value(payload, "ageStatusEvidence", 300);
+    const guardianConsentEvidenceInput = value(payload, "guardianPublicationConsentEvidence", 500);
+    const guardianConsentConfirmed = payload.guardianPublicationConsentConfirmed === true;
 
     if (!title || !authorName || !discipline || abstract.length < 80 || body.length < 240 || paragraphs(body) < 1) {
       return Response.json({ error: "Add a title, public author name, discipline, abstract, and article text." }, { status: 400 });
     }
-    if (!approvalConfirmed) {
-      return Response.json({ error: "Confirm that the author or guardian approved this final version for public release." }, { status: 400 });
-    }
-
     await ensureSubmissionTable();
     const db = getDb();
     const [submission] = await db.select().from(submissions).where(eq(submissions.id, id)).limit(1);
     if (!submission) return Response.json({ error: "Submission not found" }, { status: 404 });
     if (submission.status !== "accepted" && submission.status !== "published") {
       return Response.json({ error: "Only an accepted submission can be published." }, { status: 409 });
+    }
+    const storedConsent = submission.publicReleaseConsentConfirmed
+      && (submission.publicReleaseConsentEvidence ?? "").trim().length >= 8;
+    if (!storedConsent && (!publicConsentConfirmedInput || publicConsentEvidenceInput.length < 8)) {
+      return Response.json({ error: "This older submission needs general written publication permission before publication." }, { status: 409 });
+    }
+    const privateEvidencePattern = /\bdate of birth\b|\bDOB\b|passport|driver.?s license|identity document|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
+    const authorAgeStatus = authorAgeStatusInput || submission.publicationAgeStatus || "";
+    const ageStatusEvidence = ageStatusEvidenceInput || submission.publicationAgeEvidence || "";
+    if (privateEvidencePattern.test(publicConsentEvidenceInput) || privateEvidencePattern.test(ageStatusEvidenceInput) || privateEvidencePattern.test(guardianConsentEvidenceInput)) {
+      return Response.json({ error: "Use brief source-and-date notes only. Do not paste email addresses, birth dates, or identity details." }, { status: 400 });
+    }
+    if (!["adult", "under-18"].includes(authorAgeStatus) || ageStatusEvidence.length < 4) {
+      return Response.json({ error: "Confirm the author's age group and record a brief source-and-date note." }, { status: 400 });
+    }
+    const guardianConsentOnFile = Boolean(submission.guardianPublicationConsentAt && (submission.guardianPublicationConsentEvidence ?? "").trim().length >= 8);
+    if (authorAgeStatus === "under-18" && (!submission.guardianEmail || (!guardianConsentOnFile && (!guardianConsentConfirmed || guardianConsentEvidenceInput.length < 8)))) {
+      return Response.json({ error: "Authors under 18 need a guardian contact and separately verified guardian publication permission." }, { status: 409 });
     }
 
     const abstractNativeLanguage = abstractNativeLanguageInput || submission.abstractNativeLanguage || "";
@@ -111,6 +130,16 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       publishedAt,
     };
 
+    const consentRecordedAt = new Date().toISOString();
+    await db.update(submissions).set({
+      publicReleaseConsentConfirmed: true,
+      publicReleaseConsentEvidence: storedConsent ? submission.publicReleaseConsentEvidence : publicConsentEvidenceInput,
+      publicReleaseConsentAt: submission.publicReleaseConsentAt ?? consentRecordedAt,
+      publicationAgeStatus: authorAgeStatus,
+      publicationAgeEvidence: ageStatusEvidence,
+      guardianPublicationConsentAt: authorAgeStatus === "under-18" ? (submission.guardianPublicationConsentAt ?? consentRecordedAt) : submission.guardianPublicationConsentAt,
+      guardianPublicationConsentEvidence: authorAgeStatus === "under-18" ? (guardianConsentEvidenceInput || submission.guardianPublicationConsentEvidence) : submission.guardianPublicationConsentEvidence,
+    }).where(eq(submissions.id, id));
     if (existing) {
       await db.update(publishedArticles).set(article).where(eq(publishedArticles.id, existing.id));
     } else {
