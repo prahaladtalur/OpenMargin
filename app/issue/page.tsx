@@ -21,7 +21,7 @@ export default async function IssuePage() {
           <p className="eyebrow">Pilot issue</p>
           <h1>{articles.length > 0 ? "Volume 01 is open for reading." : "Volume 01 is in progress."}</h1>
           <p>
-            {articles.length > 0 ? "Read the pilot records below while we reconcile review, revision, author approval, and readable final files. They are not presented as completed publications." : "We will add articles after review, revision, and author approval."}
+            {articles.length > 0 ? "Read the pilot records below while we reconcile review, revision history, submission-level permission, and readable files. They are not presented as completed publications." : "We will add articles after review and revision, under the publication permission given at submission."}
           </p>
         </div>
         <p className="issue-cover-number" aria-hidden="true">01</p>

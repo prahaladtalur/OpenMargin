@@ -35,7 +35,7 @@ export default async function UpdatesPage() {
           <p className="eyebrow">Current snapshot</p>
           <h2 id="updates-snapshot-title">A current snapshot of publication and capacity.</h2>
           <p>
-            Volume 01 currently lists {articles.length} published {articles.length === 1 ? "article" : "articles"}. We will add work after the full review process, author approval, and final copyediting.
+            Volume 01 currently lists {articles.length} published {articles.length === 1 ? "article" : "articles"}. We will add accepted work after review and copyediting, under the publication permission given at submission.
           </p>
           <div className="updates-actions">
             <Link className="button button-dark" href="/issue">Read the issue</Link>
@@ -79,7 +79,7 @@ export default async function UpdatesPage() {
         <ol>
           <li><span>01</span><p>Confirm two qualified reviewers and one backup for the paper&apos;s field.</p></li>
           <li><span>02</span><p>Run the fit check, two written reviews, and an editor decision.</p></li>
-          <li><span>03</span><p>Publish only the final version that the author approves.</p></li>
+          <li><span>03</span><p>Publish accepted work under the submission-level permission.</p></li>
         </ol>
       </section>
 

@@ -77,6 +77,13 @@ const submissionTableSql = `
     editor_message text,
     original_work_confirmed integer NOT NULL,
     privacy_confirmed integer NOT NULL,
+    public_release_consent_confirmed integer DEFAULT false NOT NULL,
+    public_release_consent_evidence text,
+    public_release_consent_at text,
+    publication_age_status text,
+    publication_age_evidence text,
+    guardian_publication_consent_at text,
+    guardian_publication_consent_evidence text,
     guardian_confirmed integer DEFAULT false NOT NULL,
     guardian_email_updated_at text,
     created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
@@ -213,6 +220,13 @@ export async function ensureSubmissionTable() {
     ["code_url", "text"],
     ["call_slug", "text"],
     ["guardian_email_updated_at", "text"],
+    ["public_release_consent_confirmed", "integer DEFAULT false NOT NULL"],
+    ["public_release_consent_evidence", "text"],
+    ["public_release_consent_at", "text"],
+    ["publication_age_status", "text"],
+    ["publication_age_evidence", "text"],
+    ["guardian_publication_consent_at", "text"],
+    ["guardian_publication_consent_evidence", "text"],
   ]);
   await addMissingColumns(db, "published_articles", [
     ["abstract_native", "text"],

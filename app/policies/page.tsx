@@ -62,7 +62,7 @@ const policies = [
     id: "copyright",
     title: "Copyright and open access",
     body: [
-      "Authors retain copyright. If we accept an article, the author grants Open Margin a nonexclusive right to publish, preserve, and display the final version online. We plan to use the Creative Commons Attribution 4.0 International license (CC BY 4.0) for accepted articles. An editor may agree in writing to a different arrangement before publication.",
+      "Authors retain copyright. By submitting, authors authorize Open Margin to publish, preserve, and display the accepted paper, including its title, byline, and abstract, if it is accepted. This permission applies to the accepted work generally and is not tied to one exact manuscript version. Authors under 18 also need separate parent or guardian approval for publication. Earlier submissions remain under the terms shown when they were submitted; if those terms required separate publication permission, the editors must record general permission before publication. We plan to use the Creative Commons Attribution 4.0 International license (CC BY 4.0) for accepted articles. An editor may agree in writing to a different arrangement before publication.",
       "Authors must tell us about third-party material that may need permission. Open access does not remove the author's duty to respect copyright, privacy, confidentiality, or research participant commitments.",
     ],
   },
@@ -89,7 +89,7 @@ export default function PoliciesPage() {
   return (
     <main>
       <PageIntro
-        eyebrow="Editorial policies · Updated July 29, 2026"
+        eyebrow="Editorial policies · Updated November 16, 2026"
         title="How we handle submissions."
         description="These policies explain how we receive, review, publish, correct, and protect submitted work."
       />

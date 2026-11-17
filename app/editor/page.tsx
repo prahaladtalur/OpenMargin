@@ -59,7 +59,7 @@ export default async function EditorPage() {
             <ReviewAssignments submissionId={row.id} assignments={reviewsBySubmission.get(row.id) ?? []} />
             {(row.status === "accepted" || row.status === "published") && (() => {
               const article = articles.find((item) => item.submissionId === row.id);
-              return <PublishArticleForm id={row.id} status={row.status} initial={{
+              return <PublishArticleForm id={row.id} status={row.status} hasPublicationConsent={row.publicReleaseConsentConfirmed} publicationConsentEvidence={row.publicReleaseConsentEvidence} publicationAgeStatus={row.publicationAgeStatus} publicationAgeEvidence={row.publicationAgeEvidence} guardianPublicationConsentAt={row.guardianPublicationConsentAt} guardianPublicationConsentEvidence={row.guardianPublicationConsentEvidence} initial={{
                 title: article?.title ?? row.manuscriptTitle,
                 authorName: article?.authorName ?? row.authorName,
                 discipline: article?.discipline ?? row.discipline,

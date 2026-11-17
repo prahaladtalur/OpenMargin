@@ -19,7 +19,7 @@ submissions or publications.
 | --- | --- | --- |
 | Sep 1 to 7 | Read replies, recruit two qualified reviewers and one backup, and check the public reviewer process. | Reviewer applications, fields, conflicts, and availability in the recruitment desk. |
 | Sep 8 to 21 | Screen the first eligible submission and assign two reviewers. Send one clear author update. | Submission status, two review records, and the date of the author update. |
-| Sep 22 to Oct 5 | Ask one suitable program to share the optional resource. Publish an accepted article only after author approval. | Partner reply, tagged submission if any, and the public article URL. |
+| Sep 22 to Oct 5 | Ask one suitable program to share the optional resource. Publish accepted work under submission-level permission. | Partner reply, tagged submission if any, and the public article URL. |
 | Oct 6 to 19 | Run a second review cycle if capacity permits. Fix the most common author or reviewer question in the guide. | Decision note, review time, and the changed public page. |
 | Oct 20 to 30 | Compare results and set the next safe capacity. Keep only channels that produce good-fit work or useful feedback. | Completed and eligible submissions, reviewer applications, partner replies, decisions, and published articles. |
 

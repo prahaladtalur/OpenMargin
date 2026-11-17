@@ -49,7 +49,7 @@ export const reviewSteps = [
     number: "04",
     title: "Revision and publication",
     timing: "If accepted",
-    body: "Accepted authors answer the comments. We copyedit the final file and publish it only after the author approves the final version.",
+    body: "Accepted authors answer the comments. We copyedit the accepted paper and prepare its public page under the publication permission given at submission.",
   },
 ];
 
@@ -101,7 +101,7 @@ export const publicUpdates = [
     period: "August 2026",
     label: "Volume 01",
     title: "The first pilot records are available to read.",
-    body: "The pilot records remain readable while we reconcile review, revision, author approval, and final-file evidence. They are not presented as completed publications.",
+    body: "The pilot records remain readable while we reconcile review, revision history, submission-level publication permission, and final-file evidence. They are not presented as completed publications.",
     href: "/issue",
     link: "Read Volume 01",
   },
